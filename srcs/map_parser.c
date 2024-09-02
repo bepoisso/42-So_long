@@ -6,11 +6,11 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/02 21:25:21 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:31:00 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	files_count_line(char *file_name)
 {
@@ -27,7 +27,7 @@ int	files_count_line(char *file_name)
 	while (readed != 0)
 	{
 		readed = read(fd, buf, 1);
-		if (buf == '\n')
+		if (*buf == '\n')
 			count++;
 	}
 	close(fd);
