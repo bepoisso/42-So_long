@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/02 21:16:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:54:10 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <X11/keysym.h>
 
 
-//_________________STRUCT_________________
+//_________________STRUCT&ENUM_________________
 typedef struct s_mlx_data
 {
 	void	*link;
@@ -46,5 +46,13 @@ typedef struct s_entitys_check
 	int	exit_check;
 	int	item_check;
 }	t_entity_check;
+
+enum movement
+{
+	UP = 1,
+	DOWN = 2,
+	LEFT = 3,
+	RIGHT = 4,
+};
 
 #endif

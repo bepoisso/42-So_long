@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/02 21:31:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:45:19 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	files_count_line(char *file_name)
 			count++;
 	}
 	close(fd);
-	free(buf);
 	return (count);
 }
 
@@ -44,12 +43,12 @@ char	**split_map(char *file_name)
 
 	i = 0;
 	if (!file_name || file_name[0] == '\0')
-		return ;
+		return (NULL);
 	count_line = files_count_line(file_name);
-	*map = (char **)malloc(sizeof(char *) * (count_line + 1));
+	map = (char **)malloc(sizeof(char *) * (count_line + 1));
 	fd = open(file_name, O_RDONLY);
 	if (count_line < 0 || map == NULL || fd == -1)
-		return ;
+		return (NULL);
 	while (i < count_line)
 	{
 		map[i] = get_next_line(fd);
@@ -73,6 +72,7 @@ t_manip_map	map_xy_size(char **map_char)
 			map.x_max++;
 		map.y_max++;
 	}
+	return (map);
 }
 
 int	map_check_wall(char **map)
