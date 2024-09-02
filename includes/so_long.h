@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/02 19:47:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:16:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line.h"
 # include <unistd.h>
+# include <fcntl.h>
 # include <X11/keysym.h>
 
 
@@ -29,5 +31,20 @@ typedef struct s_mlx_data
 	void	*link;
 	void	*screen;
 }	t_mlx_data;
+
+typedef struct s_manpi_tab
+{
+	int	x_max;
+	int	y_max;
+	int	x;
+	int	y;
+}	t_manip_map;
+
+typedef struct s_entitys_check
+{
+	int	player_check;
+	int	exit_check;
+	int	item_check;
+}	t_entity_check;
 
 #endif
