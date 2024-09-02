@@ -6,16 +6,24 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/02 15:41:46 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:48:10 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	ft_void(void)
+int	hadndle_input(int keysym, t_mlx_data *data)
 {
-	ft_putchar_fd('X', 1);
-	return (1);
+	if (keysym == XK_Escape)
+	{
+		ft_printf("The %d key (ESC) has been pressed\n\n", keysym);
+		mlx_destroy_window(data->link, data->screen);
+		mlx_destroy_display(data->link);
+		free(data->link);
+		exit(1);
+	}
+	ft_printf("The %d key has been pressed\n\n", keysym);
+	return (0);
 }
 
 int	main(void)
@@ -24,6 +32,6 @@ int	main(void)
 
 	data.link = mlx_init();
 	data.screen = mlx_new_window(data.link, 500, 500, "So_long");
-	mlx_key_hook(data.screen, &ft_void, (void *)NULL);
+	mlx_key_hook(data.screen, hadndle_input, &data);
 	mlx_loop(data.link);
 }

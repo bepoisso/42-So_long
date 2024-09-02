@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/09/02 15:23:28 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/09/02 20:01:17 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ MLX_DIR	= ./minilibx-linux/
 
 #_________________FILES_________________
 
-SRC_FILES	=	so_long.c
+SRC_FILES	=\
+	so_long.c\
+	map_parser.c\
+	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
 OBJS		=	$(addprefix $(OBJ_DIR),$(SRC_FILES:.c=.o))
