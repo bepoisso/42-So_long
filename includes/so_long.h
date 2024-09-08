@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/08 12:12:42 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:40:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SO_LONG_H
 
 //_________________MACROS_________________
+# define SIZE_X 500
+# define SIZE_Y 500
 
 //_________________INCLUDES_________________
 # include "../minilibx-linux/mlx.h"
@@ -56,5 +58,7 @@ enum movement
 	LEFT = 3,
 	RIGHT = 4,
 };
+
+typedef unsigned char	byte;
 
 #endif
