@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/07 20:05:34 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:12:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ typedef struct s_mlx_data
 
 typedef struct s_manpi_tab
 {
-	int	x_max;
-	int	y_max;
-	int	x;
-	int	y;
+	int		x_max;
+	int		y_max;
+	int		x;
+	int		y;
+	char	**map;
+	int		item;
 }	t_manip_map;
 
 typedef struct s_entitys_check
