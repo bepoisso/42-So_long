@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/09/08 18:40:14 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:45:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define SO_LONG_H
 
 //_________________MACROS_________________
-# define SIZE_X 500
-# define SIZE_Y 500
+# define SIZE_X 1000
+# define SIZE_Y 1000
+# define RED 0, 255, 0, 0
+# define GREEN 0, 0, 255, 0
+# define BLUE 0, 0, 0, 255
 
 //_________________INCLUDES_________________
 # include "../minilibx-linux/mlx.h"
@@ -25,9 +28,30 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <X11/keysym.h>
+#include <X11/X.h>
 
 
 //_________________STRUCT&ENUM_________________
+
+typedef struct s_mlx_draw
+{
+	int	x_start;
+	int	y_start;
+	int	size_x;
+	int	size_y;
+	int	radius;
+	int	thickness;
+	int	color;
+}	t_mlx_draw;
+
+typedef struct s_mlx_img
+{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_mlx_img;
+
 typedef struct s_mlx_data
 {
 	void	*link;
@@ -60,5 +84,14 @@ enum movement
 };
 
 typedef unsigned char	byte;
+
+//_________________FUNC_________________
+char	**player_move(t_manip_map *map, int move);
+int		check_item_counter(t_manip_map *map, int move);
+void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
+int		encode_trgb(int t, int r, int g, int b);
+int		mlx_destroy(t_mlx_data *data);
+int		screen_color(t_mlx_data *data, int color);
+void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data);
 
 #endif

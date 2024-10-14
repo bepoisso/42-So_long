@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/09/02 21:29:58 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/09/09 13:11:31 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_FILES	=\
 	so_long.c\
 	map_parser.c\
 	movement.c\
+	mlx_utiles.c
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
