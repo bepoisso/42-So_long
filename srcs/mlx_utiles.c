@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 11:38:27 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:17:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *da
 	}
 }
 
-int	screen_color(t_mlx_data *data, int color)
+int	screen_color(t_mlx_data *data, int x_size, int y_size, int color)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while(y < SIZE_Y)
+	while(y < y_size)
 	{
 		x = 0;
-		while (x < SIZE_X)
+		while (x < x_size)
 		{
 			mlx_pixel_put(data->link, data->screen, x, y, color);
 			x++;

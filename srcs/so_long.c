@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 12:20:32 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:59:22 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	handle_input(int keysym, t_mlx_data *data)
 		print_map(data);
 	}
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
+	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
+	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), ft_itoa(data->map.move_count));
 	return (0);
 }
 
@@ -111,23 +113,21 @@ void	print_map(t_mlx_data *data)
 int	main(void)
 {
 	t_mlx_data	data;
+	
+	//Gestion map
+	init_map(&data);
 
 	data.link = mlx_init();
 	if (!data.link)
 		ft_printf("***ERROR INIT***\n\n");
 
-	data.screen = mlx_new_window(data.link, SIZE_X, SIZE_Y, "So_long");
+	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 3), "So_long");
 	if (!data.screen)
 		ft_printf("***ERROR SCREEN***\n\n");
 
 	// Gestions des la croix (X)
 	mlx_hook(data.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);
 	
-	//Gestion map
-	init_map(&data);
-	/* data.map.map = split_map("./map.test");
-	data.map.move_count = 0;
-	data.map.item = item_counter(data.map.map); */
 	
 	//Gestion de l'impression tableau
 	init_img(&data);

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 12:16:41 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:40:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define SO_LONG_H
 
 //_________________MACROS_________________
-# define SIZE_X 1920
-# define SIZE_Y 1080
 # define TEXTUR_SIZE 32
 # define RED 0, 255, 0, 0
 # define GREEN 0, 0, 255, 0
@@ -29,8 +27,9 @@
 # include "../libft/includes/get_next_line.h"
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 # include <X11/keysym.h>
-#include <X11/X.h>
+# include <X11/X.h>
 
 
 //_________________STRUCT&ENUM_________________
@@ -102,26 +101,27 @@ enum movement
 typedef unsigned char	byte;
 
 //_________________FUNC_________________
-char		**player_move(t_mlx_data *data, t_mlx_map *map, int move);
-void		check_item_counter(t_mlx_map *map, int move);
-void		mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
-int			encode_trgb(int t, int r, int g, int b);
-int			mlx_destroy(t_mlx_data *data);
-int			screen_color(t_mlx_data *data, int color);
-void		mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data);
-int			files_count_line(char *file_name);
-char		**split_map(char *file_name);
-void		map_xy_size(t_mlx_map *map);
-int			check_wall(t_mlx_map *map);
-int			check_entitys_in_map(char **map);
-void		print_map(t_mlx_data *data);
-void		init_img(t_mlx_data *data);
-int			handle_input(int keysym, t_mlx_data *data);
-void		get_player_pos(t_mlx_map *map);
-int			item_counter(char **map);
-void		check_end(t_mlx_data *data, t_mlx_map *map, int move);
-void		check_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-void		init_map(t_mlx_data *data);
-int			check_map_rectangle(char **map);
-int			ft_my_strlen(char *s);
+char	**player_move(t_mlx_data *data, t_mlx_map *map, int move);
+void	check_item_counter(t_mlx_map *map, int move);
+void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
+int		encode_trgb(int t, int r, int g, int b);
+int		mlx_destroy(t_mlx_data *data);
+int		screen_color(t_mlx_data *data, int x_size, int y_size, int color);
+void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data);
+int		files_count_line(char *file_name);
+char	**split_map(char *file_name);
+void	map_xy_size(t_mlx_map *map);
+int		check_wall(t_mlx_map *map);
+int		check_entitys_in_map(char **map);
+void	print_map(t_mlx_data *data);
+void	init_img(t_mlx_data *data);
+int		handle_input(int keysym, t_mlx_data *data);
+void	get_player_pos(t_mlx_map *map);
+int		item_counter(char **map);
+void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
+void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move);
+void	init_map(t_mlx_data *data);
+int		check_map_rectangle(char **map);
+int		ft_my_strlen(char *s);
+int		check_other_char_in_map(char **map);
 #endif

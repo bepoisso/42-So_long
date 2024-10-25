@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 11:42:57 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:50:19 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,26 @@ int	item_counter(char **map)
 	return (count);
 }
 
+int	check_other_char_in_map(char **map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map[y + 1] != NULL)
+	{
+		x = 0;
+		while (map[y][x + 1] != '\0')
+		{
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P')
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
 int	check_map_rectangle(char **map)
 {
 	int	i;
@@ -190,7 +210,12 @@ void	init_map(t_mlx_data *data)
 		ft_printf("Error\nThe map must be rectangular\n");
 		mlx_destroy(data);
 	}
-	if (check_wall(&data->map) == 1)
+	if (check_other_char_in_map(data->map.map))
+	{
+		ft_printf("Error\nThe map must be only contained \"01CEP\"\n");
+		mlx_destroy(data);
+	}
+	if (check_wall(&data->map))
 	{
 		ft_printf("Error\nThe map must be bordered by a wall\n");
 		mlx_destroy(data);
