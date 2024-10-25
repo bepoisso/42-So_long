@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/14 14:52:49 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:42:57 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,47 +58,48 @@ char	**split_map(char *file_name)
 	return (map);
 }
 
-t_manip_map	map_xy_size(char **map_char)
+void	map_xy_size(t_mlx_map *map)
 {
-	t_manip_map	map;
-
-	map.x = 0;
-	map.y = 0;
-	map.y_max = 0;
-	while (map_char[map.y_max])
+	map->x = 0;
+	map->y = 0;
+	map->y_max = 0;
+	while (map->map[map->y_max])
 	{
-		map.x_max = 0;
-		while (map_char[map.y_max][map.x_max])
-			map.x_max++;
-		map.y_max++;
+		map->x_max = 0;
+		while (map->map[map->y_max][map->x_max])
+			map->x_max++;
+		map->y_max++;
 	}
-	return (map);
+	map->x_max--;
+	map->y_max--;
 }
 
-int	map_check_wall(char **map)
+int	check_wall(t_mlx_map *map)
 {
-	t_manip_map	i;
+	int	x;
+	int	y;
 
-	if (!map || !*map)
-		return (1);
-	i = map_xy_size(map);
-	i.y = 0;
-	while (i.y < i.y_max - 1)
+	map_xy_size(map);
+	y = 0;
+	x = 0;
+	while (x < map->x_max)
 	{
-		i.x = 0;
-		while (i.x < i.x_max)
-		{
-			if (i.y < i.y_max - 1 && i.x - 1 == 0 && map[i.y][i.x] != 1)
-				return (1);
-			if (i.y == 0 && i.x < i.x_max - 1 && map[i.y][i.x] != 1)
-				return (1);
-			if (i.y < i.y_max - 1 && i.x == i.x_max - 1 && map[i.y][i.x] != 1)
-				return (1);
-			if (i.y == i.y_max - 1 && i.x < i.x_max - 1 && map[i.y][i.x] != 1)
-				return (1);
-			i.x++;
-		}
-		i.y++;
+		if (map->map[y][x] != '1')
+			return (1);
+		x++;
+	}
+	x = 0;
+	while (y < map->y_max)
+	{
+		if (map->map[y][x] != '1' || map->map[y][map->x_max - 1] != '1')
+			return (1);
+		y++;
+	}
+	while (x < map->x_max)
+	{
+		if (map->map[map->y_max][x] != '1')
+			return (1);
+		x++;
 	}
 	return (0);
 }
@@ -111,6 +112,7 @@ int	check_entitys_in_map(char **map)
 
 	entity.player_check = 0;
 	entity.exit_check = 0;
+	entity.item_check = 0;
 	y = -1;
 	while (map[++y])
 	{
@@ -126,7 +128,80 @@ int	check_entitys_in_map(char **map)
 		}
 	}
 	if (entity.player_check != 1 || entity.exit_check != 1
-		|| entity.item_check < 1)
+		|| entity.item_check == 0)
 		return (1);
 	return (0);
 }
+
+int	item_counter(char **map)
+{
+	int	x;
+	int	y;
+	int	count;
+
+	y = 0;
+	count = 0;
+	while (map[y] != NULL)
+	{
+		x = 0;
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == 'C')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
+}
+
+int	check_map_rectangle(char **map)
+{
+	int	i;
+	int size_line;
+
+	i = 0;
+	size_line = ft_my_strlen((map[i]));
+	while (map[i] != NULL)
+	{
+		if (ft_my_strlen(map[i]) != size_line)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_my_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	init_map(t_mlx_data *data)
+{
+	data->map.map = split_map("./map.test");
+
+	if (check_map_rectangle(data->map.map))
+	{
+		ft_printf("Error\nThe map must be rectangular\n");
+		mlx_destroy(data);
+	}
+	if (check_wall(&data->map) == 1)
+	{
+		ft_printf("Error\nThe map must be bordered by a wall\n");
+		mlx_destroy(data);
+	}
+	if (check_entitys_in_map(data->map.map))
+	{
+		ft_printf("Error\nThe map must have right entity in map\n");
+		mlx_destroy(data);
+	}
+
+	data->map.move_count = 0;
+	data->map.item = item_counter(data->map.map);
+}
+

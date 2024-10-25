@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/10 18:38:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:38:27 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	screen_color(t_mlx_data *data, int color)
 
 int	mlx_destroy(t_mlx_data *data)
 {
-	ft_printf("Destroy window\n\n");
 	if (data->screen)
 		mlx_destroy_window(data->link, data->screen);
 	if (data->link)
