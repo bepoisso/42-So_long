@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 14:59:22 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:41:02 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(void)
 	if (!data.link)
 		ft_printf("***ERROR INIT***\n\n");
 
-	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 3), "So_long");
+	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 2), "So_long");
 	if (!data.screen)
 		ft_printf("***ERROR SCREEN***\n\n");
 
