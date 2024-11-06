@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/04 17:34:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:14:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,8 @@ void	init_map(t_mlx_data *data)
 		mlx_destroy(data);
 	}
 	get_player_pos(&data->map);
-	if (is_valid_path(data->map.map, data->map.x, data->map.y))
+	data->map.temp_map = create_temp_map(data->map.map);
+	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
 		ft_printf("Error\nNo path are found betwen the player and exit\n");
 		mlx_destroy(data);
@@ -236,16 +237,44 @@ void	init_map(t_mlx_data *data)
 	data->map.item = item_counter(data->map.map);
 }
 
+int	ft_strslen(char **map)
+{
+	int	i;
+
+	i = 0;
+	while(map[i] != NULL)
+		i++;
+	return (i);
+}
+
+char **create_temp_map(char **map)
+{
+	char **temp;
+	int	i;
+
+	i = 0;
+	temp = malloc(sizeof(char *) * ft_strslen(map));
+	while (i < ft_strslen(map))
+	{
+		ft_strlcpy(temp[i], map[i], ft_my_strlen(map[i]));
+		i++;
+	}
+	return(temp);
+}
+
+
 int	is_valid_path(char **map, int x, int y)
 {
+	ft_printf("tester %d, %d\n", x, y);
 	if (map[y][x] == 'E')
 		return (0);
-	if (map[y][x] == '1')
+	if (map[y][x] == '1' || map[y][x] == 'V')
 		return (1);
-	if (is_valid_path(map, x + 1, y) ||
-		is_valid_path(map, x - 1, y) ||
-		is_valid_path(map, x, y + 1) ||
-		is_valid_path(map, x, y - 1))
+	map[y][x] = 'V';
+	if (is_valid_path(map, x + 1, y) == 0 ||
+		is_valid_path(map, x - 1, y) == 0 ||
+		is_valid_path(map, x, y + 1) == 0 ||
+		is_valid_path(map, x, y - 1) == 0)
 		return (0);
 	return (1);
 }

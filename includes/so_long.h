@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/04 17:35:27 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/06 08:53:28 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_mlx_all_img
 typedef struct s_mlx_map
 {
 	char	**map;
+	char	**temp_map;
 	int		x;
 	int		y;
 	int		x_max;
@@ -125,4 +126,6 @@ int		check_map_rectangle(char **map);
 int		ft_my_strlen(char *s);
 int		check_other_char_in_map(char **map);
 int		is_valid_path(char **map, int x, int y);
+char	**create_temp_map(char **map);
+int		ft_strslen(char **map);
 #endif
