@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 15:41:29 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:35:27 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,5 @@ void	init_map(t_mlx_data *data);
 int		check_map_rectangle(char **map);
 int		ft_my_strlen(char *s);
 int		check_other_char_in_map(char **map);
+int		is_valid_path(char **map, int x, int y);
 #endif

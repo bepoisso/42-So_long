@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 14:50:19 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:34:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,8 +225,27 @@ void	init_map(t_mlx_data *data)
 		ft_printf("Error\nThe map must have right entity in map\n");
 		mlx_destroy(data);
 	}
+	get_player_pos(&data->map);
+	if (is_valid_path(data->map.map, data->map.x, data->map.y))
+	{
+		ft_printf("Error\nNo path are found betwen the player and exit\n");
+		mlx_destroy(data);
+	}
 
 	data->map.move_count = 0;
 	data->map.item = item_counter(data->map.map);
 }
 
+int	is_valid_path(char **map, int x, int y)
+{
+	if (map[y][x] == 'E')
+		return (0);
+	if (map[y][x] == '1')
+		return (1);
+	if (is_valid_path(map, x + 1, y) ||
+		is_valid_path(map, x - 1, y) ||
+		is_valid_path(map, x, y + 1) ||
+		is_valid_path(map, x, y - 1))
+		return (0);
+	return (1);
+}
