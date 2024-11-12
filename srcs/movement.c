@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 11:37:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 22:47:05 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 {
-	get_player_pos(map);
+	get_entity_pos(map, 'P');
 	if (move == UP && map->map[map->y - 1][map->x] != '1')
 	{
 		check_item_counter(map, move);
 		check_end(data, map, move);
+		check_enemy_gameover(data, map, move);
 		map->map[map->y - 1][map->x] = 'P';
 		map->map[map->y][map->x] = '0';
 	}
@@ -26,6 +27,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	{
 		check_item_counter(map, move);
 		check_end(data, map, move);
+		check_enemy_gameover(data, map, move);
 		map->map[map->y + 1][map->x] = 'P';
 		map->map[map->y][map->x] = '0';
 	}
@@ -33,6 +35,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	{
 		check_item_counter(map, move);
 		check_end(data, map, move);
+		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x - 1] = 'P';
 		map->map[map->y][map->x] = '0';
 	}
@@ -40,6 +43,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	{
 		check_item_counter(map, move);
 		check_end(data, map, move);
+		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x + 1] = 'P';
 		map->map[map->y][map->x] = '0';
 	}
@@ -88,6 +92,54 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 		check_gameover(data, map, move);
 }
 
+void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
+{
+	if (move == UP && map->map[map->y - 1][map->x] == 'G')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == DOWN && map->map[map->y + 1][map->x] == 'G')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == LEFT && map->map[map->y][map->x - 1] == 'G')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == RIGHT && map->map[map->y][map->x + 1] == 'G')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+}
+
+void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move)
+{
+	if (move == UP && map->map[map->y - 1][map->x] == 'P')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == DOWN && map->map[map->y + 1][map->x] == 'P')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == LEFT && map->map[map->y][map->x - 1] == 'P')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == RIGHT && map->map[map->y][map->x + 1] == 'P')
+	{
+		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+}
+
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[map->y - 1][map->x] == 'E')
@@ -112,7 +164,8 @@ void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 	}
 }
 
-void	get_player_pos(t_mlx_map *map)
+
+void	get_entity_pos(t_mlx_map *map, char entity)
 {
 	int	x;
 	int	y;
@@ -123,7 +176,7 @@ void	get_player_pos(t_mlx_map *map)
 		x = 0;
 		while (map->map[y][x] != '\0')
 		{
-			if (map->map[y][x] == 'P')
+			if (map->map[y][x] == entity)
 			{
 				map->x = x;
 				map->y = y;
@@ -132,4 +185,42 @@ void	get_player_pos(t_mlx_map *map)
 		}
 		y++;
 	}
+}
+
+char	**enemy_move(t_mlx_data *data, t_mlx_map *map)
+{
+	int		rdm;
+	char	temp;
+
+	rdm = (rand() % 4) + 1;
+	get_entity_pos(map, 'G');
+	if (rdm == UP && map->map[map->y - 1][map->x] != '1')
+	{
+		check_player_gameover(data, map, UP);
+		temp = map->map[map->y - 1][map->x];
+		map->map[map->y - 1][map->x] = 'G';
+		map->map[map->y][map->x] = temp;
+	}
+	if (rdm == DOWN && map->map[map->y + 1][map->x] != '1')
+	{
+		check_player_gameover(data, map, UP);
+		temp = map->map[map->y + 1][map->x];
+		map->map[map->y + 1][map->x] = 'G';
+		map->map[map->y][map->x] = temp;
+	}
+	if (rdm == LEFT && map->map[map->y][map->x - 1] != '1')
+	{
+		check_player_gameover(data, map, UP);
+		temp = map->map[map->y][map->x - 1];
+		map->map[map->y][map->x - 1] = 'G';
+		map->map[map->y][map->x] = temp;
+	}
+	if (rdm == RIGHT && map->map[map->y][map->x + 1] != '1')
+	{
+		check_player_gameover(data, map, UP);
+		temp = map->map[map->y][map->x + 1];
+		map->map[map->y][map->x + 1] = 'G';
+		map->map[map->y][map->x] = temp;
+	}
+	return (map->map);
 }

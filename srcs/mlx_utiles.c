@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 20:48:46 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:22:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.enemy.img);
 	if (data->link)
 		mlx_destroy_display(data->link);
+	free_2d(data->map.map);
 	exit (0);
 	return (1);
 }

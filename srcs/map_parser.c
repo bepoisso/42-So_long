@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 20:48:26 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 22:31:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	check_other_char_in_map(char **map)
 		x = 0;
 		while (map[y][x + 1] != '\0')
 		{
-			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'P')
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'G')
 				return (1);
 			x++;
 		}
@@ -224,8 +224,7 @@ void	init_map(t_mlx_data *data)
 		ft_printf("Error\nThe map must have right entity in map\n");
 		mlx_destroy(data);
 	}
-	get_player_pos(&data->map);
-	TESTER
+	get_entity_pos(&data->map, 'P');
 	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
@@ -268,7 +267,6 @@ char **create_temp_map(char **map)
 
 int	is_valid_path(char **map, int x, int y)
 {
-	ft_printf("tester %d, %d\n", x, y);
 	if (map[y][x] == 'E')
 		return (0);
 	if (map[y][x] == '1' || map[y][x] == 'V')
