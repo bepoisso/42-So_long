@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/06 08:53:28 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:29:27 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_mlx_all_img
 	t_mlx_img floor;
 	t_mlx_img wall;
 	t_mlx_img exit;
+	t_mlx_img enemy;
 	int x;
 	int y;
 } t_mlx_all_img;
@@ -80,6 +81,7 @@ typedef struct s_mlx_data
 {
 	void			*link;
 	void			*screen;
+	int				current_frame;
 	t_mlx_all_img	img;
 	t_mlx_map		map;
 }	t_mlx_data;

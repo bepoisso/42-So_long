@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 12:37:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:38:46 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,12 +225,13 @@ void	init_map(t_mlx_data *data)
 		mlx_destroy(data);
 	}
 	get_player_pos(&data->map);
-	/* data->map.temp_map = create_temp_map(data->map.map);
+	TESTER
+	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
 		ft_printf("Error\nNo path are found betwen the player and exit\n");
 		mlx_destroy(data);
-	} */
+	}
 	
 
 	data->map.move_count = 0;
@@ -256,14 +257,14 @@ char **create_temp_map(char **map)
 	temp = malloc(sizeof(char *) * ft_strslen(map));
 	while (i < ft_strslen(map))
 	{
-		ft_strlcpy(temp[i], map[i], ft_my_strlen(map[i]));
+		temp[i] = ft_strdup(map[i]);
 		i++;
 	}
 	return(temp);
 }
 
 
-/* int	is_valid_path(char **map, int x, int y)
+int	is_valid_path(char **map, int x, int y)
 {
 	ft_printf("tester %d, %d\n", x, y);
 	if (map[y][x] == 'E')
@@ -277,4 +278,4 @@ char **create_temp_map(char **map)
 		is_valid_path(map, x, y - 1) == 0)
 		return (0);
 	return (1);
-} */
+}
