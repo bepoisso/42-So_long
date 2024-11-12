@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 14:34:59 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:10:28 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ int	handle_input(int keysym, t_mlx_data *data)
 		print_map(data);
 	}
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
-	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
+	/* mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
 	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), ft_itoa(data->map.move_count));
 
+	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), "Item count : ");
+	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), ft_itoa(data->map.item));
+ */
 	return (0);
 }
 
@@ -73,7 +76,7 @@ void	init_img(t_mlx_data *data)
 	data->img.item.path = "./skin/pac/item.xpm";
 	data->img.exit.path = "./skin/pac/exit.xpm";
 	data->img.character.path = "./skin/pac/character.xpm";
-	// data->img.enemy.path = "./skin/pac/enemy.xpm";
+	data->img.enemy.path = "./skin/pac/enemy.xpm";
 
 	data->img.floor.img = mlx_xpm_file_to_image(data->link, data->img.floor.path, &data->img.floor.width, &data->img.floor.height);
 	if (!data->img.floor.img)
@@ -95,9 +98,9 @@ void	init_img(t_mlx_data *data)
 	if (!data->img.character.img)
 		ft_printf("\nERROR loading character image\n");
 
-	// data->img.enemy.img = mlx_xpm_file_to_image(data->link, data->img.enemy.path, &data->img.enemy.width, &data->img.enemy.height);
-	// if (!data->img.enemy.img)
-	// 	ft_printf("\nERROR loading enemy image\n");
+	data->img.enemy.img = mlx_xpm_file_to_image(data->link, data->img.enemy.path, &data->img.enemy.width, &data->img.enemy.height);
+	if (!data->img.enemy.img)
+	ft_printf("\nERROR loading enemy image\n");
 }
 
 void	print_map(t_mlx_data *data)
@@ -120,8 +123,8 @@ void	print_map(t_mlx_data *data)
 				mlx_put_image_to_window(data->link, data->screen, data->img.exit.img, data->img.x ,data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == 'P')
 				mlx_put_image_to_window(data->link, data->screen, data->img.character.img, data->img.x ,data->img.y);
-			// else if (data->map.map[data->map.y][data->map.x] == 'P')
-			// 	mlx_put_image_to_window(data->link, data->screen, data->img.enemy.img, data->img.x ,data->img.y);
+			else if (data->map.map[data->map.y][data->map.x] == 'G')
+				mlx_put_image_to_window(data->link, data->screen, data->img.enemy.img, data->img.x ,data->img.y);
 			data->map.x++;
 			data->img.x += TEXTUR_SIZE;
 		}

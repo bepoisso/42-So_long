@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 14:29:27 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:27:57 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,5 @@ int		check_other_char_in_map(char **map);
 int		is_valid_path(char **map, int x, int y);
 char	**create_temp_map(char **map);
 int		ft_strslen(char **map);
+void	free_2d(char **tab);
 #endif

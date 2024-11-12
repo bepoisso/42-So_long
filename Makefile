@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/09/09 13:11:31 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/11/12 20:21:03 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = so_long.out
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra #-Werror#
+CFLAGS		= -Wall -Wextra -g #-Werror# 
 
 MLX_NAME	= libmlx.a
 MLX_FLAGS	= -l mlx -l Xext -l X11

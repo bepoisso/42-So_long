@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 14:38:46 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:48:26 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	check_other_char_in_map(char **map)
 		x = 0;
 		while (map[y][x + 1] != '\0')
 		{
-			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P')
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'P')
 				return (1);
 			x++;
 		}
@@ -211,7 +211,7 @@ void	init_map(t_mlx_data *data)
 	}
 	if (check_other_char_in_map(data->map.map))
 	{
-		ft_printf("Error\nThe map must be only contained \"01CEP\"\n");
+		ft_printf("Error\nThe map must be only contained \"01CEPG\"\n");
 		mlx_destroy(data);
 	}
 	if (check_wall(&data->map))
@@ -232,6 +232,7 @@ void	init_map(t_mlx_data *data)
 		ft_printf("Error\nNo path are found betwen the player and exit\n");
 		mlx_destroy(data);
 	}
+	free_2d(data->map.temp_map);
 	
 
 	data->map.move_count = 0;
@@ -254,12 +255,13 @@ char **create_temp_map(char **map)
 	int	i;
 
 	i = 0;
-	temp = malloc(sizeof(char *) * ft_strslen(map));
+	temp = malloc(sizeof(char *) * (ft_strslen(map) + 1));
 	while (i < ft_strslen(map))
 	{
 		temp[i] = ft_strdup(map[i]);
 		i++;
 	}
+	temp[i] = NULL;
 	return(temp);
 }
 

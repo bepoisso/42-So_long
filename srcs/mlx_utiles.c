@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/10/25 15:11:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:48:46 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,18 @@ int	mlx_destroy(t_mlx_data *data)
 {
 	if (data->screen)
 		mlx_destroy_window(data->link, data->screen);
+	if (data->img.character.img)
+		mlx_destroy_image(data->link, data->img.character.img);
+	if (data->img.wall.img)
+		mlx_destroy_image(data->link, data->img.wall.img);
+	if (data->img.floor.img)
+		mlx_destroy_image(data->link, data->img.floor.img);
+	if (data->img.item.img)
+		mlx_destroy_image(data->link, data->img.item.img);
+	if (data->img.exit.img)
+		mlx_destroy_image(data->link, data->img.exit.img);
+	if (data->img.enemy.img)
+		mlx_destroy_image(data->link, data->img.enemy.img);
 	if (data->link)
 		mlx_destroy_display(data->link);
 	exit (0);
@@ -85,4 +97,17 @@ int	mlx_destroy(t_mlx_data *data)
 int	encode_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	free_2d(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
