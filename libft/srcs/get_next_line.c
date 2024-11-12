@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/12 12:28:35 by bepoisso          #+#    #+#             */
+/*   Updated: 2024/11/12 12:28:46 by bepoisso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/get_next_line.h"
 
 void	substract_and_save(char **stash, char **line)
 {
 	int		i;
 	char	*temp;
+
 	i = 0;
 	while ((*stash)[i] && (*stash)[i] != '\n')
 		i++;
@@ -19,6 +32,7 @@ void	substract_and_save(char **stash, char **line)
 	free(*stash);
 	*stash = temp;
 }
+
 char	*get_next_line(int fd)
 {
 	char		*buff;
@@ -26,6 +40,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*stash;
 	char		*temp_stash;
+
 	line = NULL;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff || (fd < 0 || BUFFER_SIZE <= 0))
