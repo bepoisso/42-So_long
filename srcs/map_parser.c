@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/06 09:14:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:37:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,6 @@ int	ft_my_strlen(char *s)
 void	init_map(t_mlx_data *data)
 {
 	data->map.map = split_map("./map.test");
-
 	if (check_map_rectangle(data->map.map))
 	{
 		ft_printf("Error\nThe map must be rectangular\n");
@@ -226,12 +225,13 @@ void	init_map(t_mlx_data *data)
 		mlx_destroy(data);
 	}
 	get_player_pos(&data->map);
-	data->map.temp_map = create_temp_map(data->map.map);
+	/* data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
 		ft_printf("Error\nNo path are found betwen the player and exit\n");
 		mlx_destroy(data);
-	}
+	} */
+	
 
 	data->map.move_count = 0;
 	data->map.item = item_counter(data->map.map);
@@ -263,7 +263,7 @@ char **create_temp_map(char **map)
 }
 
 
-int	is_valid_path(char **map, int x, int y)
+/* int	is_valid_path(char **map, int x, int y)
 {
 	ft_printf("tester %d, %d\n", x, y);
 	if (map[y][x] == 'E')
@@ -277,4 +277,4 @@ int	is_valid_path(char **map, int x, int y)
 		is_valid_path(map, x, y - 1) == 0)
 		return (0);
 	return (1);
-}
+} */
