@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 12:50:49 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:08:22 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ int	mlx_destroy(t_mlx_data *data)
 	if (data->img.enemy.img)
 		mlx_destroy_image(data->link, data->img.enemy.img);
 	if (data->link)
+	{
 		mlx_destroy_display(data->link);
-	free(data->link);
+		free(data->link);
+	}
 	free_2d(data->map.map);
 	exit (0);
 	return (1);
