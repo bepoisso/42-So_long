@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 11:12:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:43:32 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,17 @@ typedef struct s_entitys_check
 	int	player_check;
 	int	exit_check;
 	int	item_check;
+	int	enemy_check;
 }	t_entity_check;
+
+typedef struct s_enemy
+{
+	int		index;
+	int		pos_x;
+	int		pos_y;
+	void	*prev;
+	void	*next;
+}	t_enemy;
 
 enum movement
 {

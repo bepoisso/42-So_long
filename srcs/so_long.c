@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 13:40:50 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:23:54 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,35 @@ int	handle_input(int keysym, t_mlx_data *data)
 		mlx_destroy(data);
 		exit(1);
 	}
-	if (keysym == 119) // UP
+	if (keysym == 122) // UP 119 - 122
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, UP);
 		data->map.move_count++;
 		print_map(data);
 	}
-	if (keysym == 97) // LEFT
+	if (keysym == 113) // LEFT 97 - 113
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, LEFT);
 		data->map.move_count++;
 		print_map(data);
 	}
-	if (keysym == 115) // DOWN
+	if (keysym == 115) // DOWN 115
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, DOWN);
 		data->map.move_count++;
 		print_map(data);
 	}
-	if (keysym == 100) // RIGHT
+	if (keysym == 100) // RIGHT 100
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, RIGHT);
 		data->map.move_count++;
 		print_map(data);
 	}
+	ft_printf("Keysym = %d\n", keysym);
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
 	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), ft_itoa(data->map.move_count));
@@ -61,7 +62,9 @@ int	update_frame(t_mlx_data *data)
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-			data->map.map = enemy_move(data, &data->map, 1);
+		data->map.map = enemy_move(data, &data->map, 1);
+		data->map.map = enemy_move(data, &data->map, 2);
+		data->map.map = enemy_move(data, &data->map, 3);
 		print_map(data);
 		ft_printf("\nFrame updated\n");
 		data->current_frame = 0;
