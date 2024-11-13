@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 22:47:30 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:12:00 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_mlx_map
 	int		y_max;
 	int		item;
 	int		move_count;
+	char	stach;
 }	t_mlx_map;
 
 typedef struct s_mlx_data
@@ -119,7 +120,7 @@ int		check_entitys_in_map(char **map);
 void	print_map(t_mlx_data *data);
 void	init_img(t_mlx_data *data);
 int		handle_input(int keysym, t_mlx_data *data);
-void	get_entity_pos(t_mlx_map *map, char entity);
+void	get_entity_pos(t_mlx_map *map, char entity, int index);
 int		item_counter(char **map);
 void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move);
@@ -132,6 +133,6 @@ char	**create_temp_map(char **map);
 int		ft_strslen(char **map);
 void	free_2d(char **tab);
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-char	**enemy_move(t_mlx_data *data, t_mlx_map *map);
+char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 #endif

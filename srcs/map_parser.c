@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/12 22:31:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:12:52 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void	init_map(t_mlx_data *data)
 		ft_printf("Error\nThe map must have right entity in map\n");
 		mlx_destroy(data);
 	}
-	get_entity_pos(&data->map, 'P');
+	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
