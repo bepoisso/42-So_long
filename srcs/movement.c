@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 11:11:31 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:56:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	get_entity_pos(t_mlx_map *map, char entity, int index)
 	int	y;
 	int	i;
 
-	i = 0;
+	i = 1;
 	y = 0;
 	while (map->map[y] != NULL)
 	{
@@ -180,13 +180,14 @@ void	get_entity_pos(t_mlx_map *map, char entity, int index)
 		{
 			if (map->map[y][x] == entity)
 			{
-				if (i < index)
-					index++;
-				else
+				if (i == index)
 				{
 					map->x = x;
 					map->y = y;
+					return;
 				}
+				else
+					i++;
 			}
 			x++;
 		}
