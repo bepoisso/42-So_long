@@ -6,14 +6,66 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:46:40 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 17:48:07 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:40:23 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// lst_create
+t_enemy *lst_create_enemy(int index, int pos_x, int pos_y)
+{
+	t_enemy	*new;
 
-// lst_add
+	new = (t_enemy *)malloc(sizeof(t_enemy));
+	if (new == NULL)
+		return (NULL);
+	new->index = index;
+	new->pos_x = pos_x;
+	new->pos_y = pos_y;
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
+}
 
-// lst_iter
+void	lst_add_enemy(t_enemy **lst, t_enemy *new)
+{
+	t_enemy	*last;
+
+	if (!lst)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
+	last->next = new;
+}
+
+t_list	*ft_lstlast_enemy(t_enemy *lst)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	size = ft_lstsize(lst);
+	while (i < size - 1)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (lst);
+}
+
+int	ft_lstsize_enemy(t_enemy *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 17:44:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:05:31 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	check_entitys_in_map(char **map)
 	return (0);
 }
 
-int	item_counter(char **map)
+int	entity_counter(char **map, char entity)
 {
 	int	x;
 	int	y;
@@ -146,13 +146,13 @@ int	item_counter(char **map)
 		x = 0;
 		while (map[y][x] != '\0')
 		{
-			if (map[y][x] == 'C')
+			if (map[y][x] == entity)
 				count++;
 			x++;
 		}
 		y++;
 	}
-	return (count);
+	return (count++);
 }
 
 int	check_other_char_in_map(char **map)
@@ -235,7 +235,7 @@ void	init_map(t_mlx_data *data)
 	
 
 	data->map.move_count = 0;
-	data->map.item = item_counter(data->map.map);
+	data->map.item = entity_counter(data->map.map, 'C');
 }
 
 int	ft_strslen(char **map)
@@ -263,7 +263,6 @@ char **create_temp_map(char **map)
 	temp[i] = NULL;
 	return(temp);
 }
-
 
 int	is_valid_path(char **map, int x, int y)
 {

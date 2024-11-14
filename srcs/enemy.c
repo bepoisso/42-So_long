@@ -6,33 +6,25 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:30:54 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 17:45:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:15:30 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	entity_counter(char **map, char entity)
+void	init_enemy(t_mlx_map *map)
 {
-	int	count;
-	int	x;
-	int	y;
+	t_enemy *enemy;
+	t_enemy *new;
+	int	enemy_nbr;
+	int	i;
 
-	count = 0;
-	y = 0;
-	while (map[y])
+	i = 1;
+	enemy_nbr = entity_counter(map->map, 'G');
+	while (i <= enemy_nbr)
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == entity)
-				count++;
-			y++;
-		}
-		x++;
+		new = lst_create_enemy(i, map->x, map->y);
+		lst_add_enemy(enemy, new);
+		i++;
 	}
-	return (count);
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 17:43:32 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:40:37 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ typedef struct s_entitys_check
 typedef struct s_enemy
 {
 	int		index;
+	char	stash;
 	int		pos_x;
 	int		pos_y;
-	void	*prev;
 	void	*next;
 }	t_enemy;
 
@@ -131,7 +131,7 @@ void	print_map(t_mlx_data *data);
 void	init_img(t_mlx_data *data);
 int		handle_input(int keysym, t_mlx_data *data);
 void	get_entity_pos(t_mlx_map *map, char entity, int index);
-int		item_counter(char **map);
+int		entity_counter(char **map, char entity);
 void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 void	init_map(t_mlx_data *data);
@@ -145,4 +145,6 @@ void	free_2d(char **tab);
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
+t_enemy *lst_create_enemy(int index, int pos_x, int pos_y);
+t_enemy *lst_add_enemy(t_enemy *lst, t_enemy *new);
 #endif
