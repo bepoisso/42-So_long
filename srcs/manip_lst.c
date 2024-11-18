@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   manip_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bepoisso <bepoisso@student.42perpignan.fr> +#+  +:+       +#+        */
+/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:46:40 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/18 08:26:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:32:33 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_enemy *lst_create_enemy(int index, int pos_x, int pos_y)
+/* t_enemy *lst_create_enemy(int index, int pos_x, int pos_y)
 {
 	t_enemy	*new;
 
@@ -37,7 +37,7 @@ void	lst_add_enemy(t_enemy **lst, t_enemy *new)
 		*lst = new;
 		return ;
 	}
-	last = ft_lstlast(*lst);
+	last = ft_lstlast_enemy(*lst);
 	last->next = new;
 }
 
@@ -61,10 +61,11 @@ int	ft_lstsize_enemy(t_enemy *lst)
 	int	i;
 
 	i = 0;
-	while (lst)
+	while (lst->next)
 	{
 		lst = lst->next;
 		i++;
 	}
 	return (i);
 }
+ */

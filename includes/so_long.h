@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/18 14:37:06 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:34:37 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_mlx_map
 	int		y_max;
 	int		item;
 	int		move_count;
+	//t_enemy	*enemy;
 	char	stach;
 }	t_mlx_map;
 
@@ -95,14 +96,14 @@ typedef struct s_entitys_check
 	int	enemy_check;
 }	t_entity_check;
 
-typedef struct s_enemy
+/* typedef struct s_enemy
 {
 	int		index;
 	char	stash;
 	int		pos_x;
 	int		pos_y;
 	void	*next;
-}	t_enemy;
+}	t_enemy; */
 
 enum movement
 {
@@ -145,9 +146,9 @@ void	free_2d(char **tab);
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-t_enemy	*lst_create_enemy(int index, int pos_x, int pos_y);
+/* t_enemy	*lst_create_enemy(int index, int pos_x, int pos_y);
 void	lst_add_enemy(t_enemy **lst, t_enemy *new);
 t_list	*ft_lstlast_enemy(t_enemy *lst);
 int		init_enemy(t_mlx_map *map, t_enemy *enemy);
-int		ft_lstsize_enemy(t_enemy *lst);
+int		ft_lstsize_enemy(t_enemy *lst); */
 #endif
