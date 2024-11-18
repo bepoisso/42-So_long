@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manip_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: bepoisso <bepoisso@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:46:40 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/14 18:40:23 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:26:17 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_enemy *lst_create_enemy(int index, int pos_x, int pos_y)
 	new->index = index;
 	new->pos_x = pos_x;
 	new->pos_y = pos_y;
-	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
