@@ -6,15 +6,14 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:30:54 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/14 18:15:30 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:37:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_enemy(t_mlx_map *map)
+int	init_enemy(t_mlx_map *map, t_enemy *enemy)
 {
-	t_enemy *enemy;
 	t_enemy *new;
 	int	enemy_nbr;
 	int	i;
@@ -27,4 +26,5 @@ void	init_enemy(t_mlx_map *map)
 		lst_add_enemy(enemy, new);
 		i++;
 	}
+	return (i);
 }

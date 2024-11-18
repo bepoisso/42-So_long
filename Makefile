@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/11/13 17:46:28 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/11/18 14:41:27 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,5 +65,8 @@ re: fclean all
 
 val:
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./so_long.out
+
+debug :
+	gdb -tui -q $(NAME);
 
 .PHONY: all clean fclean re

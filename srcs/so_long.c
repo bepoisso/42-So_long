@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/14 18:06:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:39:59 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	handle_input(int keysym, t_mlx_data *data)
 		mlx_destroy(data);
 		exit(1);
 	}
-	if (keysym == 122) // UP 119 - 122
+	if (keysym == 119) // UP 119 - 122
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, UP);
 		data->map.move_count++;
 		print_map(data);
 	}
-	if (keysym == 113) // LEFT 97 - 113
+	if (keysym == 97) // LEFT 97 - 113
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, LEFT);
@@ -59,10 +59,22 @@ int	handle_input(int keysym, t_mlx_data *data)
 
 int	update_frame(t_mlx_data *data)
 {
+	int		enemy_nbr;
+	int		i;
+	t_enemy	*enemy;
+	
+	if (!enemy)
+		init_enemy(&data->map, &enemy);
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		data->map.map = enemy_move(data, &data->map, 1);
+		enemy_nbr = ft_lstsize_enemy(enemy);
+		i = 0;
+		while (i <= enemy_nbr)
+		{
+			data->map.map = enemy_move(data, &data->map, i);
+			i++;
+		}
 		print_map(data);
 		ft_printf("\nFrame updated\n");
 		data->current_frame = 0;
