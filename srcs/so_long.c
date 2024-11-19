@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:34:13 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:54:15 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,12 @@ int	handle_input(int keysym, t_mlx_data *data)
 
 int	update_frame(t_mlx_data *data)
 {
-	//int		enemy_nbr;
-	int		i;
-	
-/* 	if (data->map.enemy == NULL)
-		init_enemy(&data->map, data->map.enemy); */
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		//enemy_nbr = ft_lstsize_enemy(data->map.enemy);
-		i = 0;
-		/* while (i <= enemy_nbr)
-		{ */
-			data->map.map = enemy_move(data, &data->map, 1);
-			data->map.map = enemy_move(data, &data->map, 2);
-			data->map.map = enemy_move(data, &data->map, 3);
-			i++;
-		/* } */
+		data->map.map = enemy_move(data, &data->map, 1);
+		data->map.map = enemy_move(data, &data->map, 2);
+		data->map.map = enemy_move(data, &data->map, 3);
 		print_map(data);
 		ft_printf("\nFrame updated\n");
 		data->current_frame = 0;
