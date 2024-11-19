@@ -1,9 +1,9 @@
 /* XPM */
-static char *_93ad59f6081409d9b5c82012bde68a2QVDitqJY1HLMeCCr[] = {
+static char *_3858d5f771d4ec8c276a0b778028706L7746XLhwErxhaLY[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 4 1 ",
 "  c black",
-". c red",
+". c #EF9F0C",
 "X c #0000A0",
 "o c white",
 /* pixels */

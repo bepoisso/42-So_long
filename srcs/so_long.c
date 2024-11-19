@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 09:54:15 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:52:13 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ int	update_frame(t_mlx_data *data)
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		data->map.map = enemy_move(data, &data->map, 1);
-		data->map.map = enemy_move(data, &data->map, 2);
-		data->map.map = enemy_move(data, &data->map, 3);
+		data->map.map = enemy_move(data, &data->map, 1, 'W');
+		data->map.map = enemy_move(data, &data->map, 1, 'X');
+		data->map.map = enemy_move(data, &data->map, 1, 'Y');
+		data->map.map = enemy_move(data, &data->map, 1, 'Z');
 		print_map(data);
 		ft_printf("\nFrame updated\n");
 		data->current_frame = 0;
@@ -80,6 +81,9 @@ void	init_img(t_mlx_data *data)
 	data->img.exit.path = "./skin/pac/exit.xpm";
 	data->img.character.path = "./skin/pac/character.xpm";
 	data->img.enemy.path = "./skin/pac/enemy.xpm";
+	data->img.enemy1.path = "./skin/pac/enemy1.xpm";
+	data->img.enemy2.path = "./skin/pac/enemy2.xpm";
+	data->img.enemy3.path = "./skin/pac/enemy3.xpm";
 
 	data->img.floor.img = mlx_xpm_file_to_image(data->link, data->img.floor.path, &data->img.floor.width, &data->img.floor.height);
 	if (!data->img.floor.img)
@@ -104,6 +108,18 @@ void	init_img(t_mlx_data *data)
 	data->img.enemy.img = mlx_xpm_file_to_image(data->link, data->img.enemy.path, &data->img.enemy.width, &data->img.enemy.height);
 	if (!data->img.enemy.img)
 	ft_printf("\nERROR loading enemy image\n");
+
+	data->img.enemy1.img = mlx_xpm_file_to_image(data->link, data->img.enemy1.path, &data->img.enemy1.width, &data->img.enemy1.height);
+	if (!data->img.enemy1.img)
+	ft_printf("\nERROR loading enemy1 image\n");
+
+	data->img.enemy2.img = mlx_xpm_file_to_image(data->link, data->img.enemy2.path, &data->img.enemy2.width, &data->img.enemy2.height);
+	if (!data->img.enemy2.img)
+	ft_printf("\nERROR loading enemy2 image\n");
+
+	data->img.enemy3.img = mlx_xpm_file_to_image(data->link, data->img.enemy3.path, &data->img.enemy3.width, &data->img.enemy3.height);
+	if (!data->img.enemy3.img)
+	ft_printf("\nERROR loading enemy3 image\n");
 }
 
 void	print_map(t_mlx_data *data)
@@ -126,8 +142,14 @@ void	print_map(t_mlx_data *data)
 				mlx_put_image_to_window(data->link, data->screen, data->img.exit.img, data->img.x ,data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == 'P')
 				mlx_put_image_to_window(data->link, data->screen, data->img.character.img, data->img.x ,data->img.y);
-			else if (data->map.map[data->map.y][data->map.x] == 'G')
+			else if (data->map.map[data->map.y][data->map.x] == 'W')
 				mlx_put_image_to_window(data->link, data->screen, data->img.enemy.img, data->img.x ,data->img.y);
+			else if (data->map.map[data->map.y][data->map.x] == 'X')
+				mlx_put_image_to_window(data->link, data->screen, data->img.enemy1.img, data->img.x ,data->img.y);
+			else if (data->map.map[data->map.y][data->map.x] == 'Y')
+				mlx_put_image_to_window(data->link, data->screen, data->img.enemy2.img, data->img.x ,data->img.y);
+			else if (data->map.map[data->map.y][data->map.x] == 'Z')
+				mlx_put_image_to_window(data->link, data->screen, data->img.enemy3.img, data->img.x ,data->img.y);
 			data->map.x++;
 			data->img.x += TEXTUR_SIZE;
 		}

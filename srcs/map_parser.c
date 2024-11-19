@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/14 18:05:31 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:36:24 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int	check_other_char_in_map(char **map)
 		x = 0;
 		while (map[y][x + 1] != '\0')
 		{
-			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'G')
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'W'&& map[y][x] != 'X' && map[y][x] != 'Y' && map[y][x] != 'Z')
 				return (1);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 11:56:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:51:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,22 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
-	if (move == UP && map->map[map->y - 1][map->x] == 'G')
+	if (move == UP &&  is_in_set(map->map[map->y - 1][map->x], "WXYZ"))
+	{
+		ft_printf("\n ***GAME OVER A ENEMY KILL YOU***\n");
+		mlx_destroy(data);
+	}
+	else if (move == DOWN &&  is_in_set(map->map[map->y + 1][map->x], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
 	}
-	else if (move == DOWN && map->map[map->y + 1][map->x] == 'G')
+	else if (move == LEFT &&  is_in_set(map->map[map->y][map->x - 1], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
 	}
-	else if (move == LEFT && map->map[map->y][map->x - 1] == 'G')
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		mlx_destroy(data);
-	}
-	else if (move == RIGHT && map->map[map->y][map->x + 1] == 'G')
+	else if (move == RIGHT &&  is_in_set(map->map[map->y][map->x + 1], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
@@ -195,48 +195,62 @@ void	get_entity_pos(t_mlx_map *map, char entity, int index)
 	}
 }
 
-char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index)
+int	is_in_set(char pos, char *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (pos == set[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type)
 {
 	int		rdm;
 	char	temp;
 
-	get_entity_pos(map, 'G', index);
+	get_entity_pos(map, type, index);
 	while (1)
 	{
 		rdm = (rand() % 4) + 1;
-		if (rdm == UP && map->map[map->y - 1][map->x] != '1')
+		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1"))
 		{
 			check_player_gameover(data, map, UP);
 			temp = map->stach;
 			map->stach = map->map[map->y - 1][map->x];
-			map->map[map->y - 1][map->x] = 'G';
+			map->map[map->y - 1][map->x] = type;
 			map->map[map->y][map->x] = temp;
 			break;
 		}
-		if (rdm == DOWN && map->map[map->y + 1][map->x] != '1')
+		if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1"))
 		{
 			check_player_gameover(data, map, DOWN);
 			temp = map->stach;
 			map->stach = map->map[map->y + 1][map->x];
-			map->map[map->y + 1][map->x] = 'G';
+			map->map[map->y + 1][map->x] = type;
 			map->map[map->y][map->x] = temp;
 			break;
 		}
-		if (rdm == LEFT && map->map[map->y][map->x - 1] != '1')
+		if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1"))
 		{
 			check_player_gameover(data, map, LEFT);
 			temp = map->stach;
 			map->stach = map->map[map->y][map->x - 1];
-			map->map[map->y][map->x - 1] = 'G';
+			map->map[map->y][map->x - 1] = type;
 			map->map[map->y][map->x] = temp;
 			break;
 		}
-		if (rdm == RIGHT && map->map[map->y][map->x + 1] != '1')
+		if (rdm == RIGHT && !is_in_set(map->map[map->y][map->x + 1], "WXYZ1"))
 		{
 			check_player_gameover(data, map, RIGHT);
 			temp = map->stach;
 			map->stach = map->map[map->y][map->x + 1];
-			map->map[map->y][map->x + 1] = 'G';
+			map->map[map->y][map->x + 1] = type;
 			map->map[map->y][map->x] = temp;
 			break;
 		}
