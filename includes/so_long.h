@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 13:13:07 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:26:34 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,5 @@ char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
 void	save_in_scoreboard(t_mlx_data *data);
-void	aff_fd(int fd);
+void	create_scoreboard(char *path, t_mlx_data *data)
 #endif

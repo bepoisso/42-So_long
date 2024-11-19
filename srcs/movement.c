@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 12:05:06 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:24:02 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,10 +217,13 @@ char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type)
 {
 	int		rdm;
 	char	temp;
+	int i;
 
+	i = 0;
 	get_entity_pos(map, type, index);
-	while (1)
+	while (i < 10)
 	{
+		i++;
 		rdm = (rand() % 4) + 1;
 		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1"))
 		{

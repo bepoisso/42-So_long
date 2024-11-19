@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 13:48:57 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:26:35 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,20 @@
 
 void	save_in_scoreboard(t_mlx_data *data)
 {
-	char	fd;
+	int	fd;
 
 	fd = open("./srcs/pacman.sb", O_APPEND | O_WRONLY);
 	if (fd == -1)
 		return ((void)ft_printf("***FAIL TO ADD IN SCOREBOARD***"));
+	ft_putstr_fd(data->pseudo, fd);
+	ft_putstr_fd(":", fd);
 	ft_putnbr_fd(data->map.move_count, fd);
-	ft_putstr_fd(" -> ", fd);
-	ft_putendl_fd(data->pseudo, fd);
-	// aff_fd(fd);
+	ft_putchar_fd('\n', fd);
 	close(fd);
+	create_scoreboard("./srcs/pacman.sb", data)
 }
 
-/* void	aff_fd(int fd)
+void	create_scoreboard(char *path, t_mlx_data *data)
 {
-	char	buf[1];
-	char	readed;
-
-	readed = 1;
-	while (readed != 0)
-	{
-		readed = read(fd, buf, 1);
-		ft_putchar(readed);
-	}
-} */
+	
+}
