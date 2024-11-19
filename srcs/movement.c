@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 14:24:02 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:59:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,25 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 		if (move == UP && map->map[map->y - 1][map->x] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
-			save_in_scoreboard(data);
+			//save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
 		else if (move == DOWN && map->map[map->y + 1][map->x] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
-			save_in_scoreboard(data);
+			//save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
 		else if (move == LEFT && map->map[map->y][map->x - 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
-			save_in_scoreboard(data);
+			//save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
 		else if (move == RIGHT && map->map[map->y][map->x + 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
-			save_in_scoreboard(data);
+			//save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
 	}
