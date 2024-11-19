@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 10:46:15 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:13:07 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct s_mlx_map
 	int		y_max;
 	int		item;
 	int		move_count;
-	//t_enemy	*enemy;
 	char	stach;
 }	t_mlx_map;
 
@@ -87,6 +86,7 @@ typedef struct s_mlx_data
 	void			*link;
 	void			*screen;
 	int				current_frame;
+	char			*pseudo;
 	t_mlx_all_img	img;
 	t_mlx_map		map;
 }	t_mlx_data;
@@ -98,15 +98,6 @@ typedef struct s_entitys_check
 	int	item_check;
 	int	enemy_check;
 }	t_entity_check;
-
-/* typedef struct s_enemy
-{
-	int		index;
-	char	stash;
-	int		pos_x;
-	int		pos_y;
-	void	*next;
-}	t_enemy; */
 
 enum movement
 {
@@ -150,4 +141,6 @@ void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
+void	save_in_scoreboard(t_mlx_data *data);
+void	aff_fd(int fd);
 #endif

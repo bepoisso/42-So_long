@@ -3,4 +3,7 @@
 		"so_long.h": "c",
 		"libft.h": "c"
 	}
+
+	"editor.renderWhitespace": "all"
+
 }
