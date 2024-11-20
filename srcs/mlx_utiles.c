@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/13 13:08:22 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:00:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->link);
 		free(data->link);
 	}
-	free_2d(data->map.map);
+	free_2d_mlx(data->map.map);
 	exit (0);
 	return (1);
 }
@@ -103,7 +103,7 @@ int	encode_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	free_2d(char **tab)
+void	free_2d_mlx(char **tab)
 {
 	int	i;
 

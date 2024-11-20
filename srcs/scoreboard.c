@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/20 19:11:18 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:59:22 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ void	save_in_scoreboard(t_mlx_data *data)
 	{
 		index = get_index_of_user(user, data->pseudo, 0);
 		if (comp_score(score, data->map.move_count, index))
-			score[index] = data->map.move_count;
+		{
+			free(score[index]);
+			score[index] = ft_strdup(ft_itoa(data->map.move_count));
+		}
 	}
 	else
-		add_score(data->pseudo, data->map.move_count, "./srcs/pacma.sb");
-	sort_score(&user, &score);
-	print_new_score(&user, &score);
+		add_score(data->pseudo, ft_itoa(data->map.move_count), "./srcs/pacma.sb");
+	sort_score(user, score);
+	print_new_score(user, score);
 	aff_scoreboard("./srcs/pacman.sb");
 
 }
@@ -42,7 +45,7 @@ void	split_score(char *file, char **score, char **user)
 
 	fd = open(file, O_RDONLY);
 	if (!fd)
-		return (ft_printf("***ERROR OPEN SPLIT_SCORE***"), NULL);
+		return ((void)ft_printf("***ERROR OPEN SPLIT_SCORE***"));
 	temp = get_next_line(fd);
 	while(temp)
 	{
@@ -108,7 +111,7 @@ void	add_score(char *player_name, char *player_score, char *file)
 	ft_putendl_fd(player_name, fd);
 	ft_putendl_fd(player_score, fd);
 
-	clode (fd);
+	close (fd);
 }
 
 void	sort_score(char **user, char **score)
@@ -155,5 +158,5 @@ void	aff_scoreboard(char *file)
 		ft_printf("%s", str);
 		str = get_next_line(fd);
 	}
-	clode(fd);
+	close(fd);
 }
