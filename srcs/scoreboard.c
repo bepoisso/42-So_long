@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 15:54:18 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:05:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ void	print_scoreboard(char **user, char **score)
 	int i;
 
 	i = 0;
+	ft_printf("\n\n");
 	ft_printf("+------------------+-------------+\n");
     ft_printf("|           SCOREBOARD           |\n");
 	ft_printf("+------------------+-------------+\n");
