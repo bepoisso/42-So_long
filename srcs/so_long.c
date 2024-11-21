@@ -6,12 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/19 16:00:22 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:47:19 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Taking information if a key is poress and transfert to the right function
 int	handle_input(int keysym, t_mlx_data *data)
 {
 	if (keysym == XK_Escape) // CLOSE ON ESC
@@ -57,6 +58,8 @@ int	handle_input(int keysym, t_mlx_data *data)
 	return (0);
 }
 
+// Update the frame of the game. Utiles for the mouvement of enemy
+// And Animation
 int	update_frame(t_mlx_data *data)
 {
 	data->current_frame++;
@@ -73,6 +76,7 @@ int	update_frame(t_mlx_data *data)
 	return (0);
 }
 
+// Initalise all image in a struct
 void	init_img(t_mlx_data *data)
 {
 	data->img.floor.path = "./skin/pac/floor.xpm";
@@ -122,6 +126,7 @@ void	init_img(t_mlx_data *data)
 	ft_printf("\nERROR loading enemy3 image\n");
 }
 
+// Printing the map on the mlx window
 void	print_map(t_mlx_data *data)
 {
 	data->map.y = 0;

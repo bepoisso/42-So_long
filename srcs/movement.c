@@ -6,12 +6,18 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/20 19:48:23 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:54:30 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Taking the position of player and
+// Check where the player want to go and if it's possible
+// 
+// Check if the player hit a enemy of collect a item
+// 
+// Then check if the player as finish by hiting the exit
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	get_entity_pos(map, 'P', 1);
@@ -50,6 +56,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	return (map->map);
 }
 
+// Check if the player taking a items and decramante the counter
 void	check_item_counter(t_mlx_map *map, int move)
 {
 	
@@ -63,6 +70,8 @@ void	check_item_counter(t_mlx_map *map, int move)
 		map->item--;
 }
 
+// Check if the player want to exit and if hi as all the items
+// if it is adding the score on scorebord or game over
 void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (map->item == 0)
@@ -96,6 +105,7 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 		check_gameover(data, map, move);
 }
 
+// Check if the player hit a ennemt and if it is game over it
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP &&  is_in_set(map->map[map->y - 1][map->x], "WXYZ"))
@@ -120,6 +130,7 @@ void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 	}
 }
 
+// Check if the ennemy hit the player and if it is game over it
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[map->y - 1][map->x] == 'P')
@@ -144,6 +155,8 @@ void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 	}
 }
 
+// Check if the player want to exit and if he not have
+// All the items
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[map->y - 1][map->x] == 'E')
@@ -168,7 +181,7 @@ void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 	}
 }
 
-
+// Get the pos of a entity and return this pos in the main struct
 void	get_entity_pos(t_mlx_map *map, char entity, int index)
 {
 	int	x;
@@ -199,6 +212,7 @@ void	get_entity_pos(t_mlx_map *map, char entity, int index)
 	}
 }
 
+// Check if the char (pos) is in the list (set)
 int	is_in_set(char pos, char *set)
 {
 	int	i;
@@ -213,6 +227,7 @@ int	is_in_set(char pos, char *set)
 	return (0);
 }
 
+// Manage the mouvement of the enemy like player_mouve
 char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type)
 {
 	int		rdm;

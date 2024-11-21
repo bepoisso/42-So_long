@@ -6,12 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/20 20:00:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:56:59 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Draw a rectangle on the window of the mlx
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw)
 {
 	int	x;
@@ -30,6 +31,7 @@ void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw)
 	}
 }
 
+// Draw a circle on the window of the mlx
 void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data)
 {
 	int	x;
@@ -53,6 +55,7 @@ void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *da
 	}
 }
 
+// Set a color for the entier screen of the mlx
 int	screen_color(t_mlx_data *data, int x_size, int y_size, int color)
 {
 	int	x;
@@ -72,6 +75,7 @@ int	screen_color(t_mlx_data *data, int x_size, int y_size, int color)
 	return (0);
 }
 
+// Destroy and free at the endo of the game or if a error appeares
 int	mlx_destroy(t_mlx_data *data)
 {
 	if (data->screen)
@@ -98,11 +102,13 @@ int	mlx_destroy(t_mlx_data *data)
 	return (1);
 }
 
+// Encoding rgb (Yes the t of trgb is usless caus the mlx dont manage it)
 int	encode_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+// Free a char tab of 2 dimentions
 void	free_2d_mlx(char **tab)
 {
 	int	i;

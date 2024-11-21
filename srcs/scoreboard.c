@@ -6,12 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 11:56:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:45:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Main function for adding score in files
 void	save_in_scoreboard(t_mlx_data *data)
 {
 	char	**score;
@@ -42,6 +43,7 @@ void	save_in_scoreboard(t_mlx_data *data)
 
 }
 
+// Create a char tab2d (containt username and score at the same index) in 2 char tab
 void	split_score(int	fd, char ***score, char ***user)
 {
 	char	*final_score;
@@ -60,6 +62,7 @@ void	split_score(int	fd, char ***score, char ***user)
 	*score = ft_split(final_score, '\n');
 }
 
+// Get the index of a username in the list, so the score to
 int	get_index_of_user(char ***user, char	*pseudo, int *index)
 {
 	while(*user[*index])
@@ -71,6 +74,8 @@ int	get_index_of_user(char ***user, char	*pseudo, int *index)
 	return (-1);
 }
 
+// Compare old socre of the user and the newest.
+// If the newest is less than the oldest we want to remplace it
 int	comp_score(char ***score, int new_score, int index)
 {
 	int	result;
@@ -81,6 +86,8 @@ int	comp_score(char ***score, int new_score, int index)
 	return (0);
 }
 
+// Create a temp file and put the list of user ans score in it
+// After that remove the old list and rename the newest
 void	print_new_score(char ***user, char ***score)
 {
 	int	fd;
@@ -102,12 +109,14 @@ void	print_new_score(char ***user, char ***score)
 	close(fd);
 }
 
+// Adding a score to the files
 void	add_score(char *player_name, char *player_score, int fd)
 {
 	ft_putendl_fd(player_name, fd);
 	ft_putendl_fd(player_score, fd);
 }
 
+// Bubble sort the list. Ten minimal number is on the top, the bigest on the buttom
 void	sort_score(char ***user, char ***score)
 {
 	char	*temp_score;
@@ -136,7 +145,7 @@ void	sort_score(char ***user, char ***score)
 	}
 }
 
-
+// Print a files to the STD Output
 void	aff_scoreboard(int fd)
 {
 	char	*str;

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 11:53:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:05:41 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 
 //_________________STRUCT&ENUM_________________
-
+// Struct for drawing in the mlx window
 typedef struct s_mlx_draw
 {
 	int	x_start;
@@ -45,6 +45,7 @@ typedef struct s_mlx_draw
 	int	color;
 }	t_mlx_draw;
 
+// Struct to manage the image in the mlx window
 typedef struct s_mlx_img
 {
 	void	*img;
@@ -53,6 +54,7 @@ typedef struct s_mlx_img
 	int		height;
 }	t_mlx_img;
 
+// struct of struct of all my image set
 typedef struct s_mlx_all_img
 {
 	t_mlx_img character;
@@ -68,6 +70,7 @@ typedef struct s_mlx_all_img
 	int y;
 } t_mlx_all_img;
 
+// struct to manage the map
 typedef struct s_mlx_map
 {
 	char	**map;
@@ -81,6 +84,7 @@ typedef struct s_mlx_map
 	char	stach;
 }	t_mlx_map;
 
+// Important struct to manage the mlx
 typedef struct s_mlx_data
 {
 	void			*link;
@@ -91,6 +95,7 @@ typedef struct s_mlx_data
 	t_mlx_map		map;
 }	t_mlx_data;
 
+// Struct to check the number of entity
 typedef struct s_entitys_check
 {
 	int	player_check;
@@ -99,6 +104,7 @@ typedef struct s_entitys_check
 	int	enemy_check;
 }	t_entity_check;
 
+// Enum for the mouvement of player or enemy
 enum movement
 {
 	UP = 1,
@@ -107,6 +113,7 @@ enum movement
 	RIGHT = 4,
 };
 
+// typedef usefull for encoding color
 typedef unsigned char	byte;
 
 //_________________FUNC_________________
@@ -149,4 +156,5 @@ void	print_new_score(char ***user, char ***score);
 void	add_score(char *player_name, char *player_score, int fd);
 void	sort_score(char ***user, char ***score);
 void	aff_scoreboard(int fd);
+
 #endif

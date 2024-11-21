@@ -6,12 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/20 20:00:08 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:03:13 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// Count the number of line in a files
 int	files_count_line(char *file_name)
 {
 	char	buf[1];
@@ -34,6 +35,7 @@ int	files_count_line(char *file_name)
 	return (count);
 }
 
+// Create a char 2D of the map
 char	**split_map(char *file_name)
 {
 	int		count_line;
@@ -58,6 +60,7 @@ char	**split_map(char *file_name)
 	return (map);
 }
 
+// Get the size of the map and put it in the main struct
 void	map_xy_size(t_mlx_map *map)
 {
 	map->x = 0;
@@ -74,6 +77,7 @@ void	map_xy_size(t_mlx_map *map)
 	map->y_max--;
 }
 
+// Check if all the map is bordered by a wall
 int	check_wall(t_mlx_map *map)
 {
 	int	x;
@@ -104,6 +108,7 @@ int	check_wall(t_mlx_map *map)
 	return (0);
 }
 
+// Check if all obligatory entity is in the map
 int	check_entitys_in_map(char **map)
 {
 	t_entity_check	entity;
@@ -133,6 +138,7 @@ int	check_entitys_in_map(char **map)
 	return (0);
 }
 
+// Count the number of one entity is in the map
 int	entity_counter(char **map, char entity)
 {
 	int	x;
@@ -155,6 +161,7 @@ int	entity_counter(char **map, char entity)
 	return (count++);
 }
 
+// Check if other character is in the map (other than the defined and managed character)
 int	check_other_char_in_map(char **map)
 {
 	int	x;
@@ -175,6 +182,7 @@ int	check_other_char_in_map(char **map)
 	return (0);
 }
 
+// Check if the map is a squar or a rectangle and not a obscure shape
 int	check_map_rectangle(char **map)
 {
 	int	i;
@@ -191,6 +199,7 @@ int	check_map_rectangle(char **map)
 	return (0);
 }
 
+// I need to change that by the ft_strlen of my libft
 int	ft_my_strlen(char *s)
 {
 	int	i;
@@ -201,6 +210,7 @@ int	ft_my_strlen(char *s)
 	return (i);
 }
 
+// Initialise the map and check if the map if valid
 void	init_map(t_mlx_data *data)
 {
 	data->map.map = split_map("./map.test");
@@ -238,6 +248,7 @@ void	init_map(t_mlx_data *data)
 	data->map.item = entity_counter(data->map.map, 'C');
 }
 
+// Get the number of list in a 2D char tab (char tab[THIS][])
 int	ft_strslen(char **map)
 {
 	int	i;
@@ -248,6 +259,7 @@ int	ft_strslen(char **map)
 	return (i);
 }
 
+// Create a temp map usefull for editying the map without losing informations
 char **create_temp_map(char **map)
 {
 	char **temp;
@@ -264,6 +276,7 @@ char **create_temp_map(char **map)
 	return(temp);
 }
 
+// Recurcive function that check if a path exist between the player and the exit
 int	is_valid_path(char **map, int x, int y)
 {
 	if (map[y][x] == 'E')
