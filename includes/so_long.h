@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 13:05:41 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:46:04 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,11 +150,15 @@ void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
 void	save_in_scoreboard(t_mlx_data *data);
 void	split_score(int fd, char ***score, char ***user);
-int		get_index_of_user(char ***user, char	*pseudo, int *index);
-int		comp_score(char ***score, int new_score, int index);
-void	print_new_score(char ***user, char ***score);
+int		get_index_of_user(char **user, char	*pseudo, int *index);
+int		comp_score(char **score, int new_score, int index);
+void	creat_new_score(char ***user, char ***score);
 void	add_score(char *player_name, char *player_score, int fd);
 void	sort_score(char ***user, char ***score);
-void	aff_scoreboard(int fd);
+char	**add_data_in_tab(char *data, char **tab);
+void	print_scoreboard(char **user, char **score);
+void	add_spaces_right(char *str, int width);
+void	add_spaces_left(char *str, int width);
+char	*encrypt(char *data);
 
 #endif

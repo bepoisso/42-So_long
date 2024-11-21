@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 12:45:14 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:54:18 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,28 @@ void	save_in_scoreboard(t_mlx_data *data)
 	int		fd;
 
 	index = 0;
-	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND);
-	if (!fd)
+	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND, 0777);
+	if (fd == -1)
 		return ((void)ft_printf("***ERROR OPEN MAIN FILE***"));
 	split_score(fd, &score, &user);
-	if (get_index_of_user(&user, data->pseudo, &index) != -1)
+	if (get_index_of_user(user, data->pseudo, &index) != -1)
 	{
-		index = get_index_of_user(&user, data->pseudo, 0);
-		if (comp_score(&score, data->map.move_count, index))
+		if (comp_score(score, data->map.move_count, index))
 		{
 			free(score[index]);
 			score[index] = ft_strdup(ft_itoa(data->map.move_count));
 		}
 	}
 	else
-		add_score(data->pseudo, ft_itoa(data->map.move_count), fd);
+	{
+		user = add_data_in_tab(data->pseudo, user);
+		score = add_data_in_tab(ft_itoa(data->map.move_count), score);
+	}
 	sort_score(&user, &score);
-	print_new_score(&user, &score);
-	aff_scoreboard(fd);
+	print_scoreboard(user, score);
+	creat_new_score(&user, &score);
+	free_2d_mlx(user);
+	free_2d_mlx(score);
 	close(fd);
 
 }
@@ -50,12 +54,14 @@ void	split_score(int	fd, char ***score, char ***user)
 	char	*final_user;
 	char	*temp;
 
+	final_score = ft_strdup("");
+	final_user = ft_strdup("");
 	temp = get_next_line(fd);
 	while(temp)
 	{
-		ft_strjoin(final_user, temp);
+		final_user = ft_strjoin(final_user, encrypt(temp));
 		temp = get_next_line(fd);
-		ft_strjoin(final_score, temp);
+		final_score = ft_strjoin(final_score, encrypt(temp));
 		temp = get_next_line(fd);
 	}
 	*user = ft_split(final_user, '\n');
@@ -63,11 +69,11 @@ void	split_score(int	fd, char ***score, char ***user)
 }
 
 // Get the index of a username in the list, so the score to
-int	get_index_of_user(char ***user, char	*pseudo, int *index)
+int	get_index_of_user(char **user, char	*pseudo, int *index)
 {
-	while(*user[*index])
+	while(user[*index])
 	{
-		if (ft_strncmp(pseudo, *user[*index], 8) == 0)
+		if (ft_strncmp(pseudo, user[*index], 8) == 0)
 			return (*index);
 		(*index)++;
 	}
@@ -76,31 +82,31 @@ int	get_index_of_user(char ***user, char	*pseudo, int *index)
 
 // Compare old socre of the user and the newest.
 // If the newest is less than the oldest we want to remplace it
-int	comp_score(char ***score, int new_score, int index)
+int	comp_score(char **score, int new_score, int index)
 {
 	int	result;
 
-	result = ft_atoi(*score[index]);
-	if (result < new_score)
+	result = ft_atoi(score[index]);
+	if (result > new_score)
 		return (1);
 	return (0);
 }
 
 // Create a temp file and put the list of user ans score in it
 // After that remove the old list and rename the newest
-void	print_new_score(char ***user, char ***score)
+void	creat_new_score(char ***user, char ***score)
 {
 	int	fd;
 	int	i;
 
 	i = 0;
-	fd = open("./srcs/temp.sb", O_CREAT | O_APPEND | O_WRONLY);
+	fd = open("./srcs/temp.sb", O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd < 0)
 		return ((void)ft_printf("***ERROR OPEN PRIT_NEW_SCORE***"));
 
-	while(*user[i])
+	while((*user)[i])
 	{
-		add_score(*user[i], *score[i], fd);
+		add_score(encrypt((*user)[i]), encrypt((*score)[i]), fd);
 		i++;
 	}
 	unlink("./srcs/pacman.sb");
@@ -116,7 +122,7 @@ void	add_score(char *player_name, char *player_score, int fd)
 	ft_putendl_fd(player_score, fd);
 }
 
-// Bubble sort the list. Ten minimal number is on the top, the bigest on the buttom
+// Bubble sort the list The minimal number is on the top, the bigest on the buttom
 void	sort_score(char ***user, char ***score)
 {
 	char	*temp_score;
@@ -125,19 +131,19 @@ void	sort_score(char ***user, char ***score)
 	int		j;
 
 	j = 0;
-	while(*score[j + 1])
+	while((*score)[j + 1])
 	{
 		i = 0;
-		while (*score[i + 1])
+		while ((*score)[i + 1])
 		{
-			if (ft_atoi(*score[i]) > ft_atoi(*score[i + 1]))
+			if (ft_atoi((*score)[i]) > ft_atoi((*score)[i + 1]))
 			{
-				temp_score = *score[i];
-				temp_user = *user[i];
-				*score[i] = *score[i + 1];
-				*user[i] = *user[i + 1];
-				*score[i + 1] = temp_score;
-				*user[i + 1] = temp_user;
+				temp_score = (*score)[i];
+				temp_user = (*user)[i];
+				(*score)[i] = (*score)[i + 1];
+				(*user)[i] = (*user)[i + 1];
+				(*score)[i + 1] = temp_score;
+				(*user)[i + 1] = temp_user;
 			}
 			i++;
 		}
@@ -145,15 +151,94 @@ void	sort_score(char ***user, char ***score)
 	}
 }
 
-// Print a files to the STD Output
-void	aff_scoreboard(int fd)
+// Adding data in a tab, and add a NULL byte at the end
+char	**add_data_in_tab(char *data, char **tab)
 {
-	char	*str;
+	int		i;
+	int		size_tab;
+	char	**new_tab;
 
-	str = get_next_line(fd);
-	while (str)
+	i = 0;
+	size_tab = ft_strslen(tab);
+	new_tab = (char **)malloc(sizeof(char *) * (size_tab + 2));
+	if (!new_tab)
+		return (NULL);
+	while (tab[i])
 	{
-		ft_printf("%s", str);
-		str = get_next_line(fd);
+		new_tab[i] = ft_strdup(tab[i]);
+		i++;
 	}
+	new_tab[i] = ft_strdup(data);
+	new_tab[i + 1] = NULL;
+	free_2d_mlx(tab);
+	return (new_tab);
 }
+
+// Fonction pour ajouter des espaces à droite
+void	add_spaces_right(char *str, int width)
+{
+	int len = ft_strlen(str);
+	int spaces = width - len;
+	while (spaces-- > 0)
+		ft_putchar_fd(' ', 1);
+}
+
+// Fonction pour ajouter des espaces à gauche
+void	add_spaces_left(char *str, int width)
+{
+	int len = ft_strlen(str);
+	int spaces = width - len;
+	while (spaces-- > 0)
+		ft_putchar_fd(' ', 1);
+}
+
+// Fonction pour afficher le tableau formaté
+void	print_scoreboard(char **user, char **score)
+{
+	int i;
+
+	i = 0;
+	ft_printf("+------------------+-------------+\n");
+    ft_printf("|           SCOREBOARD           |\n");
+	ft_printf("+------------------+-------------+\n");
+	ft_printf("| Player           | Score       |\n");
+	ft_printf("+------------------+-------------+\n");
+	while (user[i] && score[i]) {
+		ft_printf("| ");
+		ft_putstr(user[i]);
+		add_spaces_right(user[i], 16);
+		ft_printf(" | ");
+		ft_putstr(score[i]);
+		add_spaces_right(score[i], 11);
+		ft_printf(" |\n");
+		i++;
+	}
+	
+	ft_printf("+------------------+-------------+\n");
+}
+
+// Encrypt or decrypt the string, keep in the printable ascii range
+// and return the string
+char	*encrypt(char *data)
+{
+	char	*original_data;
+	char	key;
+
+	key = 0x42;
+	original_data = data;
+	while (*data)
+	{
+		if (*data != '\n')
+		{
+			*data = (*data ^ key);
+			if (*data < 32)
+				*data = 32 + (*data % 95);
+			else if (*data > 126)
+				*data = 32 + ((*data - 32) % 95);
+		}
+		data++;
+	}
+	return (original_data);
+}
+
+
