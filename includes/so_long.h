@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 17:41:43 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:34:10 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 //_________________MACROS_________________
 # define TEXTUR_SIZE 32
 # define TESTER ft_printf("\ntester\n");
+# define BLINKY 'W'
+# define PINKY 'X'
+# define INKY 'Y'
+# define CLYDE 'Z'
 
 //_________________INCLUDES_________________
 # include "../minilibx-linux/mlx.h"
@@ -81,16 +85,54 @@ typedef struct s_mlx_map
 	char	stach;
 }	t_mlx_map;
 
-// Important struct to manage the mlx
-typedef struct s_mlx_data
+// Struct for blinky
+typedef struct s_blinky
 {
-	void			*link;
-	void			*screen;
-	int				current_frame;
-	char			*pseudo;
-	t_mlx_all_img	img;
-	t_mlx_map		map;
-}	t_mlx_data;
+	char	id;
+	char	stash;
+	char	x;
+	char	y;
+	int		last_move;
+}	t_blinky;
+
+// Struct for inky
+typedef struct s_inky
+{
+	char	id;
+	char	stash;
+	char	x;
+	char	y;
+	int		last_move;
+}	t_inky;
+
+// Struct for pinky
+typedef struct s_pinky
+{
+	char	id;
+	char	stash;
+	char	x;
+	char	y;
+	int		last_move;
+}	t_pinky;
+
+// Struct for clyde
+typedef struct s_clyde
+{
+	char	id;
+	char	stash;
+	char	x;
+	char	y;
+	int		last_move;
+}	t_clyde;
+
+// Struct of all enemy
+typedef struct s_enemy
+{
+	t_blinky	blinky;
+	t_inky		inky;
+	t_pinky		pinky;
+	t_clyde		clyde;
+}	t_enemy;
 
 // Struct to check the number of entity
 typedef struct s_entitys_check
@@ -100,6 +142,18 @@ typedef struct s_entitys_check
 	int	item_check;
 	int	enemy_check;
 }	t_entity_check;
+
+// Important struct to manage the mlx
+typedef struct s_mlx_data
+{
+	void			*link;
+	void			*screen;
+	int				current_frame;
+	char			*pseudo;
+	t_mlx_all_img	img;
+	t_mlx_map		map;
+	t_enemy			enemy;
+}	t_mlx_data;
 
 // Enum for the mouvement of player or enemy
 enum movement
@@ -141,7 +195,6 @@ char	**create_temp_map(char **map);
 int		ft_strslen(char **map);
 void	free_2d_mlx(char **tab);
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
 void	save_in_scoreboard(t_mlx_data *data);
@@ -158,5 +211,11 @@ void	add_spaces_left(char *str, int width);
 char	*encrypt(char *data);
 void	touch_tp(char entity, char which, t_mlx_map *map);
 void	check_tp(char entity, t_mlx_map *map, int move);
+int		next_move(char entity, t_mlx_data *data);
+char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
+char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
+char	**inky_move(t_mlx_data *data, t_mlx_map *map);
+char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
+
 
 #endif

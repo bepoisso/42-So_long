@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 17:28:30 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:57:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ int	update_frame(t_mlx_data *data)
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		data->map.map = enemy_move(data, &data->map, 1, 'W');
-		data->map.map = enemy_move(data, &data->map, 1, 'X');
-		data->map.map = enemy_move(data, &data->map, 1, 'Y');
-		data->map.map = enemy_move(data, &data->map, 1, 'Z');
+		data->map.map = blinky_move(data, &data->map);
+		data->map.map = pinky_move(data, &data->map);
+		data->map.map = inky_move(data, &data->map);
+		data->map.map = clyde_move(data, &data->map);
 		print_map(data);
-		ft_printf("\nFrame updated\n");
 		data->current_frame = 0;
 	}
 	return (0);
