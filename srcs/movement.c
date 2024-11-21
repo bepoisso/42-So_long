@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 12:54:30 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:42:49 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Taking the position of player and
 // Check where the player want to go and if it's possible
 // 
-// Check if the player hit a enemy of collect a item
+// Check if the player hit a enemy or collect a item
 // 
 // Then check if the player as finish by hiting the exit
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
@@ -40,6 +40,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	else if (move == LEFT && map->map[map->y][map->x - 1] != '1')
 	{
 		check_item_counter(map, move);
+		check_tp('P', map, LEFT);
 		check_end(data, map, move);
 		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x - 1] = 'P';
@@ -48,6 +49,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	else if (move == RIGHT && map->map[map->y][map->x + 1] != '1')
 	{
 		check_item_counter(map, move);
+		check_tp('P', map, RIGHT);
 		check_end(data, map, move);
 		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x + 1] = 'P';

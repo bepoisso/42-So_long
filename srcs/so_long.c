@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 16:04:54 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:28:30 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	print_map(t_mlx_data *data)
 		data->img.x = 0;
 		while (data->map.map[data->map.y][data->map.x] != '\0')
 		{
-			if (data->map.map[data->map.y][data->map.x] == '0')
+			if (data->map.map[data->map.y][data->map.x] == '0' || data->map.map[data->map.y][data->map.x] == 'T')
 				mlx_put_image_to_window(data->link, data->screen, data->img.floor.img, data->img.x ,data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == '1')
 				mlx_put_image_to_window(data->link, data->screen, data->img.wall.img, data->img.x ,data->img.y);

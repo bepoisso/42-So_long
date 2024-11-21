@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 15:46:04 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:41:43 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 //_________________MACROS_________________
 # define TEXTUR_SIZE 32
-# define RED 0, 255, 0, 0
-# define GREEN 0, 0, 255, 0
-# define BLUE 0, 0, 0, 255
 # define TESTER ft_printf("\ntester\n");
 
 //_________________INCLUDES_________________
@@ -123,7 +120,6 @@ void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		encode_trgb(int t, int r, int g, int b);
 int		mlx_destroy(t_mlx_data *data);
 int		screen_color(t_mlx_data *data, int x_size, int y_size, int color);
-void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data);
 int		files_count_line(char *file_name);
 char	**split_map(char *file_name);
 void	map_xy_size(t_mlx_map *map);
@@ -160,5 +156,7 @@ void	print_scoreboard(char **user, char **score);
 void	add_spaces_right(char *str, int width);
 void	add_spaces_left(char *str, int width);
 char	*encrypt(char *data);
+void	touch_tp(char entity, char which, t_mlx_map *map);
+void	check_tp(char entity, t_mlx_map *map, int move);
 
 #endif

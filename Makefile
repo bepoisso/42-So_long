@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/11/19 11:59:37 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/11/21 17:11:32 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRC_FILES	=\
 	map_parser.c\
 	movement.c\
 	mlx_utiles.c\
-	scoreboard.c
+	scoreboard.c\
+	teleporter.c\
+	enemy_ai.c
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
