@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 20:56:07 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:54:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,61 +229,7 @@ int	is_in_set(char pos, char *set)
 	return (0);
 }
 
-char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
-{
-	int		rdm;
-	int		i;
-	char	temp;
-	char	type;
-	
-	type = BLINKY;
-	i = 0;
-	rdm = next_move(BLINKY, data);
-	get_entity_pos(&data->map, BLINKY, 1);
-	while (i < 10)
-	{
-		i++;
-		rdm = next_move(type, data);
-		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, UP);
-			temp = map->stach;
-			map->stach = map->map[map->y - 1][map->x];
-			map->map[map->y - 1][map->x] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, DOWN);
-			temp = map->stach;
-			map->stach = map->map[map->y + 1][map->x];
-			map->map[map->y + 1][map->x] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, LEFT);
-			temp = map->stach;
-			map->stach = map->map[map->y][map->x - 1];
-			map->map[map->y][map->x - 1] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == RIGHT && !is_in_set(map->map[map->y][map->x + 1], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, RIGHT);
-			temp = map->stach;
-			map->stach = map->map[map->y][map->x + 1];
-			map->map[map->y][map->x + 1] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-	}
-	data->enemy.blinky.last_move = rdm + pow(-1, rdm + 1);
-	return (map->map);
-}
+// Manage the mouvement of Pinky
 char	**pinky_move(t_mlx_data *data, t_mlx_map *map)
 {
 	int		rdm;
@@ -339,6 +285,8 @@ char	**pinky_move(t_mlx_data *data, t_mlx_map *map)
 	data->enemy.pinky.last_move = rdm + pow(-1, rdm + 1);
 	return (map->map);
 }
+
+// Manage the mouvement of Inky
 char	**inky_move(t_mlx_data *data, t_mlx_map *map)
 {
 	int		rdm;
@@ -394,6 +342,8 @@ char	**inky_move(t_mlx_data *data, t_mlx_map *map)
 	data->enemy.inky.last_move = rdm + pow(-1, rdm + 1);
 	return (map->map);
 }
+
+// Manage the mouvement of Clyde
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 {
 	int		rdm;
@@ -405,6 +355,7 @@ char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 	i = 0;
 	rdm = next_move(CLYDE, data);
 	get_entity_pos(&data->map, CLYDE, 1);
+	
 	while (i < 10)
 	{
 		i++;

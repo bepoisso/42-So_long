@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 20:34:10 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:08:22 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,40 +88,37 @@ typedef struct s_mlx_map
 // Struct for blinky
 typedef struct s_blinky
 {
-	char	id;
 	char	stash;
-	char	x;
-	char	y;
+	int		x;
+	int		y;
+	int		calcu;
 	int		last_move;
 }	t_blinky;
 
 // Struct for inky
 typedef struct s_inky
 {
-	char	id;
 	char	stash;
-	char	x;
-	char	y;
+	int		x;
+	int		y;
 	int		last_move;
 }	t_inky;
 
 // Struct for pinky
 typedef struct s_pinky
 {
-	char	id;
 	char	stash;
-	char	x;
-	char	y;
+	int		x;
+	int		y;
 	int		last_move;
 }	t_pinky;
 
 // Struct for clyde
 typedef struct s_clyde
 {
-	char	id;
 	char	stash;
-	char	x;
-	char	y;
+	int		x;
+	int		y;
 	int		last_move;
 }	t_clyde;
 
@@ -213,6 +210,8 @@ void	touch_tp(char entity, char which, t_mlx_map *map);
 void	check_tp(char entity, t_mlx_map *map, int move);
 int		next_move(char entity, t_mlx_data *data);
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
+int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
+int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
 char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);

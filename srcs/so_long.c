@@ -6,13 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 20:57:58 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:05:05 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// Taking information if a key is poress and transfert to the right function
+// Taking information if a key pressed and transfert to the right function
 int	handle_input(int keysym, t_mlx_data *data)
 {
 	if (keysym == XK_Escape) // CLOSE ON ESC
