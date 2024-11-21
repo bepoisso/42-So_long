@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_ai.c                                         :+:      :+:    :+:   */
+/*   blinky_ai.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 22:08:49 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:30:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
 	{
 		check_player_gameover(data, map, UP);
 		temp = data->enemy.blinky.stash;
-		data->enemy.blinky.stash = map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x];
-		map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x] = BLINKY;
+		data->enemy.blinky.stash = map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x];
+		map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x] = BLINKY;
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x] = temp;
 	}
 	if (move == DOWN)
 	{
 		check_player_gameover(data, map, DOWN);
 		temp = data->enemy.blinky.stash;
-		data->enemy.blinky.stash = map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x];
-		map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x] = BLINKY;
+		data->enemy.blinky.stash = map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x];
+		map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x] = BLINKY;
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x] = temp;
 	}
 	if (move == LEFT)
@@ -58,7 +58,8 @@ char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x] = temp;
 	}
 	if (move == RIGHT)
-	{check_player_gameover(data, map, RIGHT);
+	{
+		check_player_gameover(data, map, RIGHT);
 		temp = data->enemy.blinky.stash;
 		data->enemy.blinky.stash = map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1];
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1] = BLINKY;
@@ -66,6 +67,7 @@ char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
 		
 	}
 	data->enemy.blinky.last_move = move;
+	ft_printf("%d\n", move);
 	return (map->map);
 }
 
@@ -78,9 +80,9 @@ int	blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 	data->enemy.blinky.x = map->x;
 	data->enemy.blinky.y = map->y;
 	get_entity_pos(map , 'P', 1);
-	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, UP);
-	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, DOWN);
 	if (data->enemy.blinky.last_move != LEFT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x - 1], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, LEFT);
@@ -97,7 +99,9 @@ int	blinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 	if (result < data->enemy.blinky.calcu)
 	{
 		data->enemy.blinky.calcu = result;
+		ft_printf("Actuel = %d for %d\n", actual_move, result);
 		return (actual_move);
 	}
+	ft_printf("Actuel = %d for %d\n", best_move, result);
 	return (best_move);
 }
