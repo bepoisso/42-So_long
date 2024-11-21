@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/20 20:00:27 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:53:55 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,11 @@ char	**enemy_move(t_mlx_data *data, t_mlx_map *map, int index, char type);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
 void	save_in_scoreboard(t_mlx_data *data);
-void	split_score(char *file, char **score, char **user);
-int		get_index_of_user(char **user, char	*pseudo, int *index);
-int		comp_score(char **score, int new_score, int index);
-void	print_new_score(char **user, char **score);
-void	add_score(char *player_name, char *player_score, char *file);
-void	sort_score(char **user, char **score);
-void	aff_scoreboard(char *file);
+void	split_score(int fd, char ***score, char ***user);
+int		get_index_of_user(char ***user, char	*pseudo, int *index);
+int		comp_score(char ***score, int new_score, int index);
+void	print_new_score(char ***user, char ***score);
+void	add_score(char *player_name, char *player_score, int fd);
+void	sort_score(char ***user, char ***score);
+void	aff_scoreboard(int fd);
 #endif
