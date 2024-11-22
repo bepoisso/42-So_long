@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 12:32:26 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:43:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,27 @@ int blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 int blinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 {
 	int result;
+	int player_x;
+	int	player_y;
 
 	get_entity_pos(&data->map, 'P', 1);
-	ft_printf("\nPlayer : %d, %d\n", data->map.y, data->map.x);
-	result = (data->enemy.blinky.y - data->map.y) + (data->enemy.blinky.x - data->map.x);
+	player_x = data->map.x;
+	player_y = data->map.y;
+	ft_printf("\nPlayer : %d, %d\n", player_y, player_x);
+
+	if (actual_move == UP)
+		result = abs((data->enemy.blinky.y - 1) - player_y) + abs(data->enemy.blinky.x - player_x);
+	else if (actual_move == DOWN)
+		result = abs((data->enemy.blinky.y + 1) - player_y) + abs(data->enemy.blinky.x - player_x);
+	else if (actual_move == LEFT)
+		result = abs(data->enemy.blinky.y - player_y) + abs((data->enemy.blinky.x - 1) - player_x);
+	else if (actual_move == RIGHT)
+		result = abs(data->enemy.blinky.y - player_y) + abs((data->enemy.blinky.x + 1) - player_x);
+
 	if (result < data->enemy.blinky.calcu)
 	{
 		data->enemy.blinky.calcu = result;
-		ft_printf("Actuel = %d for %d\n", actual_move, result);
 		return (actual_move);
 	}
-	ft_printf("Actuel = %d for %d\n", best_move, result);
 	return (best_move);
 }
