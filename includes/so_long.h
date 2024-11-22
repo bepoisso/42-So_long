@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 14:07:05 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:19:23 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,9 +223,15 @@ char	*encrypt(char *data);
 void	touch_tp(char entity, char which, t_mlx_map *map);
 void	check_tp(char entity, t_mlx_map *map, int move);
 int		next_move(char entity, t_mlx_data *data);
+
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
+
+char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
+int		pinky_move_algo(t_mlx_data *data, t_pinky *pinky, t_mlx_map *map);
+int		pinky_best_move(t_mlx_data *data, int best_move, int actual_move);
+
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
 

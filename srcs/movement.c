@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 14:09:16 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:22:43 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 // Then check if the player as finish by hiting the exit
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 {
+	get_entity_pos(map, PLAYER, 1);
+	data->player.x = map->x;
+	data->player.y = map->y;
 	if (move == UP && map->map[data->player.y - 1][data->player.x] != '1')
 	{
 		check_item_counter(data, map, move);
@@ -28,7 +31,6 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y - 1][data->player.x] = 'P';
 		map->map[data->player.y][data->player.x] = '0'; 
 		data->player.move_count++;
-		data->player.y--;
 		data->player.last_move = UP;
 	}
 	else if (move == DOWN && map->map[data->player.y + 1][data->player.x] != '1')
@@ -39,7 +41,6 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y + 1][data->player.x] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 		map->move_count++;
-		data->player.y++;
 		map->last_move = DOWN;
 	}
 	else if (move == LEFT && map->map[data->player.y][data->player.x - 1] != '1')
@@ -51,7 +52,6 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y][data->player.x - 1] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 		map->move_count++;
-		data->player.x--;
 		map->last_move = LEFT;
 	}
 	else if (move == RIGHT && map->map[data->player.y][data->player.x + 1] != '1')
@@ -63,7 +63,6 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y][data->player.x + 1] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 		map->move_count++;
-		data->player.x++;
 		map->last_move = RIGHT;
 	}
 	return (map->map);
@@ -248,10 +247,12 @@ char	**inky_move(t_mlx_data *data, t_mlx_map *map)
 	char	temp;
 	char	type;
 	
+	get_entity_pos(map, INKY, 1);
+	data->enemy.inky.x = map->x;
+	data->enemy.inky.y = map->y;
 	type = INKY;
 	i = 0;
 	rdm = next_move(INKY, data);
-	get_entity_pos(&data->map, INKY, 1);
 	while (i < 10)
 	{
 		i++;
@@ -304,12 +305,13 @@ char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 	int		i;
 	char	temp;
 	char	type;
-	
+
+	get_entity_pos(map, CLYDE, 1);
+	data->enemy.clyde.x = map->x;
+	data->enemy.clyde.y = map->y;
 	type = CLYDE;
 	i = 0;
 	rdm = next_move(CLYDE, data);
-	get_entity_pos(&data->map, CLYDE, 1);
-	
 	while (i < 10)
 	{
 		i++;

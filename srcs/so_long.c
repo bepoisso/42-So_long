@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 14:13:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:20:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	update_frame(t_mlx_data *data)
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		data->map.map = blinky_move(data, &data->map);
-		// data->map.map = pinky_move(data, &data->map);
-		data->map.map = inky_move(data, &data->map);
-		data->map.map = clyde_move(data, &data->map);
+		// data->map.map = blinky_move(data, &data->map);
+		data->map.map = pinky_move(data, &data->map);
+		// data->map.map = inky_move(data, &data->map);
+		// data->map.map = clyde_move(data, &data->map);
 		print_map(data);
 		data->current_frame = 0;
 	}
@@ -186,6 +186,7 @@ int	main(int ac, char **av)
 	data.current_frame = 0;
 	data.map.stach = '0';
 	data.pseudo = av[1];
+	data.player.last_move = 3;
 
 	//Gestion map
 	init_map(&data);
