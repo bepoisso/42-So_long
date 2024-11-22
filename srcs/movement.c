@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 15:56:29 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:59:36 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,65 +239,6 @@ int	is_in_set(char pos, char *set)
 		i++;
 	}
 	return (0);
-}
-
-// Manage the mouvement of Inky
-char	**inky_move(t_mlx_data *data, t_mlx_map *map)
-{
-	int		rdm;
-	int		i;
-	char	temp;
-	char	type;
-	
-	get_entity_pos(map, INKY, 1);
-	data->enemy.inky.x = map->x;
-	data->enemy.inky.y = map->y;
-	type = INKY;
-	i = 0;
-	rdm = next_move(INKY, data);
-	while (i < 10)
-	{
-		i++;
-		rdm = next_move(type, data);
-		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, UP);
-			temp = map->stach;
-			map->stach = map->map[map->y - 1][map->x];
-			map->map[map->y - 1][map->x] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, DOWN);
-			temp = map->stach;
-			map->stach = map->map[map->y + 1][map->x];
-			map->map[map->y + 1][map->x] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, LEFT);
-			temp = map->stach;
-			map->stach = map->map[map->y][map->x - 1];
-			map->map[map->y][map->x - 1] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-		if (rdm == RIGHT && !is_in_set(map->map[map->y][map->x + 1], "WXYZ1Tt"))
-		{
-			check_player_gameover(data, map, RIGHT);
-			temp = map->stach;
-			map->stach = map->map[map->y][map->x + 1];
-			map->map[map->y][map->x + 1] = type;
-			map->map[map->y][map->x] = temp;
-			break;
-		}
-	}
-	data->enemy.inky.last_move = rdm + pow(-1, rdm + 1);
-	return (map->map);
 }
 
 // Manage the mouvement of Clyde

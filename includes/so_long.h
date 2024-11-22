@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 15:46:43 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:00:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_inky
 	char	stash;
 	int		x;
 	int		y;
+	int		calcu;
 	int		last_move;
 }	t_inky;
 
@@ -234,6 +235,9 @@ int		pinky_move_algo(t_mlx_data *data, t_pinky *pinky, t_mlx_map *map);
 int		pinky_best_move(t_mlx_data *data, int best_move, int actual_move);
 
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
+int		inky_move_algo(t_mlx_data *data, t_mlx_map *map);
+int		inky_best_move(t_mlx_data *data, int best_move, int actual_move);
+
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
 
 
