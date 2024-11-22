@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/11/21 22:09:29 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/11/22 14:06:50 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRC_FILES	=\
 	mlx_utiles.c\
 	scoreboard.c\
 	teleporter.c\
-	blinky_ai.c
+	blinky_ai.c\
+	# pinky_ai.c\
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))

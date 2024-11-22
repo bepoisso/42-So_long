@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 12:14:36 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:07:05 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define PINKY 'X'
 # define INKY 'Y'
 # define CLYDE 'Z'
+# define PLAYER 'P'
 
 //_________________INCLUDES_________________
 # include "../minilibx-linux/mlx.h"
@@ -84,7 +85,17 @@ typedef struct s_mlx_map
 	int		item;
 	int		move_count;
 	char	stach;
+	int		last_move;
 }	t_mlx_map;
+
+// Struct for player
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		move_count;
+	int		last_move;
+}	t_player;
 
 // Struct for blinky
 typedef struct s_blinky
@@ -111,6 +122,7 @@ typedef struct s_pinky
 	char	stash;
 	int		x;
 	int		y;
+	int		calcu;
 	int		last_move;
 }	t_pinky;
 
@@ -151,6 +163,7 @@ typedef struct s_mlx_data
 	t_mlx_all_img	img;
 	t_mlx_map		map;
 	t_enemy			enemy;
+	t_player		player;
 }	t_mlx_data;
 
 // Enum for the mouvement of player or enemy
@@ -167,7 +180,7 @@ typedef unsigned char	byte;
 
 //_________________FUNC_________________
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move);
-void	check_item_counter(t_mlx_map *map, int move);
+void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move);
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		encode_trgb(int t, int r, int g, int b);
 int		mlx_destroy(t_mlx_data *data);
@@ -213,7 +226,6 @@ int		next_move(char entity, t_mlx_data *data);
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
-char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
 

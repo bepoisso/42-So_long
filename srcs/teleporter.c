@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:11:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 17:59:33 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:12:04 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	check_tp(char entity, t_mlx_map *map, int move)
 {
+	get_entity_pos(map, entity, 1);
 	if (move == LEFT && map->map[map->y][map->x - 1] == 'T')
 		touch_tp(entity, 'T', map);
 	else if (move == RIGHT && map->map[map->y][map->x + 1] == 't')

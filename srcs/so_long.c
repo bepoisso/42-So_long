@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 12:58:32 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:13:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ int	handle_input(int keysym, t_mlx_data *data)
 		data->map.map = player_move(data, &data->map, RIGHT);
 		print_map(data);
 	}
-	ft_printf("Keysym = %d\n", keysym);
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
 	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), ft_itoa(data->map.move_count));
-
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), "Item count : ");
 	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), ft_itoa(data->map.item));
 	return (0);
@@ -62,7 +60,7 @@ int	update_frame(t_mlx_data *data)
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
 		data->map.map = blinky_move(data, &data->map);
-		data->map.map = pinky_move(data, &data->map);
+		// data->map.map = pinky_move(data, &data->map);
 		data->map.map = inky_move(data, &data->map);
 		data->map.map = clyde_move(data, &data->map);
 		print_map(data);
@@ -158,6 +156,26 @@ void	print_map(t_mlx_data *data)
 	}
 }
 
+// taking all po of all entity
+void	taking_pos(t_mlx_data *data)
+{
+	get_entity_pos(&data->map, PLAYER, 1);
+	data->player.x = data->map.x;
+	data->player.y = data->map.y;
+	get_entity_pos(&data->map, BLINKY, 1);
+	data->enemy.blinky.x = data->map.x;
+	data->enemy.blinky.y = data->map.y;
+	get_entity_pos(&data->map, PINKY, 1);
+	data->enemy.pinky.x = data->map.x;
+	data->enemy.pinky.y = data->map.y;
+	get_entity_pos(&data->map, INKY, 1);
+	data->enemy.inky.x = data->map.x;
+	data->enemy.inky.y = data->map.y;
+	get_entity_pos(&data->map, CLYDE, 1);
+	data->enemy.clyde.x = data->map.x;
+	data->enemy.clyde.y = data->map.y;
+}
+
 
 int	main(int ac, char **av)
 {
@@ -171,7 +189,7 @@ int	main(int ac, char **av)
 
 	//Gestion map
 	init_map(&data);
-
+	taking_pos(&data);
 	data.link = mlx_init();
 	if (!data.link)
 		ft_printf("***ERROR INIT***\n\n");
