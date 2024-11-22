@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 12:43:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:52:24 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 // Blinky
 // Follow Always the player
-//
-// Pinky
-// Trap the player
-//
-// Incky
-// Change direction wen following player
-//
-// Clyde
-// Random direction
-//
 
 // Manage the mouvement of Blinky
 char **blinky_move(t_mlx_data *data, t_mlx_map *map)
@@ -70,6 +60,7 @@ char **blinky_move(t_mlx_data *data, t_mlx_map *map)
 	return (map->map);
 }
 
+// Restrict the blinky movement to dont go back
 int blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 {
 	int best_move;
@@ -90,6 +81,7 @@ int blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 	return (best_move);
 }
 
+// Compare the best move with the actual move using the manhattan distance
 int blinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 {
 	int result;
