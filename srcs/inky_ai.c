@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:58:21 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 16:00:03 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:06:00 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int	inky_move_algo(t_mlx_data *data, t_mlx_map *map)
 	get_entity_pos(map, INKY, 1);
 	data->enemy.inky.x = map->x;
 	data->enemy.inky.y = map->y;
-	if (data->enemy.inky.last_move != DOWN && !is_in_set(map->map[data->enemy.inky.y - 1][data->enemy.inky.x], "WXYZ1Tt"))
+	if (data->enemy.inky.last_move != DOWN && !is_in_set(map->map[data->enemy.inky.y - 1][data->enemy.inky.x], "WXYZ1TtV"))
 		best_move = inky_best_move(data, best_move, UP);
-	if (data->enemy.inky.last_move != UP && !is_in_set(map->map[data->enemy.inky.y + 1][data->enemy.inky.x], "WXYZ1Tt"))
+	if (data->enemy.inky.last_move != UP && !is_in_set(map->map[data->enemy.inky.y + 1][data->enemy.inky.x], "WXYZ1TtV"))
 		best_move = inky_best_move(data, best_move, DOWN);
-	if (data->enemy.inky.last_move != RIGHT && !is_in_set(map->map[data->enemy.inky.y][data->enemy.inky.x - 1], "WXYZ1Tt"))
+	if (data->enemy.inky.last_move != RIGHT && !is_in_set(map->map[data->enemy.inky.y][data->enemy.inky.x - 1], "WXYZ1TtV"))
 		best_move = inky_best_move(data, best_move, LEFT);
-	if (data->enemy.inky.last_move != LEFT && !is_in_set(map->map[data->enemy.inky.y][data->enemy.inky.x + 1], "WXYZ1Tt"))
+	if (data->enemy.inky.last_move != LEFT && !is_in_set(map->map[data->enemy.inky.y][data->enemy.inky.x + 1], "WXYZ1TtV"))
 		best_move = inky_best_move(data, best_move, RIGHT);
 	return (best_move);
 }

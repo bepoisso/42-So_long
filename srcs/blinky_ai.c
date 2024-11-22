@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 15:54:38 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:06:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 	get_entity_pos(map, BLINKY, 1);
 	data->enemy.blinky.x = map->x;
 	data->enemy.blinky.y = map->y;
-	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1TtV"))
 		best_move = blinky_best_move(data, best_move, UP);
-	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1TtV"))
 		best_move = blinky_best_move(data, best_move, DOWN);
-	if (data->enemy.blinky.last_move != RIGHT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x - 1], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != RIGHT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x - 1], "WXYZ1TtV"))
 		best_move = blinky_best_move(data, best_move, LEFT);
-	if (data->enemy.blinky.last_move != LEFT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != LEFT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1], "WXYZ1TtV"))
 		best_move = blinky_best_move(data, best_move, RIGHT);
 	return (best_move);
 }

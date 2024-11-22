@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:53:10 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 15:25:04 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:06:24 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	pinky_move_algo(t_mlx_data *data, t_pinky *pinky, t_mlx_map *map)
 
 	best_move = 0;
 	pinky->calcu = 99999;
-	if (pinky->last_move != DOWN && !is_in_set(map->map[pinky->y - 1][pinky->x], "WXYZ1Tt"))
+	if (pinky->last_move != DOWN && !is_in_set(map->map[pinky->y - 1][pinky->x], "WXYZ1TtV"))
 		best_move = pinky_best_move(data, best_move, UP);
-	if (pinky->last_move != UP && !is_in_set(map->map[pinky->y + 1][pinky->x], "WXYZ1Tt"))
+	if (pinky->last_move != UP && !is_in_set(map->map[pinky->y + 1][pinky->x], "WXYZ1TtV"))
 		best_move = pinky_best_move(data, best_move, DOWN);
-	if (pinky->last_move != RIGHT && !is_in_set(map->map[pinky->y][pinky->x - 1], "WXYZ1Tt"))
+	if (pinky->last_move != RIGHT && !is_in_set(map->map[pinky->y][pinky->x - 1], "WXYZ1TtV"))
 		best_move = pinky_best_move(data, best_move, LEFT);
-	if (pinky->last_move != LEFT && !is_in_set(map->map[pinky->y][pinky->x + 1], "WXYZ1Tt"))
+	if (pinky->last_move != LEFT && !is_in_set(map->map[pinky->y][pinky->x + 1], "WXYZ1TtV"))
 		best_move = pinky_best_move(data, best_move, RIGHT);
 	return (best_move);
 }

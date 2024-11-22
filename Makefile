@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/11/22 15:58:07 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/11/22 16:03:36 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC_FILES	=\
 	teleporter.c\
 	blinky_ai.c\
 	pinky_ai.c\
-	inky_ai.c
+	inky_ai.c\
+	clyde_ai.c\
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
