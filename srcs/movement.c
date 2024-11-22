@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 11:19:43 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:58:57 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		check_end(data, map, move);
 		check_enemy_gameover(data, map, move);
 		map->map[map->y - 1][map->x] = 'P';
-		map->map[map->y][map->x] = '0';
+		map->map[map->y][map->x] = '0'; 
+		map->move_count++;
+		map->last_move = UP;
 	}
 	else if (move == DOWN && map->map[map->y + 1][map->x] != '1')
 	{
@@ -36,6 +38,8 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		check_enemy_gameover(data, map, move);
 		map->map[map->y + 1][map->x] = 'P';
 		map->map[map->y][map->x] = '0';
+		map->move_count++;
+		map->last_move = DOWN;
 	}
 	else if (move == LEFT && map->map[map->y][map->x - 1] != '1')
 	{
@@ -45,6 +49,8 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x - 1] = 'P';
 		map->map[map->y][map->x] = '0';
+		map->move_count++;
+		map->last_move = LEFT;
 	}
 	else if (move == RIGHT && map->map[map->y][map->x + 1] != '1')
 	{
@@ -54,6 +60,8 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		check_enemy_gameover(data, map, move);
 		map->map[map->y][map->x + 1] = 'P';
 		map->map[map->y][map->x] = '0';
+		map->move_count++;
+		map->last_move = RIGHT;
 	}
 	return (map->map);
 }

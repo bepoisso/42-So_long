@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 11:51:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:58:32 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,24 @@ int	handle_input(int keysym, t_mlx_data *data)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, UP);
-		data->map.move_count++;
 		print_map(data);
 	}
 	if (keysym == 97) // LEFT 97 - 113
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, LEFT);
-		data->map.move_count++;
 		print_map(data);
 	}
 	if (keysym == 115) // DOWN 115
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, DOWN);
-		data->map.move_count++;
 		print_map(data);
 	}
 	if (keysym == 100) // RIGHT 100
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, RIGHT);
-		data->map.move_count++;
 		print_map(data);
 	}
 	ft_printf("Keysym = %d\n", keysym);
