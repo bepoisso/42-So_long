@@ -6,21 +6,21 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:11:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 14:12:04 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:46:20 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_tp(char entity, t_mlx_map *map, int move)
+int	check_tp(char entity, t_mlx_map *map, int move)
 {
 	get_entity_pos(map, entity, 1);
 	if (move == LEFT && map->map[map->y][map->x - 1] == 'T')
-		touch_tp(entity, 'T', map);
+		return (touch_tp(entity, 'T', map), 1);
 	else if (move == RIGHT && map->map[map->y][map->x + 1] == 't')
-		touch_tp(entity, 't', map);
+		return (touch_tp(entity, 't', map), 1);
 	else
-		return;
+		return (0);
 }
 
 void	touch_tp(char entity, char which, t_mlx_map *map)

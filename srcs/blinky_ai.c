@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 15:17:32 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:54:38 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x] = temp;
 	}
 	data->enemy.blinky.last_move = move;
-	ft_printf("%d\n", move);
 	return (map->map);
 }
 
