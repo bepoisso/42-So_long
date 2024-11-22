@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 21:54:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 11:19:43 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,12 +401,11 @@ char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 	return (map->map);
 }
 
-
 int	next_move(char entity, t_mlx_data *data)
 {
 	int	rdm;
 
-	rdm = (rand() % 4) + 1;
+	rdm = (rand()% 4) + 1;
 	while (entity == BLINKY && rdm == data->enemy.blinky.last_move)
 		rdm = (rand() % 4) + 1;
 	while (entity == INKY && rdm == data->enemy.inky.last_move)

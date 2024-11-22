@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 21:05:05 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 11:51:17 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,10 @@ void	print_map(t_mlx_data *data)
 	}
 }
 
+
 int	main(int ac, char **av)
 {
+	srand(time(NULL));
 	if (ac < 2)
 		return (ft_printf("***MISSING ARGUMENT**\n./solong \"login42\"\n"), 1);
 	t_mlx_data	data;

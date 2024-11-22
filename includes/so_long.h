@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 22:08:22 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:14:36 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <math.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+#include <time.h>
 
 
 //_________________STRUCT&ENUM_________________

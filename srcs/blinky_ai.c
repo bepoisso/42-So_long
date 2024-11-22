@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:58:19 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 22:30:14 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:32:26 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 // Blinky
 // Follow Always the player
-// 
+//
 // Pinky
 // Trap the player
-// 
+//
 // Incky
 // Change direction wen following player
-// 
+//
 // Clyde
 // Random direction
-// 
+//
 
 // Manage the mouvement of Blinky
-char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
+char **blinky_move(t_mlx_data *data, t_mlx_map *map)
 {
-	char	temp;
-	int		move;
+	char temp;
+	int move;
 
 	move = blinky_move_algo(data, map);
 	get_entity_pos(map, BLINKY, 1);
@@ -64,38 +64,39 @@ char	**blinky_move(t_mlx_data *data, t_mlx_map *map)
 		data->enemy.blinky.stash = map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1];
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1] = BLINKY;
 		map->map[data->enemy.blinky.y][data->enemy.blinky.x] = temp;
-		
 	}
 	data->enemy.blinky.last_move = move;
 	ft_printf("%d\n", move);
 	return (map->map);
 }
 
-int	blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
+int blinky_move_algo(t_mlx_data *data, t_mlx_map *map)
 {
-	int	best_move = 0;
-	data->enemy.blinky.calcu = 99999;
+	int best_move;
 
-	get_entity_pos(map , BLINKY, 1);
+	best_move = 0;
+	data->enemy.blinky.calcu = 99999;
+	get_entity_pos(map, BLINKY, 1);
 	data->enemy.blinky.x = map->x;
 	data->enemy.blinky.y = map->y;
-	get_entity_pos(map , 'P', 1);
-	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y - 1][data->enemy.blinky.x], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, UP);
-	if (data->enemy.blinky.last_move != DOWN && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != UP && !is_in_set(map->map[data->enemy.blinky.y + 1][data->enemy.blinky.x], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, DOWN);
-	if (data->enemy.blinky.last_move != LEFT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x - 1], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != RIGHT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x - 1], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, LEFT);
-	if (data->enemy.blinky.last_move != RIGHT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1], "WXYZ1Tt"))
+	if (data->enemy.blinky.last_move != LEFT && !is_in_set(map->map[data->enemy.blinky.y][data->enemy.blinky.x + 1], "WXYZ1Tt"))
 		best_move = blinky_best_move(data, best_move, RIGHT);
 	return (best_move);
 }
 
-int	blinky_best_move(t_mlx_data *data, int best_move, int actual_move)
+int blinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 {
-	int	result;
+	int result;
 
-	result = abs(data->enemy.blinky.y - data->map.y) + abs(data->enemy.blinky.x - data->map.x);
+	get_entity_pos(&data->map, 'P', 1);
+	ft_printf("\nPlayer : %d, %d\n", data->map.y, data->map.x);
+	result = (data->enemy.blinky.y - data->map.y) + (data->enemy.blinky.x - data->map.x);
 	if (result < data->enemy.blinky.calcu)
 	{
 		data->enemy.blinky.calcu = result;
