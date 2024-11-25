@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 07:44:41 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:00:55 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,28 @@ int	handle_input(int keysym, t_mlx_data *data)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, UP);
+		data->player.last_move = UP;
 		print_map(data);
 	}
 	if (keysym == 97) // LEFT 97 - 113
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, LEFT);
+		data->player.last_move = LEFT;
 		print_map(data);
 	}
 	if (keysym == 115) // DOWN 115
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, DOWN);
+		data->player.last_move = DOWN;
 		print_map(data);
 	}
 	if (keysym == 100) // RIGHT 100
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, RIGHT);
+		data->player.last_move = RIGHT;
 		print_map(data);
 	}
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
@@ -53,7 +57,7 @@ int	handle_input(int keysym, t_mlx_data *data)
 }
 
 // Update the frame of the game. Utiles for the mouvement of enemy
-// and Animation
+// and animation
 int	update_frame(t_mlx_data *data)
 {
 	data->current_frame++;
@@ -181,6 +185,7 @@ void	print_map(t_mlx_data *data)
 // Print the player all direction or frame aimation
 void	print_player(t_mlx_data *data)
 {
+	ft_printf("mouve = %d\n", data->player.last_move);
 	if (data->player.img_frame == 1)
 	{
 		mlx_put_image_to_window(data->link, data->screen, data->img.character1.img, data->img.x ,data->img.y);
@@ -190,11 +195,11 @@ void	print_player(t_mlx_data *data)
 	{
 		if (data->player.last_move == RIGHT)
 			mlx_put_image_to_window(data->link, data->screen, data->img.character_right.img, data->img.x ,data->img.y);
-		if (data->player.last_move == LEFT)
+		else if (data->player.last_move == LEFT)
 			mlx_put_image_to_window(data->link, data->screen, data->img.character_left.img, data->img.x ,data->img.y);
-		if (data->player.last_move == UP)
+		else if (data->player.last_move == UP)
 			mlx_put_image_to_window(data->link, data->screen, data->img.character_up.img, data->img.x ,data->img.y);
-		if (data->player.last_move == DOWN)
+		else if (data->player.last_move == DOWN)
 			mlx_put_image_to_window(data->link, data->screen, data->img.character_down.img, data->img.x ,data->img.y);
 		data->player.img_frame = 1;
 	}
@@ -231,7 +236,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (ft_printf("***MISSING ARGUMENT**\n./solong \"login42\"\n"), 1);
 	t_mlx_data	data;
-	data.current_frame = 0;
+	data.current_frame = -100000;
 	data.map.stach = '0';
 	data.pseudo = av[1];
 	data.player.last_move = 3;
