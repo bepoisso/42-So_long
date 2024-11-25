@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 12:56:59 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:48:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,16 @@ int	mlx_destroy(t_mlx_data *data)
 {
 	if (data->screen)
 		mlx_destroy_window(data->link, data->screen);
-	if (data->img.character.img)
-		mlx_destroy_image(data->link, data->img.character.img);
+	if (data->img.character1.img)
+		mlx_destroy_image(data->link, data->img.character1.img);
+	if (data->img.character_left.img)
+		mlx_destroy_image(data->link, data->img.character_left.img);
+	if (data->img.character_right.img)
+		mlx_destroy_image(data->link, data->img.character_right.img);
+	if (data->img.character_up.img)
+		mlx_destroy_image(data->link, data->img.character_up.img);
+	if (data->img.character_down.img)
+		mlx_destroy_image(data->link, data->img.character_down.img);
 	if (data->img.wall.img)
 		mlx_destroy_image(data->link, data->img.wall.img);
 	if (data->img.floor.img)

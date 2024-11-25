@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 06:40:30 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:44:41 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ int	update_frame(t_mlx_data *data)
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
 		data->map.map = blinky_move(data, &data->map);
-		data->map.map = pinky_move(data, &data->map);
 		data->map.map = inky_move(data, &data->map);
+		data->map.map = pinky_move(data, &data->map);
 		data->map.map = clyde_move(data, &data->map);
 		print_map(data);
 		data->current_frame = 0;
 	}
+	if (data->current_frame == 5000 || data->current_frame == 10000) // UPDTATE ANIMATION 5000 | 10000
+		print_map(data);
 	return (0);
 }
 
@@ -76,45 +78,65 @@ void	init_img(t_mlx_data *data)
 	data->img.wall.path = "./imgs/wall.xpm";
 	data->img.item.path = "./imgs/item.xpm";
 	data->img.exit.path = "./imgs/exit.xpm";
-	data->img.character.path = "./imgs/character.xpm";
+	data->img.character_left.path = "./imgs/character_left.xpm";
+	data->img.character_right.path = "./imgs/character_right.xpm";
+	data->img.character_up.path = "./imgs/character_up.xpm";
+	data->img.character_down.path = "./imgs/character_down.xpm";
+	data->img.character1.path = "./imgs/character1.xpm";
 	data->img.enemy.path = "./imgs/enemy.xpm";
 	data->img.enemy1.path = "./imgs/enemy1.xpm";
 	data->img.enemy2.path = "./imgs/enemy2.xpm";
 	data->img.enemy3.path = "./imgs/enemy3.xpm";
 
 	data->img.floor.img = mlx_xpm_file_to_image(data->link, data->img.floor.path, &data->img.floor.width, &data->img.floor.height);
+	data->img.wall.img = mlx_xpm_file_to_image(data->link, data->img.wall.path, &data->img.wall.width, &data->img.wall.height);
+	data->img.item.img = mlx_xpm_file_to_image(data->link, data->img.item.path, &data->img.item.width, &data->img.item.height);
+	data->img.exit.img = mlx_xpm_file_to_image(data->link, data->img.exit.path, &data->img.exit.width, &data->img.exit.height);
+	data->img.character_left.img = mlx_xpm_file_to_image(data->link, data->img.character_left.path, &data->img.character_left.width, &data->img.character_left.height);
+	data->img.character_right.img = mlx_xpm_file_to_image(data->link, data->img.character_right.path, &data->img.character_right.width, &data->img.character_right.height);
+	data->img.character_up.img = mlx_xpm_file_to_image(data->link, data->img.character_up.path, &data->img.character_up.width, &data->img.character_up.height);
+	data->img.character_down.img = mlx_xpm_file_to_image(data->link, data->img.character_down.path, &data->img.character_down.width, &data->img.character_down.height);
+	data->img.character1.img = mlx_xpm_file_to_image(data->link, data->img.character1.path, &data->img.character1.width, &data->img.character1.height);
+	data->img.enemy.img = mlx_xpm_file_to_image(data->link, data->img.enemy.path, &data->img.enemy.width, &data->img.enemy.height);
+	data->img.enemy1.img = mlx_xpm_file_to_image(data->link, data->img.enemy1.path, &data->img.enemy1.width, &data->img.enemy1.height);
+	data->img.enemy2.img = mlx_xpm_file_to_image(data->link, data->img.enemy2.path, &data->img.enemy2.width, &data->img.enemy2.height);
+	data->img.enemy3.img = mlx_xpm_file_to_image(data->link, data->img.enemy3.path, &data->img.enemy3.width, &data->img.enemy3.height);
 	if (!data->img.floor.img)
 		ft_printf("\nERROR loading floor image\n");
 
-	data->img.wall.img = mlx_xpm_file_to_image(data->link, data->img.wall.path, &data->img.wall.width, &data->img.wall.height);
 	if (!data->img.wall.img)
 		ft_printf("\nERROR loading wall image\n");
 
-	data->img.item.img = mlx_xpm_file_to_image(data->link, data->img.item.path, &data->img.item.width, &data->img.item.height);
 	if (!data->img.item.img)
 		ft_printf("\nERROR loading item image\n");
 
-	data->img.exit.img = mlx_xpm_file_to_image(data->link, data->img.exit.path, &data->img.exit.width, &data->img.exit.height);
 	if (!data->img.exit.img)
 		ft_printf("\nERROR loading exit image\n");
 
-	data->img.character.img = mlx_xpm_file_to_image(data->link, data->img.character.path, &data->img.character.width, &data->img.character.height);
-	if (!data->img.character.img)
-		ft_printf("\nERROR loading character image\n");
+	if (!data->img.character_left.img)
+		ft_printf("\nERROR loading character_left image\n");
 
-	data->img.enemy.img = mlx_xpm_file_to_image(data->link, data->img.enemy.path, &data->img.enemy.width, &data->img.enemy.height);
+	if (!data->img.character_right.img)
+		ft_printf("\nERROR loading character_right image\n");
+
+	if (!data->img.character_up.img)
+		ft_printf("\nERROR loading character_up image\n");
+
+	if (!data->img.character_down.img)
+		ft_printf("\nERROR loading character_down image\n");
+
+	if (!data->img.character1.img)
+		ft_printf("\nERROR loading character1 image\n");
+
 	if (!data->img.enemy.img)
 	ft_printf("\nERROR loading enemy image\n");
 
-	data->img.enemy1.img = mlx_xpm_file_to_image(data->link, data->img.enemy1.path, &data->img.enemy1.width, &data->img.enemy1.height);
 	if (!data->img.enemy1.img)
 	ft_printf("\nERROR loading enemy1 image\n");
 
-	data->img.enemy2.img = mlx_xpm_file_to_image(data->link, data->img.enemy2.path, &data->img.enemy2.width, &data->img.enemy2.height);
 	if (!data->img.enemy2.img)
 	ft_printf("\nERROR loading enemy2 image\n");
 
-	data->img.enemy3.img = mlx_xpm_file_to_image(data->link, data->img.enemy3.path, &data->img.enemy3.width, &data->img.enemy3.height);
 	if (!data->img.enemy3.img)
 	ft_printf("\nERROR loading enemy3 image\n");
 }
@@ -139,7 +161,7 @@ void	print_map(t_mlx_data *data)
 			else if (data->map.map[data->map.y][data->map.x] == 'E')
 				mlx_put_image_to_window(data->link, data->screen, data->img.exit.img, data->img.x ,data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == 'P')
-				mlx_put_image_to_window(data->link, data->screen, data->img.character.img, data->img.x ,data->img.y);
+				print_player(data);
 			else if (data->map.map[data->map.y][data->map.x] == 'W')
 				mlx_put_image_to_window(data->link, data->screen, data->img.enemy.img, data->img.x ,data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == 'X')
@@ -153,6 +175,28 @@ void	print_map(t_mlx_data *data)
 		}
 		data->map.y++;
 		data->img.y += TEXTUR_SIZE;
+	}
+}
+
+// Print the player all direction or frame aimation
+void	print_player(t_mlx_data *data)
+{
+	if (data->player.img_frame == 1)
+	{
+		mlx_put_image_to_window(data->link, data->screen, data->img.character1.img, data->img.x ,data->img.y);
+		data->player.img_frame = 0;
+	}
+	else if (data->player.img_frame == 0)
+	{
+		if (data->player.last_move == RIGHT)
+			mlx_put_image_to_window(data->link, data->screen, data->img.character_right.img, data->img.x ,data->img.y);
+		if (data->player.last_move == LEFT)
+			mlx_put_image_to_window(data->link, data->screen, data->img.character_left.img, data->img.x ,data->img.y);
+		if (data->player.last_move == UP)
+			mlx_put_image_to_window(data->link, data->screen, data->img.character_up.img, data->img.x ,data->img.y);
+		if (data->player.last_move == DOWN)
+			mlx_put_image_to_window(data->link, data->screen, data->img.character_down.img, data->img.x ,data->img.y);
+		data->player.img_frame = 1;
 	}
 }
 

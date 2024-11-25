@@ -1,2 +1,4 @@
+Direction of pacman
 Sound
 mlx widow information (mouv counter / item counter) better than now
+Add function ft_perror and rempllace all ft_printf(error)

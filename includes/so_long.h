@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 16:00:42 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:46:18 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,21 @@ typedef struct s_mlx_img
 // struct of struct of all my image set
 typedef struct s_mlx_all_img
 {
-	t_mlx_img character;
-	t_mlx_img item;
-	t_mlx_img floor;
-	t_mlx_img wall;
-	t_mlx_img exit;
-	t_mlx_img enemy;
-	t_mlx_img enemy1;
-	t_mlx_img enemy2;
-	t_mlx_img enemy3;
-	int x;
-	int y;
+	t_mlx_img	character_left;
+	t_mlx_img	character_right;
+	t_mlx_img	character_up;
+	t_mlx_img	character_down;
+	t_mlx_img	character1;
+	t_mlx_img	item;
+	t_mlx_img	floor;
+	t_mlx_img	wall;
+	t_mlx_img	exit;
+	t_mlx_img	enemy;
+	t_mlx_img	enemy1;
+	t_mlx_img	enemy2;
+	t_mlx_img	enemy3;
+	int			x;
+	int			y;
 } t_mlx_all_img;
 
 // struct to manage the map
@@ -95,6 +99,7 @@ typedef struct s_player
 	int		y;
 	int		move_count;
 	int		last_move;
+	int		img_frame;
 }	t_player;
 
 // Struct for blinky
@@ -192,6 +197,7 @@ void	map_xy_size(t_mlx_map *map);
 int		check_wall(t_mlx_map *map);
 int		check_entitys_in_map(char **map);
 void	print_map(t_mlx_data *data);
+void	print_player(t_mlx_data *data);
 void	init_img(t_mlx_data *data);
 int		handle_input(int keysym, t_mlx_data *data);
 void	get_entity_pos(t_mlx_map *map, char entity, int index);
