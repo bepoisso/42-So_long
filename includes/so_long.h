@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 18:16:47 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:27:13 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,9 @@ int		next_move(char entity, t_mlx_data *data);
 
 // Enemy
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
+
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
+char	**blinky_move_pt2(t_mlx_data *data, t_mlx_map *map, char temp, int move);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
 void	print_blinky(t_mlx_data *data);
