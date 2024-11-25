@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 16:54:56 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:16:47 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //_________________MACROS_________________
 # define TEXTUR_SIZE 32
-# define TESTER ft_printf("\ntester\n");
+// # define TESTER ft_printf("\ntester\n");
 # define BLINKY 'W'
 # define PINKY 'X'
 # define INKY 'Y'
@@ -32,8 +32,7 @@
 # include <math.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-#include <time.h>
-
+# include <time.h>
 
 //_________________STRUCT&ENUM_________________
 // Struct for drawing in the mlx window
@@ -83,7 +82,7 @@ typedef struct s_mlx_all_img
 	t_mlx_img	help;
 	int			x;
 	int			y;
-} t_mlx_all_img;
+}	t_mlx_all_img;
 
 // struct to manage the map
 typedef struct s_mlx_map
@@ -189,7 +188,7 @@ typedef struct s_mlx_data
 }	t_mlx_data;
 
 // Enum for the mouvement of player or enemy
-enum movement
+enum e_movement
 {
 	UP = 1,
 	DOWN = 2,
@@ -198,39 +197,47 @@ enum movement
 };
 
 // typedef usefull for encoding color
-typedef unsigned char	byte;
+typedef unsigned char	t_byte;
 
 //_________________FUNC_________________
+
+// Player movement
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move);
+void	print_player(t_mlx_data *data);
+void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
+
+// Comon gest
+void	init_img(t_mlx_data *data);
+void	init_map(t_mlx_data *data);
 void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move);
-void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
-int		encode_trgb(int t, int r, int g, int b);
-int		mlx_destroy(t_mlx_data *data);
-int		screen_color(t_mlx_data *data, int x_size, int y_size, int color);
-int		files_count_line(char *file_name);
 char	**split_map(char *file_name);
 void	map_xy_size(t_mlx_map *map);
+void	print_map(t_mlx_data *data);
+void	get_entity_pos(t_mlx_map *map, char entity, int index);
+void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
+
+// Checker
 int		check_wall(t_mlx_map *map);
 int		check_entitys_in_map(char **map);
-void	print_map(t_mlx_data *data);
-void	print_player(t_mlx_data *data);
-void	init_img(t_mlx_data *data);
-int		handle_input(int keysym, t_mlx_data *data);
-void	get_entity_pos(t_mlx_map *map, char entity, int index);
-int		entity_counter(char **map, char entity);
-void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-void	init_map(t_mlx_data *data);
 int		check_map_rectangle(char **map);
-int		ft_my_strlen(char *s);
+int		entity_counter(char **map, char entity);
 int		check_other_char_in_map(char **map);
-int		is_valid_path(char **map, int x, int y);
 char	**create_temp_map(char **map);
+int		is_valid_path(char **map, int x, int y);
+
+// Utiles
+int		files_count_line(char *file_name);
+int		screen_color(t_mlx_data *data, int x_size, int y_size, int color);
+int		encode_trgb(int t, int r, int g, int b);
+int		ft_my_strlen(char *s);
 int		ft_strslen(char **map);
 void	free_2d_mlx(char **tab);
-void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
-void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 int		is_in_set(char pos, char *set);
+void	taking_pos(t_mlx_data *data);
+void	ft_perror(char *str);
+
+// Scoreboard
 void	save_in_scoreboard(t_mlx_data *data);
 void	split_score(int fd, char ***score, char ***user);
 int		get_index_of_user(char **user, char	*pseudo, int *index);
@@ -243,13 +250,14 @@ void	print_scoreboard(char **user, char **score);
 void	add_spaces_right(char *str, int width);
 void	add_spaces_left(char *str, int width);
 char	*encrypt(char *data);
-void	touch_tp(char entity, char which, t_mlx_map *map);
-int		check_tp(char entity, t_mlx_map *map, int move);
-int		next_move(char entity, t_mlx_data *data);
-void	taking_pos(t_mlx_data *data);
-void	ft_perror(char *str);
-void	print_help(t_mlx_data *data);
 
+// Tp gest
+int		check_tp(char entity, t_mlx_map *map, int move);
+void	touch_tp(char entity, char which, t_mlx_map *map);
+int		next_move(char entity, t_mlx_data *data);
+
+// Enemy
+void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
@@ -268,5 +276,9 @@ void	print_inky(t_mlx_data *data);
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
 void	print_clyde(t_mlx_data *data);
 
+// MLX gest
+void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
+int		handle_input(int keysym, t_mlx_data *data);
+int		mlx_destroy(t_mlx_data *data);
 
 #endif
