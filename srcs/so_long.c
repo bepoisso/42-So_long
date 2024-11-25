@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 16:08:16 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 06:40:30 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ int	handle_input(int keysym, t_mlx_data *data)
 }
 
 // Update the frame of the game. Utiles for the mouvement of enemy
-// And Animation
+// and Animation
 int	update_frame(t_mlx_data *data)
 {
 	data->current_frame++;
 	if (data->current_frame > 15000) // UPDATE FRAME 15000
 	{
-		// data->map.map = blinky_move(data, &data->map);
-		// data->map.map = pinky_move(data, &data->map);
+		data->map.map = blinky_move(data, &data->map);
+		data->map.map = pinky_move(data, &data->map);
 		data->map.map = inky_move(data, &data->map);
-		// data->map.map = clyde_move(data, &data->map);
+		data->map.map = clyde_move(data, &data->map);
 		print_map(data);
 		data->current_frame = 0;
 	}
@@ -72,15 +72,15 @@ int	update_frame(t_mlx_data *data)
 // Initalise all image in a struct
 void	init_img(t_mlx_data *data)
 {
-	data->img.floor.path = "./skin/pac/floor.xpm";
-	data->img.wall.path = "./skin/pac/wall.xpm";
-	data->img.item.path = "./skin/pac/item.xpm";
-	data->img.exit.path = "./skin/pac/exit.xpm";
-	data->img.character.path = "./skin/pac/character.xpm";
-	data->img.enemy.path = "./skin/pac/enemy.xpm";
-	data->img.enemy1.path = "./skin/pac/enemy1.xpm";
-	data->img.enemy2.path = "./skin/pac/enemy2.xpm";
-	data->img.enemy3.path = "./skin/pac/enemy3.xpm";
+	data->img.floor.path = "./imgs/floor.xpm";
+	data->img.wall.path = "./imgs/wall.xpm";
+	data->img.item.path = "./imgs/item.xpm";
+	data->img.exit.path = "./imgs/exit.xpm";
+	data->img.character.path = "./imgs/character.xpm";
+	data->img.enemy.path = "./imgs/enemy.xpm";
+	data->img.enemy1.path = "./imgs/enemy1.xpm";
+	data->img.enemy2.path = "./imgs/enemy2.xpm";
+	data->img.enemy3.path = "./imgs/enemy3.xpm";
 
 	data->img.floor.img = mlx_xpm_file_to_image(data->link, data->img.floor.path, &data->img.floor.width, &data->img.floor.height);
 	if (!data->img.floor.img)
