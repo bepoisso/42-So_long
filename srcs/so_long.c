@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 16:56:06 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:33:12 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,10 +325,10 @@ int	main(int ac, char **av)
 	if (!data.link)
 		ft_perror("***ERROR MLX_INIT***\n\n");
 
-	data.help.screen = mlx_new_window(data.link, 500, 500, "HELP");
 	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 2), "PACMAN");
 	if (!data.screen || !data.help.screen)
 		ft_perror("***ERROR SCREEN***\n\n");
+	data.help.screen = mlx_new_window(data.link, 500, 500, "HELP");
 
 	// Gestions des la croix (X)
 	mlx_hook(data.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);
