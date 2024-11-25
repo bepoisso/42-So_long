@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 07:46:18 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:22:57 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ void	touch_tp(char entity, char which, t_mlx_map *map);
 int		check_tp(char entity, t_mlx_map *map, int move);
 int		next_move(char entity, t_mlx_data *data);
 void	taking_pos(t_mlx_data *data);
+void	ft_perror(char *str);
 
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);

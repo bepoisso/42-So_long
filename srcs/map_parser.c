@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/22 16:09:47 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:30:47 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,29 +216,29 @@ void	init_map(t_mlx_data *data)
 	data->map.map = split_map("./map.test");
 	if (check_map_rectangle(data->map.map))
 	{
-		ft_printf("Error\nThe map must be rectangular\n");
+		ft_perror("Error\nThe map must be rectangular\n");
 		mlx_destroy(data);
 	}
 	if (check_other_char_in_map(data->map.map))
 	{
-		ft_printf("Error\nThe map must be only contained \"01CEPWXYZTtV\"\n");
+		ft_perror("Error\nThe map must be only contained \"01CEPWXYZTtV\"\n");
 		mlx_destroy(data);
 	}
 	if (check_wall(&data->map))
 	{
-		ft_printf("Error\nThe map must be bordered by a wall\n");
+		ft_perror("Error\nThe map must be bordered by a wall\n");
 		mlx_destroy(data);
 	}
 	if (check_entitys_in_map(data->map.map))
 	{
-		ft_printf("Error\nThe map must have right entity in map\n");
+		ft_perror("Error\nThe map must have right entity in map\n");
 		mlx_destroy(data);
 	}
 	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 	{
-		ft_printf("Error\nNo path are found betwen the player and exit\n");
+		ft_perror("Error\nNo path are found betwen the player and exit\n");
 		mlx_destroy(data);
 	}
 	free_2d_mlx(data->map.temp_map);

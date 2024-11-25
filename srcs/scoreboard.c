@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/21 16:57:21 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:30:47 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	save_in_scoreboard(t_mlx_data *data)
 	index = 0;
 	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND, 0777);
 	if (fd == -1)
-		return ((void)ft_printf("***ERROR OPEN MAIN FILE***"));
+		return (ft_perror("***ERROR OPEN MAIN FILE***"));
 	split_score(fd, &score, &user);
 	if (get_index_of_user(user, data->pseudo, &index) != -1)
 	{
@@ -102,7 +102,7 @@ void	creat_new_score(char ***user, char ***score)
 	i = 0;
 	fd = open("./srcs/temp.sb", O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd < 0)
-		return ((void)ft_printf("***ERROR OPEN PRIT_NEW_SCORE***"));
+		return (ft_perror("***ERROR OPEN PRIT_NEW_SCORE***"));
 
 	while((*user)[i])
 	{

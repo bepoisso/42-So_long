@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 11:00:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:30:47 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,43 +106,31 @@ void	init_img(t_mlx_data *data)
 	data->img.enemy2.img = mlx_xpm_file_to_image(data->link, data->img.enemy2.path, &data->img.enemy2.width, &data->img.enemy2.height);
 	data->img.enemy3.img = mlx_xpm_file_to_image(data->link, data->img.enemy3.path, &data->img.enemy3.width, &data->img.enemy3.height);
 	if (!data->img.floor.img)
-		ft_printf("\nERROR loading floor image\n");
-
+		ft_perror("\nERROR loading floor image\n");
 	if (!data->img.wall.img)
-		ft_printf("\nERROR loading wall image\n");
-
+		ft_perror("\nERROR loading wall image\n");
 	if (!data->img.item.img)
-		ft_printf("\nERROR loading item image\n");
-
+		ft_perror("\nERROR loading item image\n");
 	if (!data->img.exit.img)
-		ft_printf("\nERROR loading exit image\n");
-
+		ft_perror("\nERROR loading exit image\n");
 	if (!data->img.character_left.img)
-		ft_printf("\nERROR loading character_left image\n");
-
+		ft_perror("\nERROR loading character_left image\n");
 	if (!data->img.character_right.img)
-		ft_printf("\nERROR loading character_right image\n");
-
+		ft_perror("\nERROR loading character_right image\n");
 	if (!data->img.character_up.img)
-		ft_printf("\nERROR loading character_up image\n");
-
+		ft_perror("\nERROR loading character_up image\n");
 	if (!data->img.character_down.img)
-		ft_printf("\nERROR loading character_down image\n");
-
+		ft_perror("\nERROR loading character_down image\n");
 	if (!data->img.character1.img)
-		ft_printf("\nERROR loading character1 image\n");
-
+		ft_perror("\nERROR loading character1 image\n");
 	if (!data->img.enemy.img)
-	ft_printf("\nERROR loading enemy image\n");
-
+		ft_perror("\nERROR loading enemy image\n");
 	if (!data->img.enemy1.img)
-	ft_printf("\nERROR loading enemy1 image\n");
-
+		ft_perror("\nERROR loading enemy1 image\n");
 	if (!data->img.enemy2.img)
-	ft_printf("\nERROR loading enemy2 image\n");
-
+		ft_perror("\nERROR loading enemy2 image\n");
 	if (!data->img.enemy3.img)
-	ft_printf("\nERROR loading enemy3 image\n");
+		ft_perror("\nERROR loading enemy3 image\n");
 }
 
 // Printing the map on the mlx window
@@ -185,7 +173,6 @@ void	print_map(t_mlx_data *data)
 // Print the player all direction or frame aimation
 void	print_player(t_mlx_data *data)
 {
-	ft_printf("mouve = %d\n", data->player.last_move);
 	if (data->player.img_frame == 1)
 	{
 		mlx_put_image_to_window(data->link, data->screen, data->img.character1.img, data->img.x ,data->img.y);
@@ -229,12 +216,18 @@ void	taking_pos(t_mlx_data *data)
 	data->enemy.clyde.stash = '0';
 }
 
+void	ft_perror(char *str)
+{
+	ft_putstr_fd(str, 1);
+	exit(1);
+}
+
 
 int	main(int ac, char **av)
 {
 	srand(time(NULL));
 	if (ac < 2)
-		return (ft_printf("***MISSING ARGUMENT**\n./solong \"login42\"\n"), 1);
+		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n"), 1);
 	t_mlx_data	data;
 	data.current_frame = -100000;
 	data.map.stach = '0';
@@ -246,11 +239,11 @@ int	main(int ac, char **av)
 	taking_pos(&data);
 	data.link = mlx_init();
 	if (!data.link)
-		ft_printf("***ERROR INIT***\n\n");
+		ft_perror("***ERROR INIT***\n\n");
 
 	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 2), "So_long");
 	if (!data.screen)
-		ft_printf("***ERROR SCREEN***\n\n");
+		ft_perror("***ERROR SCREEN***\n\n");
 
 	// Gestions des la croix (X)
 	mlx_hook(data.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);
