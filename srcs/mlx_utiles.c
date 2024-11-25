@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 07:48:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:33:34 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	screen_color(t_mlx_data *data, int x_size, int y_size, int color)
 	return (0);
 }
 
-// Destroy and free at the endo of the game or if a error appeares
+// Destroy and free at the end of the game or if a error appeares
 int	mlx_destroy(t_mlx_data *data)
 {
 	if (data->screen)
@@ -98,8 +98,12 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.item.img);
 	if (data->img.exit.img)
 		mlx_destroy_image(data->link, data->img.exit.img);
-	if (data->img.enemy.img)
-		mlx_destroy_image(data->link, data->img.enemy.img);
+	if (data->img.blinky.img)
+		mlx_destroy_image(data->link, data->img.blinky.img);
+	if (data->help.img.img)
+		mlx_destroy_image(data->link, data->help.img.img);
+	if (data->help.screen)
+		mlx_destroy_window(data->link, data->help.screen);
 	if (data->link)
 	{
 		mlx_destroy_display(data->link);

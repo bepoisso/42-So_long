@@ -1,10 +1,10 @@
 /* XPM */
-static char *_3858d5f771d4ec8c276a0b778028706L7746XLhwErxhaLY[] = {
+static char *_93ad59f6081409d9b5c82012bde68a2QVDitqJY1HLMeCCr[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 4 1 ",
 "  c black",
-". c #EF9F0C",
-"X c #0000A0",
+". c #3F93EF",
+"x c #0000A0",
 "o c white",
 /* pixels */
 "                                ",
@@ -14,13 +14,13 @@ static char *_3858d5f771d4ec8c276a0b778028706L7746XLhwErxhaLY[] = {
 "      ....................      ",
 "      ....................      ",
 "    ....oooo......oooo......    ",
-"    ....oooo......oooo......    ",
+"    ....xxxx......xxxx......    ",
+"    ..ooxxxxoo..ooxxxxoo....    ",
+"    ..ooxxxxoo..ooxxxxoo....    ",
+"    ..ooxxxxoo..ooxxxxoo....    ",
 "    ..oooooooo..oooooooo....    ",
 "    ..oooooooo..oooooooo....    ",
-"    ..XXXXoooo..XXXXoooo....    ",
-"    ..XXXXoooo..XXXXoooo....    ",
-"    ..XXXXoooo..XXXXoooo....    ",
-"    ..XXXXoooo..XXXXoooo....    ",
+"    ..oooooooo..oooooooo....    ",
 "    ....oooo......oooo......    ",
 "    ....oooo......oooo......    ",
 "    ........................    ",

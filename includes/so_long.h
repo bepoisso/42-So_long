@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:42:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:54:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct s_mlx_img
 	char	*path;
 	int		width;
 	int		height;
+	void	*img_down;
+	char	*path_down;
+	void	*img_left;
+	char	*path_left;
+	void	*img_right;
+	char	*path_right;
 }	t_mlx_img;
 
 // struct of struct of all my image set
@@ -69,10 +75,12 @@ typedef struct s_mlx_all_img
 	t_mlx_img	floor;
 	t_mlx_img	wall;
 	t_mlx_img	exit;
-	t_mlx_img	enemy;
-	t_mlx_img	enemy1;
-	t_mlx_img	enemy2;
-	t_mlx_img	enemy3;
+	t_mlx_img	exit1;
+	t_mlx_img	blinky;
+	t_mlx_img	pinky;
+	t_mlx_img	inky;
+	t_mlx_img	clyde;
+	t_mlx_img	help;
 	int			x;
 	int			y;
 } t_mlx_all_img;
@@ -159,6 +167,13 @@ typedef struct s_entitys_check
 	int	enemy_check;
 }	t_entity_check;
 
+typedef struct s_help
+{
+	void		*screen;
+	int			frame;
+	t_mlx_img	img;
+}	t_help;
+
 // Important struct to manage the mlx
 typedef struct s_mlx_data
 {
@@ -170,7 +185,7 @@ typedef struct s_mlx_data
 	t_mlx_map		map;
 	t_enemy			enemy;
 	t_player		player;
-	t_mlx_data		help;
+	t_help			help;
 }	t_mlx_data;
 
 // Enum for the mouvement of player or enemy
@@ -233,20 +248,25 @@ int		check_tp(char entity, t_mlx_map *map, int move);
 int		next_move(char entity, t_mlx_data *data);
 void	taking_pos(t_mlx_data *data);
 void	ft_perror(char *str);
+void	print_help(t_mlx_data *data);
 
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
+void	print_blinky(t_mlx_data *data);
 
 char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
 int		pinky_move_algo(t_mlx_data *data, t_pinky *pinky, t_mlx_map *map);
 int		pinky_best_move(t_mlx_data *data, int best_move, int actual_move);
+void	print_pinky(t_mlx_data *data);
 
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
 int		inky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		inky_best_move(t_mlx_data *data, int best_move, int actual_move);
+void	print_inky(t_mlx_data *data);
 
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
+void	print_clyde(t_mlx_data *data);
 
 
 #endif
