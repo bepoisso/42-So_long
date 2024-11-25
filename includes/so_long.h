@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:22:57 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:42:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct s_mlx_data
 	t_mlx_map		map;
 	t_enemy			enemy;
 	t_player		player;
+	t_mlx_data		help;
 }	t_mlx_data;
 
 // Enum for the mouvement of player or enemy
