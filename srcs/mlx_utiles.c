@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 11:31:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:16:41 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	mlx_destroy(t_mlx_data *data)
 	if (data->img.blinky.img_left)
 		mlx_destroy_image(data->link, data->img.blinky.img_left);
 	if (data->img.blinky.img_right)
-		mlx_destroy_image(data->link, data->img.pinky.img_right);
+		mlx_destroy_image(data->link, data->img.blinky.img_right);
 	if (data->img.pinky.img)
 		mlx_destroy_image(data->link, data->img.pinky.img);
 	if (data->img.pinky.img_down)
@@ -109,25 +109,20 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.clyde.img_left);
 	if (data->img.clyde.img_right)
 		mlx_destroy_image(data->link, data->img.clyde.img_right);
-	if (data->map.temp_map)
-		free_2d_mlx(data->map.temp_map);
-	mlx_destroy_pt2(data);
-	exit (0);
-	return (1);
-}
-
-void	mlx_destroy_pt2(t_mlx_data *data)
-{
 	if (data->help.img.img)
 		mlx_destroy_image(data->link, data->help.img.img);
 	if (data->help.screen)
 		mlx_destroy_window(data->link, data->help.screen);
+	if (data->map.map)
+		free_2d_mlx(data->map.map);
+	if (data->map.temp_map)
+		free_2d_mlx(data->map.temp_map);
 	if (data->link)
 	{
 		mlx_destroy_display(data->link);
 		free(data->link);
 	}
-	free_2d_mlx(data->map.map);
+	return (1);
 }
 
 // Encoding rgb (Yes the t of trgb is usless caus the mlx dont manage it)

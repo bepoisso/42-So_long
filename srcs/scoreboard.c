@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 11:12:11 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:36:26 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	save_in_scoreboard(t_mlx_data *data)
 
 	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND, 0777);
 	if (fd == -1)
-		return (ft_perror("***ERROR OPEN MAIN FILE***"));
+		return (ft_perror("***ERROR OPEN MAIN FILE***", data));
 	split_score(fd, &score, &user);
 	save_in_scoreboard_pt2(data, &score, &user);
 	sort_score(&user, &score);
 	print_scoreboard(user, score);
-	creat_new_score(&user, &score);
+	creat_new_score(&user, &score, data);
 	free_2d_mlx(user);
 	free_2d_mlx(score);
 	close(fd);
@@ -98,7 +98,7 @@ int	comp_score(char **score, int new_score, int index)
 
 // Create a temp file and put the list of user ans score in it
 // After that remove the old list and rename the newest
-void	creat_new_score(char ***user, char ***score)
+void	creat_new_score(char ***user, char ***score, t_mlx_data *data)
 {
 	int	fd;
 	int	i;
@@ -106,7 +106,7 @@ void	creat_new_score(char ***user, char ***score)
 	i = 0;
 	fd = open("./srcs/temp.sb", O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd < 0)
-		return (ft_perror("***ERROR OPEN PRIT_NEW_SCORE***"));
+		return (ft_perror("***ERROR OPEN PRIT_NEW_SCORE***", data));
 	while ((*user)[i])
 	{
 		add_score(encrypt((*user)[i]), encrypt((*score)[i]), fd);

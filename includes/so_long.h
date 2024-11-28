@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 11:20:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:57:11 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,7 @@ void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user);
 void	split_score(int fd, char ***score, char ***user);
 int		get_index_of_user(char **user, char	*pseudo, int *index);
 int		comp_score(char **score, int new_score, int index);
-void	creat_new_score(char ***user, char ***score);
+void	creat_new_score(char ***user, char ***score, t_mlx_data *data);
 void	add_score(char *player_name, char *player_score, int fd);
 void	sort_score(char ***user, char ***score);
 char	**add_data_in_tab(char *data, char **tab);
@@ -287,6 +287,5 @@ void	print_clyde(t_mlx_data *data);
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		handle_input(int keysym, t_mlx_data *data);
 int		mlx_destroy(t_mlx_data *data);
-void	mlx_destroy_pt2(t_mlx_data *data);
 
 #endif

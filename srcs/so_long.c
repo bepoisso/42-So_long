@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 11:25:35 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:21:55 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,7 +311,7 @@ int	main(int ac, char **av)
 {
 	t_mlx_data	data;
 
-	srand(time(NULL));
+	// srand(time(NULL));
 	if (ac < 2)
 		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n", &data), 1);
 	data.current_frame = -100000;
@@ -327,9 +327,9 @@ int	main(int ac, char **av)
 		ft_perror("***ERROR MLX_INIT***\n\n", &data);
 
 	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 2), "PACMAN");
+	data.help.screen = mlx_new_window(data.link, 500, 500, "HELP");
 	if (!data.screen || !data.help.screen)
 		ft_perror("***ERROR SCREEN***\n\n", &data);
-	data.help.screen = mlx_new_window(data.link, 500, 500, "HELP");
 
 	// Gestions des la croix (X)
 	mlx_hook(data.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);

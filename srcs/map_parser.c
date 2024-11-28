@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 11:33:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:24:33 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,6 @@ void	init_map(t_mlx_data *data)
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
 		ft_perror("Error\nNo path are found betwen the player and exit\n",
 			data);
-	free_2d_mlx(data->map.temp_map);
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
 }
