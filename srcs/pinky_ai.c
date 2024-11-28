@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:53:10 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 07:56:46 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:34:52 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ char	**pinky_move(t_mlx_data *data, t_mlx_map *map)
 		map->map[data->enemy.pinky.y - 1][data->enemy.pinky.x] = PINKY;
 		map->map[data->enemy.pinky.y][data->enemy.pinky.x] = temp;
 	}
+	map->map = pinky_move_pt2(data, map, move, temp);
+	data->enemy.pinky.last_move = move;
+	return (map->map);
+}
+
+char	**pinky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp)
+{
 	if (move == DOWN)
 	{
 		check_player_gameover(data, map, DOWN);
@@ -57,7 +64,6 @@ char	**pinky_move(t_mlx_data *data, t_mlx_map *map)
 		map->map[data->enemy.pinky.y][data->enemy.pinky.x + 1] = PINKY;
 		map->map[data->enemy.pinky.y][data->enemy.pinky.x] = temp;
 	}
-	data->enemy.pinky.last_move = move;
 	return (map->map);
 }
 
@@ -98,6 +104,21 @@ int	pinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 		target_x -= 4;
 	else if (data->player.last_move == RIGHT)
 		target_x += 4;
+	result = pinky_best_move_pt2(data, actual_move, target_x, target_y);
+	if (result < data->enemy.pinky.calcu)
+	{
+		data->enemy.pinky.calcu = result;
+		return (actual_move);
+	}
+	return (best_move);
+}
+
+int	pinky_best_move_pt2(t_mlx_data *data,
+	int actual_move, int target_x, int target_y)
+{
+	int	result;
+
+	result = 0;
 	if (actual_move == UP)
 		result = abs((data->enemy.pinky.y - 1) - target_y)
 			+ abs(data->enemy.pinky.x - target_x);
@@ -110,10 +131,5 @@ int	pinky_best_move(t_mlx_data *data, int best_move, int actual_move)
 	else if (actual_move == RIGHT)
 		result = abs(data->enemy.pinky.y - target_y)
 			+ abs((data->enemy.pinky.x + 1) - target_x);
-	if (result < data->enemy.pinky.calcu)
-	{
-		data->enemy.pinky.calcu = result;
-		return (actual_move);
-	}
-	return (best_move);
+	return (result);
 }

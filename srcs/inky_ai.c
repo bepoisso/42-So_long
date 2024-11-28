@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:58:21 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 07:51:43 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:25:17 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**inky_move(t_mlx_data *data, t_mlx_map *map)
 	return (map->map);
 }
 
-char **inky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp)
+char	**inky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp)
 {
 	if (move == LEFT)
 	{
