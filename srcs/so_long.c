@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 16:06:02 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:27:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	handle_input(int keysym, t_mlx_data *data)
 	if (keysym == XK_Escape) // CLOSE ON ESC
 	{
 		mlx_destroy(data);
-		exit(1);
+		exit(0);
 	}
 	if (keysym == 119) // UP 119 - 122
 	{
@@ -49,10 +49,14 @@ int	handle_input(int keysym, t_mlx_data *data)
 		print_map(data);
 	}
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
+	data->temp = ft_itoa(data->map.move_count);
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), "Mouvement count : ");
-	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), ft_itoa(data->map.move_count));
+	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 2), encode_trgb(0, 255, 255, 255), data->temp);
+	free(data->temp);
+	data->temp = ft_itoa(data->map.item);
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), "Item count : ");
-	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), ft_itoa(data->map.item));
+	mlx_string_put(data->link, data->screen, 110, TEXTUR_SIZE * (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255), data->temp);
+	free(data->temp);
 	return (0);
 }
 
@@ -302,15 +306,17 @@ void	taking_pos(t_mlx_data *data)
 void	ft_perror(char *str, t_mlx_data *data)
 {
 	ft_putstr_fd(str, 1);
+	data->status = 1;
 	mlx_destroy(data);
-	exit(1);
 }
 
 
 int	main(int ac, char **av)
 {
 	t_mlx_data	data;
+
 	ft_memset(&data, 0, sizeof(t_mlx_data));
+	data.status = 0;
 	srand(time(NULL));
 	if (ac < 2)
 		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n", &data), 1);

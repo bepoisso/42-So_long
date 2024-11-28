@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 17:13:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:31:36 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->link);
 		free(data->link);
 	}
+	if (data->status == 1)
+		exit (1);
 	exit (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 16:02:08 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:24:39 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ typedef struct s_mlx_data
 	void			*screen;
 	int				current_frame;
 	char			*pseudo;
+	char			*temp;
+	int				status;
 	t_mlx_all_img	img;
 	t_mlx_map		map;
 	t_enemy			enemy;
