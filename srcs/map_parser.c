@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:30:47 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 08:03:54 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,8 @@ int	entity_counter(char **map, char entity)
 	return (count++);
 }
 
-// Check if other character is in the map (other than the defined and managed character)
+// Check if other character is in the map
+// (other than the defined and managed character)
 int	check_other_char_in_map(char **map)
 {
 	int	x;
@@ -173,7 +174,10 @@ int	check_other_char_in_map(char **map)
 		x = 0;
 		while (map[y][x + 1] != '\0')
 		{
-			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C' && map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'W'&& map[y][x] != 'X' && map[y][x] != 'Y' && map[y][x] != 'Z' && map[y][x] != 'T' && map[y][x] != 't' && map[y][x] != 'V')
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C'
+				&& map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'W'
+				&& map[y][x] != 'X' && map[y][x] != 'Y' && map[y][x] != 'Z'
+				&& map[y][x] != 'T' && map[y][x] != 't' && map[y][x] != 'V')
 				return (1);
 			x++;
 		}
@@ -186,7 +190,7 @@ int	check_other_char_in_map(char **map)
 int	check_map_rectangle(char **map)
 {
 	int	i;
-	int size_line;
+	int	size_line;
 
 	i = 0;
 	size_line = ft_my_strlen((map[i]));
@@ -242,8 +246,6 @@ void	init_map(t_mlx_data *data)
 		mlx_destroy(data);
 	}
 	free_2d_mlx(data->map.temp_map);
-	
-
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
 }
@@ -254,16 +256,16 @@ int	ft_strslen(char **map)
 	int	i;
 
 	i = 0;
-	while(map[i] != NULL)
+	while (map[i] != NULL)
 		i++;
 	return (i);
 }
 
 // Create a temp map usefull for editying the map without losing informations
-char **create_temp_map(char **map)
+char	**create_temp_map(char **map)
 {
-	char **temp;
-	int	i;
+	char	**temp;
+	int		i;
 
 	i = 0;
 	temp = malloc(sizeof(char *) * (ft_strslen(map) + 1));
@@ -273,7 +275,7 @@ char **create_temp_map(char **map)
 		i++;
 	}
 	temp[i] = NULL;
-	return(temp);
+	return (temp);
 }
 
 // Recurcive function that check if a path exist between the player and the exit
@@ -284,10 +286,10 @@ int	is_valid_path(char **map, int x, int y)
 	if (map[y][x] == '1' || map[y][x] == 'V')
 		return (1);
 	map[y][x] = 'V';
-	if (is_valid_path(map, x + 1, y) == 0 ||
-		is_valid_path(map, x - 1, y) == 0 ||
-		is_valid_path(map, x, y + 1) == 0 ||
-		is_valid_path(map, x, y - 1) == 0)
+	if (is_valid_path(map, x + 1, y) == 0
+		|| is_valid_path(map, x - 1, y) == 0
+		|| is_valid_path(map, x, y + 1) == 0
+		|| is_valid_path(map, x, y - 1) == 0)
 		return (0);
 	return (1);
 }
