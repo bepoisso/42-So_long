@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 12:21:55 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:06:02 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,8 +310,8 @@ void	ft_perror(char *str, t_mlx_data *data)
 int	main(int ac, char **av)
 {
 	t_mlx_data	data;
-
-	// srand(time(NULL));
+	ft_memset(&data, 0, sizeof(t_mlx_data));
+	srand(time(NULL));
 	if (ac < 2)
 		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n", &data), 1);
 	data.current_frame = -100000;
