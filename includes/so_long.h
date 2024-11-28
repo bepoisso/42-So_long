@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 10:33:34 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:39:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,5 +286,6 @@ void	print_clyde(t_mlx_data *data);
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		handle_input(int keysym, t_mlx_data *data);
 int		mlx_destroy(t_mlx_data *data);
+void	mlx_destroy_pt2(t_mlx_data *data);
 
 #endif

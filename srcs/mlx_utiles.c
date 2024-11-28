@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 16:33:34 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:39:25 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,14 @@ void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw)
 	x = draw.x_start;
 	while (x < draw.size_x + draw.x_start)
 	{
-		y  = draw.y_start;
+		y = draw.y_start;
 		while (y < draw.size_y + draw.y_start)
 		{
-			mlx_pixel_put(data->link, data->screen, draw.x_start, draw.y_start, draw.color);
+			mlx_pixel_put(data->link, data->screen, draw.x_start,
+				draw.y_start, draw.color);
 			y++;
 		}
 		x++;
-	}
-}
-
-// Draw a circle on the window of the mlx
-void	mlx_draw_circle(int pos_x, int pos_y, int radius, int color, t_mlx_data *data)
-{
-	int	x;
-	int	y;
-	int	distance_squared;
-	int	radius_squared;
-
-	radius_squared = radius * radius;
-	y = pos_y - radius;
-	while (y <= pos_y + radius)
-	{
-		x = pos_x - radius;
-		while (x <= pos_x + radius)
-		{
-			distance_squared = (x - pos_x) * (x - pos_x) + (y - pos_y) * (y - pos_y);
-			if (distance_squared <= radius_squared)
-				mlx_pixel_put(data->link, data->screen, x, y, color);
-			x++;
-		}
-		y++;
 	}
 }
 
@@ -62,7 +39,7 @@ int	screen_color(t_mlx_data *data, int x_size, int y_size, int color)
 	int	y;
 
 	y = 0;
-	while(y < y_size)
+	while (y < y_size)
 	{
 		x = 0;
 		while (x < x_size)
@@ -100,6 +77,13 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.exit.img);
 	if (data->img.blinky.img)
 		mlx_destroy_image(data->link, data->img.blinky.img);
+	mlx_destroy_pt2(data);
+	exit (0);
+	return (1);
+}
+
+void	mlx_destroy_pt2(t_mlx_data *data)
+{
 	if (data->help.img.img)
 		mlx_destroy_image(data->link, data->help.img.img);
 	if (data->help.screen)
@@ -110,8 +94,6 @@ int	mlx_destroy(t_mlx_data *data)
 		free(data->link);
 	}
 	free_2d_mlx(data->map.map);
-	exit (0);
-	return (1);
 }
 
 // Encoding rgb (Yes the t of trgb is usless caus the mlx dont manage it)
