@@ -6,12 +6,13 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:03:41 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 07:37:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 07:42:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// NEED TO BE FIXED (CHECK IF A WAL IS IN THE WAY BEFORE SET RDM)
 // Manage the mouvement of Clyde
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 {
