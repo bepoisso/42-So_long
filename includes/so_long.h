@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 10:39:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:09:35 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ void	ft_perror(char *str);
 
 // Scoreboard
 void	save_in_scoreboard(t_mlx_data *data);
+void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user);
 void	split_score(int fd, char ***score, char ***user);
 int		get_index_of_user(char **user, char	*pseudo, int *index);
 int		comp_score(char **score, int new_score, int index);

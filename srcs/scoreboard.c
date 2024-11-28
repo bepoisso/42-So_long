@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:30:47 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:12:11 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,42 @@ void	save_in_scoreboard(t_mlx_data *data)
 {
 	char	**score;
 	char	**user;
-	int		index;
 	int		fd;
 
-	index = 0;
 	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND, 0777);
 	if (fd == -1)
 		return (ft_perror("***ERROR OPEN MAIN FILE***"));
 	split_score(fd, &score, &user);
-	if (get_index_of_user(user, data->pseudo, &index) != -1)
-	{
-		if (comp_score(score, data->map.move_count, index))
-		{
-			free(score[index]);
-			score[index] = ft_strdup(ft_itoa(data->map.move_count));
-		}
-	}
-	else
-	{
-		user = add_data_in_tab(data->pseudo, user);
-		score = add_data_in_tab(ft_itoa(data->map.move_count), score);
-	}
+	save_in_scoreboard_pt2(data, &score, &user);
 	sort_score(&user, &score);
 	print_scoreboard(user, score);
 	creat_new_score(&user, &score);
 	free_2d_mlx(user);
 	free_2d_mlx(score);
 	close(fd);
-
 }
 
-// Create a char tab2d (containt username and score at the same index) in 2 char tab
-void	split_score(int	fd, char ***score, char ***user)
+void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user)
+{
+	int	index;
+
+	index = 0;
+	if (get_index_of_user(*user, data->pseudo, &index) != -1
+		&& comp_score(*score, data->map.move_count, index))
+	{
+		free((*score)[index]);
+		(*score)[index] = ft_strdup(ft_itoa(data->map.move_count));
+	}
+	else if (get_index_of_user(*user, data->pseudo, &index) == -1)
+	{
+		*user = add_data_in_tab(data->pseudo, *user);
+		*score = add_data_in_tab(ft_itoa(data->map.move_count), *score);
+	}
+}
+
+// Create a char tab2d (containt username and score at the same index)
+// in 2 char tab
+void	split_score(int fd, char ***score, char ***user)
 {
 	char	*final_score;
 	char	*final_user;
@@ -57,7 +61,7 @@ void	split_score(int	fd, char ***score, char ***user)
 	final_score = ft_strdup("");
 	final_user = ft_strdup("");
 	temp = get_next_line(fd);
-	while(temp)
+	while (temp)
 	{
 		final_user = ft_strjoin(final_user, encrypt(temp));
 		temp = get_next_line(fd);
@@ -71,7 +75,7 @@ void	split_score(int	fd, char ***score, char ***user)
 // Get the index of a username in the list, so the score to
 int	get_index_of_user(char **user, char	*pseudo, int *index)
 {
-	while(user[*index])
+	while (user[*index])
 	{
 		if (ft_strncmp(pseudo, user[*index], 8) == 0)
 			return (*index);
@@ -103,8 +107,7 @@ void	creat_new_score(char ***user, char ***score)
 	fd = open("./srcs/temp.sb", O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (fd < 0)
 		return (ft_perror("***ERROR OPEN PRIT_NEW_SCORE***"));
-
-	while((*user)[i])
+	while ((*user)[i])
 	{
 		add_score(encrypt((*user)[i]), encrypt((*score)[i]), fd);
 		i++;
@@ -122,7 +125,8 @@ void	add_score(char *player_name, char *player_score, int fd)
 	ft_putendl_fd(player_score, fd);
 }
 
-// Bubble sort the list The minimal number is on the top, the bigest on the buttom
+// Bubble sort the list The minimal number is on the top,
+// the bigest on the buttom
 void	sort_score(char ***user, char ***score)
 {
 	char	*temp_score;
@@ -131,7 +135,7 @@ void	sort_score(char ***user, char ***score)
 	int		j;
 
 	j = 0;
-	while((*score)[j + 1])
+	while ((*score)[j + 1])
 	{
 		i = 0;
 		while ((*score)[i + 1])
@@ -177,8 +181,11 @@ char	**add_data_in_tab(char *data, char **tab)
 // Fonction pour ajouter des espaces à droite
 void	add_spaces_right(char *str, int width)
 {
-	int len = ft_strlen(str);
-	int spaces = width - len;
+	int	len;
+	int	spaces;
+
+	len = ft_strlen(str);
+	spaces = width - len;
 	while (spaces-- > 0)
 		ft_putchar_fd(' ', 1);
 }
@@ -186,8 +193,11 @@ void	add_spaces_right(char *str, int width)
 // Fonction pour ajouter des espaces à gauche
 void	add_spaces_left(char *str, int width)
 {
-	int len = ft_strlen(str);
-	int spaces = width - len;
+	int	len;
+	int	spaces;
+
+	len = ft_strlen(str);
+	spaces = width - len;
 	while (spaces-- > 0)
 		ft_putchar_fd(' ', 1);
 }
@@ -195,16 +205,17 @@ void	add_spaces_left(char *str, int width)
 // Fonction pour afficher le tableau formaté
 void	print_scoreboard(char **user, char **score)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ft_printf("\n\n");
 	ft_printf("+------------------+-------------+\n");
-    ft_printf("|           SCOREBOARD           |\n");
+	ft_printf("|           SCOREBOARD           |\n");
 	ft_printf("+------------------+-------------+\n");
 	ft_printf("| Player           | Score       |\n");
 	ft_printf("+------------------+-------------+\n");
-	while (user[i] && score[i]) {
+	while (user[i] && score[i])
+	{
 		ft_printf("| ");
 		ft_putstr(user[i]);
 		add_spaces_right(user[i], 16);
@@ -214,7 +225,6 @@ void	print_scoreboard(char **user, char **score)
 		ft_printf(" |\n");
 		i++;
 	}
-	
 	ft_printf("+------------------+-------------+\n");
 }
 
@@ -241,5 +251,3 @@ char	*encrypt(char *data)
 	}
 	return (original_data);
 }
-
-
