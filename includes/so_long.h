@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 18:27:13 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 07:29:59 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,7 @@ int		inky_best_move(t_mlx_data *data, int best_move, int actual_move);
 void	print_inky(t_mlx_data *data);
 
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
+char	**clyde_move_pt2(t_mlx_data *data, t_mlx_map *map, int rdm, char temp);
 void	print_clyde(t_mlx_data *data);
 
 // MLX gest
