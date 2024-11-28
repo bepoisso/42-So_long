@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/25 17:33:12 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:25:35 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,33 +133,33 @@ void	init_img(t_mlx_data *data)
 	data->img.clyde.img_left = mlx_xpm_file_to_image(data->link, data->img.clyde.path_left, &data->img.clyde.width, &data->img.clyde.height);
 	data->img.clyde.img_right = mlx_xpm_file_to_image(data->link, data->img.clyde.path_right, &data->img.clyde.width, &data->img.clyde.height);
 	if (!data->img.floor.img)
-		ft_perror("\nERROR loading floor image\n");
+		ft_perror("\nERROR loading floor image\n", data);
 	if (!data->img.wall.img)
-		ft_perror("\nERROR loading wall image\n");
+		ft_perror("\nERROR loading wall image\n", data);
 	if (!data->img.item.img)
-		ft_perror("\nERROR loading item image\n");
+		ft_perror("\nERROR loading item image\n", data);
 	if (!data->img.exit.img || !data->img.exit1.img)
-		ft_perror("\nERROR loading exit image\n");
+		ft_perror("\nERROR loading exit image\n", data);
 	if (!data->img.character_left.img)
-		ft_perror("\nERROR loading character_left image\n");
+		ft_perror("\nERROR loading character_left image\n", data);
 	if (!data->img.character_right.img)
-		ft_perror("\nERROR loading character_right image\n");
+		ft_perror("\nERROR loading character_right image\n", data);
 	if (!data->img.character_up.img)
-		ft_perror("\nERROR loading character_up image\n");
+		ft_perror("\nERROR loading character_up image\n", data);
 	if (!data->img.character_down.img)
-		ft_perror("\nERROR loading character_down image\n");
+		ft_perror("\nERROR loading character_down image\n", data);
 	if (!data->img.character1.img)
-		ft_perror("\nERROR loading character1 image\n");
+		ft_perror("\nERROR loading character1 image\n", data);
 	if (!data->img.blinky.img || !data->img.blinky.img_down || !data->img.blinky.img_left || !data->img.blinky.img_right)
-		ft_perror("\nERROR loading clyde image\n");
+		ft_perror("\nERROR loading clyde image\n", data);
 	if (!data->img.pinky.img || !data->img.pinky.img_down || !data->img.pinky.img_left || !data->img.pinky.img_right)
-		ft_perror("\nERROR loading pinky image\n");
+		ft_perror("\nERROR loading pinky image\n", data);
 	if (!data->img.inky.img || !data->img.inky.img_down || !data->img.inky.img_left || !data->img.inky.img_right)
-		ft_perror("\nERROR loading inky image\n");
+		ft_perror("\nERROR loading inky image\n", data);
 	if (!data->img.clyde.img || !data->img.clyde.img_down || !data->img.clyde.img_left || !data->img.clyde.img_right)
-		ft_perror("\nERROR loading clyde image\n");
+		ft_perror("\nERROR loading clyde image\n", data);
 	if (!data->help.img.img)
-		ft_perror("\nERROR loading Help_page image\n");
+		ft_perror("\nERROR loading Help_page image\n", data);
 }
 
 // Printing the map on the mlx window
@@ -256,7 +256,6 @@ void	print_blinky(t_mlx_data *data)
 // Print the player all direction or frame aimation
 void	print_player(t_mlx_data *data)
 {
-	ft_printf("frame = %d, last_move = %d\n", data->player.img_frame, data->player.last_move);
 	if (data->player.img_frame >= 1)
 	{
 		mlx_put_image_to_window(data->link, data->screen, data->img.character1.img, data->img.x ,data->img.y);
@@ -300,19 +299,21 @@ void	taking_pos(t_mlx_data *data)
 	data->enemy.clyde.stash = '0';
 }
 
-void	ft_perror(char *str)
+void	ft_perror(char *str, t_mlx_data *data)
 {
 	ft_putstr_fd(str, 1);
+	mlx_destroy(data);
 	exit(1);
 }
 
 
 int	main(int ac, char **av)
 {
+	t_mlx_data	data;
+
 	srand(time(NULL));
 	if (ac < 2)
-		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n"), 1);
-	t_mlx_data	data;
+		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n", &data), 1);
 	data.current_frame = -100000;
 	data.map.stach = '0';
 	data.pseudo = av[1];
@@ -323,11 +324,11 @@ int	main(int ac, char **av)
 	taking_pos(&data);
 	data.link = mlx_init();
 	if (!data.link)
-		ft_perror("***ERROR MLX_INIT***\n\n");
+		ft_perror("***ERROR MLX_INIT***\n\n", &data);
 
 	data.screen = mlx_new_window(data.link, TEXTUR_SIZE * data.map.x_max, TEXTUR_SIZE * (data.map.y_max + 2), "PACMAN");
 	if (!data.screen || !data.help.screen)
-		ft_perror("***ERROR SCREEN***\n\n");
+		ft_perror("***ERROR SCREEN***\n\n", &data);
 	data.help.screen = mlx_new_window(data.link, 500, 500, "HELP");
 
 	// Gestions des la croix (X)

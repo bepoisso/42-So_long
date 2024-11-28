@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 10:39:25 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:31:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,42 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.item.img);
 	if (data->img.exit.img)
 		mlx_destroy_image(data->link, data->img.exit.img);
+	if (data->img.exit1.img)
+		mlx_destroy_image(data->link, data->img.exit1.img);
 	if (data->img.blinky.img)
 		mlx_destroy_image(data->link, data->img.blinky.img);
+	if (data->img.blinky.img_down)
+		mlx_destroy_image(data->link, data->img.blinky.img_down);
+	if (data->img.blinky.img_left)
+		mlx_destroy_image(data->link, data->img.blinky.img_left);
+	if (data->img.blinky.img_right)
+		mlx_destroy_image(data->link, data->img.pinky.img_right);
+	if (data->img.pinky.img)
+		mlx_destroy_image(data->link, data->img.pinky.img);
+	if (data->img.pinky.img_down)
+		mlx_destroy_image(data->link, data->img.pinky.img_down);
+	if (data->img.pinky.img_left)
+		mlx_destroy_image(data->link, data->img.pinky.img_left);
+	if (data->img.pinky.img_right)
+		mlx_destroy_image(data->link, data->img.pinky.img_right);
+	if (data->img.inky.img)
+		mlx_destroy_image(data->link, data->img.inky.img);
+	if (data->img.inky.img_down)
+		mlx_destroy_image(data->link, data->img.inky.img_down);
+	if (data->img.inky.img_left)
+		mlx_destroy_image(data->link, data->img.inky.img_left);
+	if (data->img.inky.img_right)
+		mlx_destroy_image(data->link, data->img.inky.img_right);
+	if (data->img.clyde.img)
+		mlx_destroy_image(data->link, data->img.clyde.img);
+	if (data->img.clyde.img_down)
+		mlx_destroy_image(data->link, data->img.clyde.img_down);
+	if (data->img.clyde.img_left)
+		mlx_destroy_image(data->link, data->img.clyde.img_left);
+	if (data->img.clyde.img_right)
+		mlx_destroy_image(data->link, data->img.clyde.img_right);
+	if (data->map.temp_map)
+		free_2d_mlx(data->map.temp_map);
 	mlx_destroy_pt2(data);
 	exit (0);
 	return (1);

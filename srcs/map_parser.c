@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 08:03:54 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:33:55 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,30 +80,28 @@ void	map_xy_size(t_mlx_map *map)
 // Check if all the map is bordered by a wall
 int	check_wall(t_mlx_map *map)
 {
-	int	x;
-	int	y;
-
 	map_xy_size(map);
-	y = 0;
-	x = 0;
-	while (x < map->x_max)
+	map->y = 0;
+	map->x = 0;
+	while (map->x < map->x_max)
 	{
-		if (map->map[y][x] != '1')
+		if (map->map[map->y][map->x] != '1')
 			return (1);
-		x++;
+		map->x++;
 	}
-	x = 0;
-	while (y < map->y_max)
+	map->x = 0;
+	while (map->y < map->y_max)
 	{
-		if (map->map[y][x] != '1' || map->map[y][map->x_max - 1] != '1')
+		if (map->map[map->y][map->x] != '1'
+			|| map->map[map->y][map->x_max - 1] != '1')
 			return (1);
-		y++;
+		map->y++;
 	}
-	while (x < map->x_max)
+	while (map->x < map->x_max)
 	{
-		if (map->map[map->y_max][x] != '1')
+		if (map->map[map->y_max][map->x] != '1')
 			return (1);
-		x++;
+		map->x++;
 	}
 	return (0);
 }
@@ -219,32 +217,21 @@ void	init_map(t_mlx_data *data)
 {
 	data->map.map = split_map("./map.test");
 	if (check_map_rectangle(data->map.map))
-	{
-		ft_perror("Error\nThe map must be rectangular\n");
-		mlx_destroy(data);
-	}
+		ft_perror("Error\nThe map must be rectangular\n", data);
 	if (check_other_char_in_map(data->map.map))
-	{
-		ft_perror("Error\nThe map must be only contained \"01CEPWXYZTtV\"\n");
-		mlx_destroy(data);
-	}
+		ft_perror("Error\nThe map must be only contained \"01CEPWXYZTtV\"\n",
+			data);
 	if (check_wall(&data->map))
-	{
-		ft_perror("Error\nThe map must be bordered by a wall\n");
-		mlx_destroy(data);
-	}
+		ft_perror("Error\nThe map must be bordered by a wall\n",
+			data);
 	if (check_entitys_in_map(data->map.map))
-	{
-		ft_perror("Error\nThe map must have right entity in map\n");
-		mlx_destroy(data);
-	}
+		ft_perror("Error\nThe map must have right entity in map\n",
+			data);
 	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
-	{
-		ft_perror("Error\nNo path are found betwen the player and exit\n");
-		mlx_destroy(data);
-	}
+		ft_perror("Error\nNo path are found betwen the player and exit\n",
+			data);
 	free_2d_mlx(data->map.temp_map);
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
