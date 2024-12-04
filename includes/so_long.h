@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 08:43:24 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 09:42:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,8 @@ void	print_clyde(t_mlx_data *data);
 // MLX gest
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		handle_input(int keysym, t_mlx_data *data);
+void	handle_input_pt2(int keysym, t_mlx_data *data);
+void	handle_input_pt3(t_mlx_data *data);
 int		mlx_destroy(t_mlx_data *data);
 
 #endif

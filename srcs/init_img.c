@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_img_pt1.c                                     :+:      :+:    :+:   */
+/*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:44:46 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 08:45:58 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 09:21:17 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../includes/so_long.h>
+#include "../includes/so_long.h"
 
 // Initalise all image in a struct
 void	init_img(t_mlx_data *data)

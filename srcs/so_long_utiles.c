@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 08:45:50 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 09:55:15 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,36 +21,47 @@ int	handle_input(int keysym, t_mlx_data *data)
 		mlx_destroy(data);
 		exit(0);
 	}
-	if (keysym == 119 && keysym == 65362)
+	if (keysym == 119 || keysym == 65362)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, UP);
 		data->player.last_move = UP;
 		print_map(data);
 	}
-	if (keysym == 97 && keysym == 65361)
+	if (keysym == 97 || keysym == 65361)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, LEFT);
 		data->player.last_move = LEFT;
 		print_map(data);
 	}
-	if (keysym == 115 && keysym == 65364)
+	handle_input_pt2(keysym, data);
+	handle_input_pt3(data);
+	return (0);
+}
+
+void	handle_input_pt2(int keysym, t_mlx_data *data)
+{
+	if (keysym == 115 || keysym == 65364)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, DOWN);
 		data->player.last_move = DOWN;
 		print_map(data);
 	}
-	if (keysym == 100 && keysym == 65363)
+	if (keysym == 100 || keysym == 65363)
 	{
 		mlx_clear_window(data->link, data->screen);
 		data->map.map = player_move(data, &data->map, RIGHT);
 		data->player.last_move = RIGHT;
 		print_map(data);
 	}
+	
+}
+
+void	handle_input_pt3(t_mlx_data *data)
+{
 	ft_printf("\nMouvement counter = %d\n", data->map.move_count);
-	ft_printf("keysym = %d\n", keysym);
 	data->temp = ft_itoa(data->map.move_count);
 	mlx_string_put(data->link, data->screen, 0, TEXTUR_SIZE
 		* (data->map.y_max + 2), encode_trgb(0, 255, 255, 255),
@@ -66,7 +77,6 @@ int	handle_input(int keysym, t_mlx_data *data)
 		* (data->map.y_max + 1) + 10, encode_trgb(0, 255, 255, 255),
 		data->temp);
 	free(data->temp);
-	return (0);
 }
 
 // Update the frame of the game. Utiles for the mouvement of enemy
