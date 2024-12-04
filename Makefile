@@ -6,13 +6,13 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/11/28 12:13:00 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/04 08:08:22 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #_________________VARIABLE_________________
 
-NAME = so_long.out
+NAME = so_long
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -g #-Werror# 

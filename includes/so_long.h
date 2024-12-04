@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 07:49:19 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 08:05:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,7 @@ void	map_xy_size(t_mlx_map *map);
 void	print_map(t_mlx_data *data);
 void	get_entity_pos(t_mlx_map *map, char entity, int index);
 void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
+void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move);
 
 // Checker
 int		check_wall(t_mlx_map *map);
