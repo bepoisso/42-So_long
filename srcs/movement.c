@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 07:55:16 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 07:58:18 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y - 1][data->player.x] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 	}
-	else if (move == DOWN && map->map[data->player.y + 1][data->player.x] != '1')
+	else if (move == DOWN
+		&& map->map[data->player.y + 1][data->player.x] != '1')
 	{
 		map->move_count++;
 		check_item_counter(data, map, move);
@@ -58,7 +59,8 @@ char	**player_move_pt2(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y][data->player.x - 1] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 	}
-	else if (move == RIGHT && map->map[data->player.y][data->player.x + 1] != '1')
+	else if (move == RIGHT
+		&& map->map[data->player.y][data->player.x + 1] != '1')
 	{
 		map->move_count++;
 		check_item_counter(data, map, move);
@@ -77,11 +79,14 @@ void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[data->player.y - 1][data->player.x] == 'C')
 		map->item--;
-	else if (move == DOWN && map->map[data->player.y + 1][data->player.x] == 'C')
+	else if (move == DOWN
+		&& map->map[data->player.y + 1][data->player.x] == 'C')
 		map->item--;
-	else if (move == LEFT && map->map[data->player.y][data->player.x - 1] == 'C')
+	else if (move == LEFT
+		&& map->map[data->player.y][data->player.x - 1] == 'C')
 		map->item--;
-	else if (move == RIGHT && map->map[data->player.y][data->player.x + 1] == 'C')
+	else if (move == RIGHT
+		&& map->map[data->player.y][data->player.x + 1] == 'C')
 		map->item--;
 }
 
@@ -97,13 +102,15 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
-		else if (move == DOWN && map->map[data->player.y + 1][data->player.x] == 'E')
+		else if (move == DOWN
+			&& map->map[data->player.y + 1][data->player.x] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
-		else if (move == LEFT && map->map[data->player.y][data->player.x - 1] == 'E')
+		else if (move == LEFT
+			&& map->map[data->player.y][data->player.x - 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
 			save_in_scoreboard(data);
@@ -117,7 +124,8 @@ void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (map->item == 0)
 	{
-		if (move == RIGHT && map->map[data->player.y][data->player.x + 1] == 'E')
+		if (move == RIGHT
+			&& map->map[data->player.y][data->player.x + 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
 			save_in_scoreboard(data);
@@ -131,22 +139,26 @@ void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move)
 // Check if the player hit a ennemt and if it is game over it
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
-	if (move == UP && is_in_set(map->map[data->player.y - 1][data->player.x], "WXYZ"))
+	if (move == UP
+		&& is_in_set(map->map[data->player.y - 1][data->player.x], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER A ENEMY KILL YOU***\n");
 		mlx_destroy(data);
 	}
-	else if (move == DOWN && is_in_set(map->map[data->player.y + 1][data->player.x], "WXYZ"))
+	else if (move == DOWN
+		&& is_in_set(map->map[data->player.y + 1][data->player.x], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
 	}
-	else if (move == LEFT && is_in_set(map->map[data->player.y][data->player.x - 1], "WXYZ"))
+	else if (move == LEFT
+		&& is_in_set(map->map[data->player.y][data->player.x - 1], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
 	}
-	else if (move == RIGHT && is_in_set(map->map[data->player.y][data->player.x + 1], "WXYZ"))
+	else if (move == RIGHT
+		&& is_in_set(map->map[data->player.y][data->player.x + 1], "WXYZ"))
 	{
 		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
 		mlx_destroy(data);
@@ -187,17 +199,20 @@ void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
 		mlx_destroy(data);
 	}
-	else if (move == DOWN && map->map[data->player.y + 1][data->player.x] == 'E')
+	else if (move == DOWN
+		&& map->map[data->player.y + 1][data->player.x] == 'E')
 	{
 		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
 		mlx_destroy(data);
 	}
-	else if (move == LEFT && map->map[data->player.y][data->player.x - 1] == 'E')
+	else if (move == LEFT
+		&& map->map[data->player.y][data->player.x - 1] == 'E')
 	{
 		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
 		mlx_destroy(data);
 	}
-	else if (move == RIGHT && map->map[data->player.y][data->player.x + 1] == 'E')
+	else if (move == RIGHT
+		&& map->map[data->player.y][data->player.x + 1] == 'E')
 	{
 		ft_printf("\n ***GAME OVER %d ITEM MISSINg***\n", map->item);
 		mlx_destroy(data);
