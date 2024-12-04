@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 12:24:33 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:56:39 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,9 +229,10 @@ void	init_map(t_mlx_data *data)
 			data);
 	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
-	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y))
-		ft_perror("Error\nNo path are found betwen the player and exit\n",
-			data);
+	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y)
+		&& item_counter_path(data->map.temp_map))
+		ft_perror("Error\nNo path are found betwen the player and \
+exit with all item\n", data);
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
 }
@@ -278,4 +279,25 @@ int	is_valid_path(char **map, int x, int y)
 		|| is_valid_path(map, x, y - 1) == 0)
 		return (0);
 	return (1);
+}
+
+int	item_counter_path(char **map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (map[y] != NULL)
+	{
+		x = 0;
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == 'C')
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }

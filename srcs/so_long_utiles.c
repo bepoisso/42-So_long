@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 09:55:15 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:04:44 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,6 @@ void	print_map(t_mlx_data *data)
 				|| data->map.map[data->map.y][data->map.x] == 'T')
 				mlx_put_image_to_window(data->link, data->screen,
 					data->img.floor.img, data->img.x, data->img.y);
-			else if (data->map.map[data->map.y][data->map.x] == '1')
-				mlx_put_image_to_window(data->link, data->screen,
-					data->img.wall.img, data->img.x, data->img.y);
 			else if (data->map.map[data->map.y][data->map.x] == 'C')
 				mlx_put_image_to_window(data->link, data->screen,
 					data->img.item.img, data->img.x, data->img.y);
@@ -130,7 +127,26 @@ void	print_map(t_mlx_data *data)
 					mlx_put_image_to_window(data->link, data->screen,
 						data->img.exit1.img, data->img.x, data->img.y);
 			}
-			else if (data->map.map[data->map.y][data->map.x] == 'P')
+			data->map.x++;
+			data->img.x += TEXTUR_SIZE;
+		}
+		data->map.y++;
+		data->img.y += TEXTUR_SIZE;
+	}
+	print_map_pt2(data);
+}
+
+void	print_map_pt2(t_mlx_data *data)
+{
+	data->map.y = 0;
+	data->img.y = 0;
+	while (data->map.map[data->map.y] != NULL)
+	{
+		data->map.x = 0;
+		data->img.x = 0;
+		while (data->map.map[data->map.y][data->map.x] != '\0')
+		{
+			if (data->map.map[data->map.y][data->map.x] == 'P')
 				print_player(data);
 			else if (data->map.map[data->map.y][data->map.x] == 'W')
 				print_blinky(data);
@@ -140,6 +156,9 @@ void	print_map(t_mlx_data *data)
 				print_inky(data);
 			else if (data->map.map[data->map.y][data->map.x] == 'Z')
 				print_clyde(data);
+			else if (data->map.map[data->map.y][data->map.x] == '1')
+				mlx_put_image_to_window(data->link, data->screen,
+					data->img.wall.img, data->img.x, data->img.y);
 			data->map.x++;
 			data->img.x += TEXTUR_SIZE;
 		}

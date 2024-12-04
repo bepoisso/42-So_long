@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 09:42:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:02:13 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move);
 char	**split_map(char *file_name);
 void	map_xy_size(t_mlx_map *map);
 void	print_map(t_mlx_data *data);
+void	print_map_pt2(t_mlx_data *data);
 void	get_entity_pos(t_mlx_map *map, char entity, int index);
 void	check_end(t_mlx_data *data, t_mlx_map *map, int move);
 void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move);
@@ -229,6 +230,7 @@ int		entity_counter(char **map, char entity);
 int		check_other_char_in_map(char **map);
 char	**create_temp_map(char **map);
 int		is_valid_path(char **map, int x, int y);
+int		item_counter_path(char **map);
 
 // Utiles
 int		files_count_line(char *file_name);
