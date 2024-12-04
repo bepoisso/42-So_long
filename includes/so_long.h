@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 07:32:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 07:49:19 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ typedef unsigned char	t_byte;
 
 // Player movement
 char	**player_move(t_mlx_data *data, t_mlx_map *map, int move);
+char	**player_move_pt2(t_mlx_data *data, t_mlx_map *map, int move);
 void	print_player(t_mlx_data *data);
 void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 

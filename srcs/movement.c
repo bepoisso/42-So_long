@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 07:44:38 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 07:55:16 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 		map->map[data->player.y + 1][data->player.x] = 'P';
 		map->map[data->player.y][data->player.x] = '0';
 	}
-	else if (move == LEFT && map->map[data->player.y][data->player.x - 1] != '1')
+	map->map = player_move_pt2(data, map, move);
+	return (map->map);
+}
+
+char	**player_move_pt2(t_mlx_data *data, t_mlx_map *map, int move)
+{
+	if (move == LEFT && map->map[data->player.y][data->player.x - 1] != '1')
 	{
 		map->move_count++;
 		check_item_counter(data, map, move);
@@ -103,7 +109,15 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
-		else if (move == RIGHT && map->map[data->player.y][data->player.x + 1] == 'E')
+	}
+	check_end_pt2(data, map, move);
+}
+
+void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move)
+{
+	if (map->item == 0)
+	{
+		if (move == RIGHT && map->map[data->player.y][data->player.x + 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
 			save_in_scoreboard(data);
