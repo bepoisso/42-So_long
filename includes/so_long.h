@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 08:05:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 08:43:24 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,8 @@ void	free_2d_mlx(char **tab);
 int		is_in_set(char pos, char *set);
 void	taking_pos(t_mlx_data *data);
 void	ft_perror(char *str, t_mlx_data *data);
+void	init_value(t_mlx_data *data, char **av);
+int		update_frame(t_mlx_data *data);
 
 // Scoreboard
 void	save_in_scoreboard(t_mlx_data *data);

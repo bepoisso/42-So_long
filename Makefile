@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/04 08:08:22 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/04 08:46:26 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ MLX_DIR	= ./minilibx-linux/
 #_________________FILES_________________
 
 SRC_FILES	=\
-	so_long.c\
+	main.c\
+	so_long_utiles.c\
 	map_parser.c\
 	movement.c\
 	mlx_utiles.c\
@@ -41,6 +42,7 @@ SRC_FILES	=\
 	pinky_ai.c\
 	inky_ai.c\
 	clyde_ai.c\
+	init_img.c
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
