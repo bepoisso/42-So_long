@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 17:24:39 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 07:32:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //_________________MACROS_________________
 # define TEXTUR_SIZE 32
-// # define TESTER ft_printf("\ntester\n");
+# define TESTER ft_printf("\ntester\n");
 # define BLINKY 'W'
 # define PINKY 'X'
 # define INKY 'Y'
