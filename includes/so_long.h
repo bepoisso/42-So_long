@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 12:02:13 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:05:56 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ typedef struct s_entitys_check
 typedef struct s_help
 {
 	void		*screen;
+	void		*link;
 	int			frame;
 	t_mlx_img	img;
 }	t_help;
