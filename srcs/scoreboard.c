@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 17:11:15 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:48:18 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,21 @@ void	split_score(int fd, char ***score, char ***user)
 		temp_data = ft_strjoin(final_user, temp);
 		free(final_user);
 		final_user = temp_data;
+		free(temp);
 		temp = get_next_line(fd);
-		temp_data = ft_strjoin(final_score, temp);
-		free(final_score);
-		final_score = temp_data;
-		temp = get_next_line(fd);
+		if (temp)
+		{
+			temp_data = ft_strjoin(final_score, temp);
+			free(final_score);
+			final_score = temp_data;
+			free(temp);
+			temp = get_next_line(fd);
+		}
 	}
 	*user = ft_split(final_user, '\n');
 	*score = ft_split(final_score, '\n');
-	free(temp);
-	free(final_score);
 	free(final_user);
+	free(final_score);
 }
 
 // Get the index of a username in the list, so the score to
