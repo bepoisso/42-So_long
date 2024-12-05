@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 12:04:44 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 09:02:44 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,10 +292,11 @@ void	ft_perror(char *str, t_mlx_data *data)
 void	init_value(t_mlx_data *data, char **av)
 {
 	srand(time(NULL));
-	data->current_frame = -100000;
+	data->current_frame = 0;
 	data->map.stach = '0';
 	data->pseudo = av[1];
 	data->player.last_move = 3;
+	data->help.frame = 1;
 	init_map(data);
 	taking_pos(data);
 }

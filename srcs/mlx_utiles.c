@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 17:31:36 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 08:43:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,19 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.clyde.img_left);
 	if (data->img.clyde.img_right)
 		mlx_destroy_image(data->link, data->img.clyde.img_right);
-	if (data->help.img.img)
-		mlx_destroy_image(data->link, data->help.img.img);
-	if (data->help.screen)
-		mlx_destroy_window(data->link, data->help.screen);
 	if (data->map.map)
 		free_2d_mlx(data->map.map);
 	if (data->map.temp_map)
 		free_2d_mlx(data->map.temp_map);
+	if (data->help.img.img)
+		mlx_destroy_image(data->help.link, data->help.img.img);
+	if (data->help.screen)
+		mlx_destroy_window(data->help.link, data->help.screen);
+	if (data->help.link)
+	{
+		mlx_destroy_display(data->help.link);
+		free(data->help.link);
+	}
 	if (data->link)
 	{
 		mlx_destroy_display(data->link);
@@ -127,7 +132,7 @@ int	mlx_destroy(t_mlx_data *data)
 	exit (0);
 }
 
-// Encoding rgb (Yes the t of trgb is usless caus the mlx dont manage it)
+// Encoding rgb (Yes the t of trgb is usless because the mlx dont manage it)
 int	encode_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);

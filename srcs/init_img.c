@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:44:46 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/04 09:21:17 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 09:10:04 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ void	init_img(t_mlx_data *data)
 	data->img.clyde.path_down = "./imgs/clyde_down.xpm";
 	data->img.clyde.path_left = "./imgs/clyde_left.xpm";
 	data->img.clyde.path_right = "./imgs/clyde_right.xpm";
-	data->help.img.path = "./imgs/help_page.xpm";
-	data->help.img.img
-		= mlx_xpm_file_to_image(data->link, data->help.img.path,
-			&data->help.img.width, &data->help.img.height);
 	data->img.floor.img
 		= mlx_xpm_file_to_image(data->link, data->img.floor.path,
 			&data->img.floor.width, &data->img.floor.height);
@@ -154,6 +150,4 @@ void	init_img(t_mlx_data *data)
 	if (!data->img.clyde.img || !data->img.clyde.img_down
 		|| !data->img.clyde.img_left || !data->img.clyde.img_right)
 		ft_perror("\nERROR loading clyde image\n", data);
-	if (!data->help.img.img)
-		ft_perror("\nERROR loading Help_page image\n", data);
 }
