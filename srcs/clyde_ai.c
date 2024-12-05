@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:03:41 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 07:42:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:27:27 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	next_move(char entity, t_mlx_data *data)
 {
 	int	rdm;
 
+	rdm = (rand() % 4) + 1;
 	while (entity == CLYDE && rdm == data->enemy.clyde.last_move)
 		rdm = (rand() % 4) + 1;
 	data->enemy.clyde.last_move = rdm;

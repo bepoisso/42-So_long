@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:55:15 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 08:43:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:22:35 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,18 @@ int	mlx_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->link, data->img.clyde.img_left);
 	if (data->img.clyde.img_right)
 		mlx_destroy_image(data->link, data->img.clyde.img_right);
+	if (data->help.img.img)
+		mlx_destroy_image(data->help.link, data->help.img.img);
+	if (data->help.img.img_down)
+		mlx_destroy_image(data->help.link, data->help.img.img_down);
+	if (data->help.img.img_left)
+		mlx_destroy_image(data->help.link, data->help.img.img_left);
+	if (data->help.img.img_right)
+		mlx_destroy_image(data->help.link, data->help.img.img_right);
 	if (data->map.map)
 		free_2d_mlx(data->map.map);
 	if (data->map.temp_map)
 		free_2d_mlx(data->map.temp_map);
-	if (data->help.img.img)
-		mlx_destroy_image(data->help.link, data->help.img.img);
 	if (data->help.screen)
 		mlx_destroy_window(data->help.link, data->help.screen);
 	if (data->help.link)

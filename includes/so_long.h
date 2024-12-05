@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 08:44:34 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:43:11 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,6 @@ char	**add_data_in_tab(char *data, char **tab);
 void	print_scoreboard(char **user, char **score);
 void	add_spaces_right(char *str, int width);
 void	add_spaces_left(char *str, int width);
-char	*encrypt(char *data);
 
 // Tp gest
 int		check_tp(char entity, t_mlx_map *map, int move);

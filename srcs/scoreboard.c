@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/11/28 17:38:10 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:43:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,20 @@ void	split_score(int fd, char ***score, char ***user)
 	char	*final_score;
 	char	*final_user;
 	char	*temp;
+	char	*temp_data;
 
 	final_score = ft_strdup("");
 	final_user = ft_strdup("");
 	temp = get_next_line(fd);
 	while (temp)
 	{
-		final_user = ft_strjoin(final_user, encrypt(temp));
+		temp_data = ft_strjoin(final_user, temp);
+		free(final_user);
+		final_user = temp_data;
 		temp = get_next_line(fd);
-		final_score = ft_strjoin(final_score, encrypt(temp));
+		temp_data = ft_strjoin(final_score, temp);
+		free(final_score);
+		final_score = temp_data;
 		temp = get_next_line(fd);
 	}
 	*user = ft_split(final_user, '\n');
@@ -112,7 +117,7 @@ void	creat_new_score(char ***user, char ***score, t_mlx_data *data)
 		return (ft_perror("***ERROR OPEN PRIT_NEW_SCORE***", data));
 	while ((*user)[i])
 	{
-		add_score(encrypt((*user)[i]), encrypt((*score)[i]), fd);
+		add_score((*user)[i], (*score)[i], fd);
 		i++;
 	}
 	unlink("./srcs/pacman.sb");
@@ -229,28 +234,4 @@ void	print_scoreboard(char **user, char **score)
 		i++;
 	}
 	ft_printf("+------------------+-------------+\n");
-}
-
-// Encrypt or decrypt the string, keep in the printable ascii range
-// and return the string
-char	*encrypt(char *data)
-{
-	char	*original_data;
-	char	key;
-
-	key = 0x42;
-	original_data = data;
-	while (*data)
-	{
-		if (*data != '\n')
-		{
-			*data = (*data ^ key);
-			if (*data < 32)
-				*data = 32 + (*data % 95);
-			else if (*data > 126)
-				*data = 32 + ((*data - 32) % 95);
-		}
-		data++;
-	}
-	return (original_data);
 }
