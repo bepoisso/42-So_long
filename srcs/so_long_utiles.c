@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 09:02:44 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:11:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	handle_input_pt2(int keysym, t_mlx_data *data)
 		data->player.last_move = RIGHT;
 		print_map(data);
 	}
-	
 }
 
 void	handle_input_pt3(t_mlx_data *data)

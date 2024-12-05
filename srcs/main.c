@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:41:48 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 11:18:25 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:10:37 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,26 @@ int	update_frame_help(t_mlx_data *data)
 		data->current_frame = 0;
 		if (data->help.frame == 1)
 		{
-			mlx_put_image_to_window(data->help.link, data->help.screen, data->help.img.img, 0, 0);
+			mlx_put_image_to_window(data->help.link, data->help.screen,
+				data->help.img.img, 0, 0);
 			data->help.frame = 2;
 		}
 		else if (data->help.frame == 2)
 		{
-			mlx_put_image_to_window(data->help.link, data->help.screen, data->help.img.img_down, 0, 0);
+			mlx_put_image_to_window(data->help.link, data->help.screen,
+				data->help.img.img_down, 0, 0);
 			data->help.frame = 3;
 		}
 		else if (data->help.frame == 3)
 		{
-			mlx_put_image_to_window(data->help.link, data->help.screen, data->help.img.img_left, 0, 0);
+			mlx_put_image_to_window(data->help.link, data->help.screen,
+				data->help.img.img_left, 0, 0);
 			data->help.frame = 4;
 		}
 		else if (data->help.frame == 4)
 		{
-			mlx_put_image_to_window(data->help.link, data->help.screen, data->help.img.img_right, 0, 0);
+			mlx_put_image_to_window(data->help.link, data->help.screen,
+				data->help.img.img_right, 0, 0);
 			data->help.frame = 1;
 		}
 	}
@@ -69,14 +73,23 @@ int	init_help(t_mlx_data *data)
 	data->help.img.path_down = "./imgs/help_page_2.xpm";
 	data->help.img.path_left = "./imgs/help_page_3.xpm";
 	data->help.img.path_right = "./imgs/help_page_4.xpm";
-	data->help.img.img = mlx_xpm_file_to_image(data->help.link, data->help.img.path, &data->help.img.height, &data->help.img.width);
-	data->help.img.img_down = mlx_xpm_file_to_image(data->help.link, data->help.img.path_down, &data->help.img.height, &data->help.img.width);
-	data->help.img.img_left = mlx_xpm_file_to_image(data->help.link, data->help.img.path_left, &data->help.img.height, &data->help.img.width);
-	data->help.img.img_right = mlx_xpm_file_to_image(data->help.link, data->help.img.path_right, &data->help.img.height, &data->help.img.width);
+	data->help.img.img = mlx_xpm_file_to_image(data->help.link,
+			data->help.img.path, &data->help.img.height,
+			&data->help.img.width);
+	data->help.img.img_down = mlx_xpm_file_to_image(data->help.link,
+			data->help.img.path_down, &data->help.img.height,
+			&data->help.img.width);
+	data->help.img.img_left = mlx_xpm_file_to_image(data->help.link,
+			data->help.img.path_left, &data->help.img.height,
+			&data->help.img.width);
+	data->help.img.img_right = mlx_xpm_file_to_image(data->help.link,
+			data->help.img.path_right, &data->help.img.height,
+			&data->help.img.width);
 	if (!data->help.img.img)
 		ft_printf("ERROR IMG\n");
 	mlx_key_hook(data->help.screen, key_help, data);
-	mlx_hook(data->help.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);
+	mlx_hook(data->help.screen, DestroyNotify, NoEventMask,
+		mlx_destroy, &data);
 	mlx_loop_hook(data->help.link, update_frame_help, data);
 	mlx_loop(data->help.link);
 	return (0);
