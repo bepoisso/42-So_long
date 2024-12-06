@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: bepoisso <bepoisso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:41:48 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/05 17:10:37 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/06 20:09:11 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,25 @@ int	update_frame_help(t_mlx_data *data)
 				data->help.img.img_down, 0, 0);
 			data->help.frame = 3;
 		}
-		else if (data->help.frame == 3)
-		{
-			mlx_put_image_to_window(data->help.link, data->help.screen,
-				data->help.img.img_left, 0, 0);
-			data->help.frame = 4;
-		}
-		else if (data->help.frame == 4)
-		{
-			mlx_put_image_to_window(data->help.link, data->help.screen,
-				data->help.img.img_right, 0, 0);
-			data->help.frame = 1;
-		}
+		update_frame_pt2(data);
 	}
 	return (0);
+}
+
+void	update_frame_pt2(t_mlx_data *data)
+{
+	if (data->help.frame == 3)
+	{
+		mlx_put_image_to_window(data->help.link, data->help.screen,
+			data->help.img.img_left, 0, 0);
+		data->help.frame = 4;
+	}
+	else if (data->help.frame == 4)
+	{
+		mlx_put_image_to_window(data->help.link, data->help.screen,
+			data->help.img.img_right, 0, 0);
+		data->help.frame = 1;
+	}
 }
 
 int	init_help(t_mlx_data *data)
