@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bepoisso <bepoisso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:41:48 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/06 20:09:11 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/08 12:10:04 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,19 @@ int	init_help(t_mlx_data *data)
 	data->help.screen = mlx_new_window(data->help.link, 500, 500, "HELP PAGE");
 	if (!data->help.screen)
 		ft_printf("ERROR screen\n");
+	init_help_img(data);
+	if (!data->help.img.img)
+		ft_printf("ERROR IMG\n");
+	mlx_key_hook(data->help.screen, key_help, data);
+	mlx_hook(data->help.screen, DestroyNotify, NoEventMask,
+		mlx_destroy, &data);
+	mlx_loop_hook(data->help.link, update_frame_help, data);
+	mlx_loop(data->help.link);
+	return (0);
+}
+
+void	init_help_img(t_mlx_data *data)
+{
 	data->help.img.path = "./imgs/help_page_1.xpm";
 	data->help.img.path_down = "./imgs/help_page_2.xpm";
 	data->help.img.path_left = "./imgs/help_page_3.xpm";
@@ -90,14 +103,6 @@ int	init_help(t_mlx_data *data)
 	data->help.img.img_right = mlx_xpm_file_to_image(data->help.link,
 			data->help.img.path_right, &data->help.img.height,
 			&data->help.img.width);
-	if (!data->help.img.img)
-		ft_printf("ERROR IMG\n");
-	mlx_key_hook(data->help.screen, key_help, data);
-	mlx_hook(data->help.screen, DestroyNotify, NoEventMask,
-		mlx_destroy, &data);
-	mlx_loop_hook(data->help.link, update_frame_help, data);
-	mlx_loop(data->help.link);
-	return (0);
 }
 
 int	main(int ac, char **av)

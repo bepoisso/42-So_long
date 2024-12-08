@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bepoisso <bepoisso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/06 20:09:21 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/08 12:31:12 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,12 @@ void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 
 // Comon gest
 void	init_img(t_mlx_data *data);
+void	init_img_pt1(t_mlx_data *data);
+void	init_img_pt2(t_mlx_data *data);
+void	init_img_pt3(t_mlx_data *data);
+void	init_img_pt4(t_mlx_data *data);
+void	init_img_pt5(t_mlx_data *data);
+void	init_img_pt6(t_mlx_data *data);
 void	init_map(t_mlx_data *data);
 void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move);
 char	**split_map(char *file_name);
@@ -251,6 +257,8 @@ void	update_frame_pt2(t_mlx_data *data);
 void	save_in_scoreboard(t_mlx_data *data);
 void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user);
 void	split_score(int fd, char ***score, char ***user);
+void	collect_scores(int fd, char **final_score);
+void	collect_users(int fd, char **final_user);
 int		get_index_of_user(char **user, char	*pseudo, int *index);
 int		comp_score(char **score, int new_score, int index);
 void	creat_new_score(char ***user, char ***score, t_mlx_data *data);
@@ -294,6 +302,7 @@ void	print_clyde(t_mlx_data *data);
 
 // MLX gest
 int		init_help(t_mlx_data *data);
+void	init_help_img(t_mlx_data *data);
 int		key_help(int keysym, t_mlx_data *data);
 void	mlx_draw_rectangle(t_mlx_data *data, t_mlx_draw draw);
 int		handle_input(int keysym, t_mlx_data *data);

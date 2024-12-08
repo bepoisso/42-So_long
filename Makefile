@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/08 12:02:56 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/08 12:45:47 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,22 @@ SRC_FILES	=\
 	main.c\
 	so_long_utiles.c\
 	map_parser.c\
+	map_parser_pt2.c\
+	map_parser_pt3.c\
 	movement.c\
+	movement_pt2.c\
 	mlx_utiles.c\
+	mlx_destroy.c\
 	scoreboard.c\
+	scoreboard_pt2.c\
+	scoreboard_pt3.c\
 	teleporter.c\
 	blinky_ai.c\
 	pinky_ai.c\
 	inky_ai.c\
 	clyde_ai.c\
-	init_img.c
+	init_img.c\
+	init_img_pt2.c
 	
 LIBSX		=	$(addprefix $(MLX_DIR),$(MLX_NAME))
 SRCS		=	$(addprefix $(SRC_DIR),$(SRC_FILES))
