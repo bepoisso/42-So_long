@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:31:12 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/08 13:05:52 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 //_________________MACROS_________________
 # define TEXTUR_SIZE 32
-# define TESTER ft_printf("\ntester\n");
 # define BLINKY 'W'
 # define PINKY 'X'
 # define INKY 'Y'
@@ -278,7 +277,8 @@ int		next_move(char entity, t_mlx_data *data);
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
 
 char	**blinky_move(t_mlx_data *data, t_mlx_map *map);
-char	**blinky_move_pt2(t_mlx_data *data, t_mlx_map *map, char temp, int move);
+char	**blinky_move_pt2(t_mlx_data *data, t_mlx_map *map,
+			char temp, int move);
 int		blinky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		blinky_best_move(t_mlx_data *data, int best_move, int actual_move);
 void	print_blinky(t_mlx_data *data);
@@ -287,11 +287,12 @@ char	**pinky_move(t_mlx_data *data, t_mlx_map *map);
 char	**pinky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp);
 int		pinky_move_algo(t_mlx_data *data, t_pinky *pinky, t_mlx_map *map);
 int		pinky_best_move(t_mlx_data *data, int best_move, int actual_move);
-int		pinky_best_move_pt2(t_mlx_data *data, int actual_move, int target_x, int target_y);
+int		pinky_best_move_pt2(t_mlx_data *data, int actual_move,
+			int target_x, int target_y);
 void	print_pinky(t_mlx_data *data);
 
 char	**inky_move(t_mlx_data *data, t_mlx_map *map);
-char **inky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp);
+char	**inky_move_pt2(t_mlx_data *data, t_mlx_map *map, int move, char temp);
 int		inky_move_algo(t_mlx_data *data, t_mlx_map *map);
 int		inky_best_move(t_mlx_data *data, int best_move, int actual_move);
 void	print_inky(t_mlx_data *data);
