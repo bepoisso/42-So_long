@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/05 11:14:24 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/08 12:02:56 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,23 +56,28 @@ $(NAME): $(OBJS) $(LIBFT_LIB) $(LIBSX)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX_FLAGS) -lm
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDE) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	@make -C $(MLX_DIR)
+	@make -C $(LIBFT_DIR)
 
 clean:
 	rm -rf $(OBJ_DIR)
+	@make clean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
 val: re
 	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./so_long test
 
-debug :
+debug: re
 	gdb -tui -q $(NAME);
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re val debug
