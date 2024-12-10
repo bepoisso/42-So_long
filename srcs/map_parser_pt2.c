@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:39:43 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 14:24:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:32:02 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_map_rectangle(char **map)
 // Initialise the map and check if the map if valid
 void	init_map(t_mlx_data *data)
 {
-	data->map.map = split_map("./map.ber");
+	data->map.map = split_map(data->map_name, data);
 	if (check_map_rectangle(data->map.map))
 		ft_perror("Error\nThe map must be rectangular\n", data);
 	if (check_other_char_in_map(data->map.map))

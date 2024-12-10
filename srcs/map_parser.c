@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 14:13:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:35:45 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	files_count_line(char *file_name)
 }
 
 // Create a char 2D of the map
-char	**split_map(char *file_name)
+char	**split_map(char *file_name, t_mlx_data *data)
 {
 	int		count_line;
 	char	**map;
@@ -44,13 +44,14 @@ char	**split_map(char *file_name)
 	int		fd;
 
 	i = 0;
-	if (!file_name || file_name[0] == '\0')
-		return (NULL);
-	count_line = files_count_line(file_name);
-	map = (char **)malloc(sizeof(char *) * (count_line + 1));
 	fd = open(file_name, O_RDONLY);
-	if (count_line < 0 || map == NULL || fd == -1)
-		return (NULL);
+	if (fd == -1 || !file_name || file_name[0] == '\0')
+		return (ft_perror("***ERROR %s dosent not exist please check the\
+ file name***\n", data), NULL);
+	count_line = files_count_line(file_name);
+	if (count_line < 0)
+		return (ft_perror("***ERROR %s is empty***\n", data), NULL);
+	map = (char **)malloc(sizeof(char *) * (count_line + 1));
 	while (i < count_line)
 	{
 		map[i] = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:45:23 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:23:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	save_in_scoreboard(t_mlx_data *data)
 
 	fd = open("./srcs/pacman.sb", O_RDWR | O_APPEND, 0777);
 	if (fd == -1)
-		return (ft_perror("***ERROR OPEN MAIN FILE***", data));
+		return (ft_perror("***ERROR OPEN SCOREBOARD FILE***", data));
 	split_score(fd, &score, &user);
 	save_in_scoreboard_pt2(data, &score, &user);
 	sort_score(&user, &score);

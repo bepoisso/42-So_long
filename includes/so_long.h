@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 15:31:48 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:41:40 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	init_img_pt6(t_mlx_data *data);
 void	init_map(t_mlx_data *data);
 void	init_map_pt2(t_mlx_data *data);
 void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move);
-char	**split_map(char *file_name);
+char	**split_map(char *file_namem, t_mlx_data *data);
 void	map_xy_size(t_mlx_map *map);
 void	print_map(t_mlx_data *data);
 void	print_map_pt2(t_mlx_data *data);
@@ -251,7 +251,6 @@ int		check_enemy_in_map(char **map);
 int		files_count_line(char *file_name);
 int		screen_color(t_mlx_data *data, int x_size, int y_size, int color);
 int		encode_trgb(int t, int r, int g, int b);
-int		ft_my_strlen(char *s);
 int		ft_strslen(char **map);
 void	free_2d_mlx(char **tab);
 int		is_in_set(char pos, char *set);

@@ -6,11 +6,27 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:59:04 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 15:34:18 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:23:00 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include <string.h>
+
+unsigned long	hashstr(const char *str)
+{
+	unsigned long	hash;
+	int				c;
+
+	hash = 5381;
+	c = *str++;
+	while ((c))
+	{
+		hash = ((hash << 5) + hash) + c;
+		c = *str++;
+	}
+	return (hash);
+}
 
 char	*is_attenued(char *base, int attenued)
 {
@@ -29,13 +45,13 @@ void	playsound(char *file, int wait, int stop, int attenued)
 
 	base = NULL;
 	base = is_attenued(base, attenued);
-	memset(tmp, 0, 256);
-	memcpy(tmp, base, strlen(base));
+	ft_memset(tmp, 0, 256);
+	ft_memcpy(tmp, base, strlen(base));
 	if (stop)
 	{
 		result = system("pkill -f paplay");
 		if (result != 0)
-			perror("");
+			ft_printf("Ex Perror\n");
 	}
 	if (hashstr(file) == 2784)
 		return ;
@@ -47,7 +63,7 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	memcpy(&tmp[strlen(tmp)], base, strlen(base));
 	result = system(tmp);
 	if (result != 0)
-		perror("");
+		ft_printf("Ex Perror\n");
 }
 /*
 playsound(son(.ogg), attendre la fin de la musique ou non,
