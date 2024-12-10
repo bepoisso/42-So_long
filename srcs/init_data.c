@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:03:30 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 13:03:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:32:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_value(t_mlx_data *data, char **av)
 	data->current_frame = 0;
 	data->map.stach = '0';
 	data->pseudo = av[1];
+	data->map_name = av[2];
 	data->player.last_move = 3;
 	data->help.frame = 1;
 	init_map(data);

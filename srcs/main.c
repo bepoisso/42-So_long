@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:41:48 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:54:20 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:53:59 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(int ac, char **av)
 	ft_memset(&data, 0, sizeof(t_mlx_data));
 	init_value(&data, av);
 	if (ac < 2)
-		return (ft_perror("***MISSING ARGUMENT**\n./solong \"login42\"\n",
-				&data), 1);
+		return (ft_perror("***MISSING ARGUMENT**\n./solong \"LOGIN_42\"\
+\"MAP\"\n", &data), 1);
 	init_help(&data);
 	data.link = mlx_init();
 	if (!data.link)

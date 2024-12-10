@@ -6,10 +6,9 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:59:04 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 14:59:50 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:34:18 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 
