@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:39:43 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 08:45:44 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:24:51 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,14 @@ int	check_map_rectangle(char **map)
 	int	size_line;
 
 	i = 0;
-	size_line = ft_my_strlen((map[i]));
+	size_line = ft_strlen((map[i]));
 	while (map[i] != NULL)
 	{
-		if (ft_my_strlen(map[i]) != size_line)
+		if ((int)ft_strlen(map[i]) != size_line)
 			return (1);
 		i++;
 	}
 	return (0);
-}
-
-// I need to change that by the ft_strlen of my libft
-int	ft_my_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 // Initialise the map and check if the map if valid
@@ -105,14 +94,22 @@ void	init_map(t_mlx_data *data)
 			data);
 	if (check_enemy_in_map(data->map.map))
 		ft_perror("Error\nMissing enemy(s) in map\n", data);
+	init_map_pt2(data);
+}
+
+void	init_map_pt2(t_mlx_data *data)
+{
 	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
 	if (is_valid_path(data, data->map.x, data->map.y))
 		ft_perror("Error\nNo path are found betwen the player and \
 exit\n", data);
-	if (item_counter_path(data))
-	ft_perror("Error\nAll items can't be colected by the player \
-\n", data);
+	get_entity_pos(&data->map, 'P', 1);
+	free_2d_mlx(data->map.temp_map);
+	data->map.temp_map = create_temp_map(data->map.map);
+	item_flood_fill(data, data->map.x, data->map.y);
+	if (item_counter_path(data->map.temp_map))
+		ft_perror("Error\nAll items can't be colected by the player \n", data);
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
 }

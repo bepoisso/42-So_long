@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 07:50:31 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:13:01 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	check_entitys_in_map(char **map)
 	int				x;
 	int				y;
 
-	ft_memset(&entity , 0, sizeof(entity));
+	ft_memset(&entity, 0, sizeof(entity));
 	y = -1;
 	while (map[++y])
 	{

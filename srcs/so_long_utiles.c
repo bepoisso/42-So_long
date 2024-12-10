@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 13:04:21 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:17:29 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,15 @@ int	update_frame(t_mlx_data *data)
 	if (data->current_frame == 5000 || data->current_frame == 10000)
 		print_map(data);
 	return (0);
+}
+
+// Get the number of list in a 2D char tab (char tab[THIS][])
+int	ft_strslen(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+		i++;
+	return (i);
 }

@@ -6,22 +6,11 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:41:04 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 08:44:40 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:16:54 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-// Get the number of list in a 2D char tab (char tab[THIS][])
-int	ft_strslen(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-		i++;
-	return (i);
-}
 
 // Create a temp map usefull for editying the map without losing informations
 char	**create_temp_map(char **map)
@@ -43,8 +32,6 @@ char	**create_temp_map(char **map)
 // Recurcive function that check if a path exist between the player and the exit
 int	is_valid_path(t_mlx_data *data, int x, int y)
 {
-	if (data->map.temp_map[y][x] == 'C')
-		data->map.temp_item++;
 	if (data->map.temp_map[y][x] == 'E')
 		return (0);
 	if (data->map.temp_map[y][x] == '1' || data->map.temp_map[y][x] == 'V')
@@ -58,25 +45,36 @@ int	is_valid_path(t_mlx_data *data, int x, int y)
 	return (1);
 }
 
-int	item_counter_path(t_mlx_data *data)
+int	item_flood_fill(t_mlx_data *data, int x, int y)
+{
+	if (data->map.temp_map[y][x] == '1' || data->map.temp_map[y][x] == 'V')
+		return (1);
+	data->map.temp_map[y][x] = 'V';
+	if (item_flood_fill(data, x + 1, y) == 0
+		|| item_flood_fill(data, x - 1, y) == 0
+		|| item_flood_fill(data, x, y + 1) == 0
+		|| item_flood_fill(data, x, y - 1) == 0)
+		return (0);
+	return (1);
+}
+
+int	item_counter_path(char **map)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (data->map.temp_map[y] != NULL)
+	while (map[y])
 	{
 		x = 0;
-		while (data->map.temp_map[y][x] != '\0')
+		while (map[y][x])
 		{
-			if (data->map.temp_map[y][x] == 'C')
-				data->map.temp_item++;
+			if (map[y][x] == 'C')
+				return (1);
 			x++;
 		}
 		y++;
 	}
-	if (data->map.temp_item != data->map.item)
-		return (1);
 	return (0);
 }
 
@@ -86,7 +84,7 @@ int	check_enemy_in_map(char **map)
 	int				x;
 	int				y;
 
-	ft_memset(&entity , 0, sizeof(entity));
+	ft_memset(&entity, 0, sizeof(entity));
 	y = -1;
 	while (map[++y])
 	{
