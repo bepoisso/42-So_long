@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:39:43 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:41:40 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:45:44 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_other_char_in_map(char **map)
 			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'C'
 				&& map[y][x] != 'E' && map[y][x] != 'P' && map[y][x] != 'W'
 				&& map[y][x] != 'X' && map[y][x] != 'Y' && map[y][x] != 'Z'
-				&& map[y][x] != 'T' && map[y][x] != 't' && map[y][x] != 'V')
+				&& map[y][x] != 'T' && map[y][x] != 't')
 				return (1);
 			x++;
 		}
@@ -91,11 +91,11 @@ int	ft_my_strlen(char *s)
 // Initialise the map and check if the map if valid
 void	init_map(t_mlx_data *data)
 {
-	data->map.map = split_map("./map.test");
+	data->map.map = split_map("./map.ber");
 	if (check_map_rectangle(data->map.map))
 		ft_perror("Error\nThe map must be rectangular\n", data);
 	if (check_other_char_in_map(data->map.map))
-		ft_perror("Error\nThe map must be only contained \"01CEPWXYZTtV\"\n",
+		ft_perror("Error\nThe map must be only contained \"01CEPWXYZTt\"\n",
 			data);
 	if (check_wall(&data->map))
 		ft_perror("Error\nThe map must be bordered by a wall\n",
@@ -103,12 +103,16 @@ void	init_map(t_mlx_data *data)
 	if (check_entitys_in_map(data->map.map))
 		ft_perror("Error\nThe map must have right entity in map\n",
 			data);
+	if (check_enemy_in_map(data->map.map))
+		ft_perror("Error\nMissing enemy(s) in map\n", data);
 	get_entity_pos(&data->map, 'P', 1);
 	data->map.temp_map = create_temp_map(data->map.map);
-	if (is_valid_path(data->map.temp_map, data->map.x, data->map.y)
-		&& item_counter_path(data->map.temp_map))
+	if (is_valid_path(data, data->map.x, data->map.y))
 		ft_perror("Error\nNo path are found betwen the player and \
-exit with all item\n", data);
+exit\n", data);
+	if (item_counter_path(data))
+	ft_perror("Error\nAll items can't be colected by the player \
+\n", data);
 	data->map.move_count = 0;
 	data->map.item = entity_counter(data->map.map, 'C');
 }

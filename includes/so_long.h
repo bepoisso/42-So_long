@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 13:05:52 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 08:46:46 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_mlx_map
 	int		x_max;
 	int		y_max;
 	int		item;
+	int		temp_item;
 	int		move_count;
 	char	stach;
 	int		last_move;
@@ -163,6 +164,10 @@ typedef struct s_entitys_check
 	int	exit_check;
 	int	item_check;
 	int	enemy_check;
+	int	blinky;
+	int	pinky;
+	int	inky;
+	int	clyde;
 }	t_entity_check;
 
 typedef struct s_help
@@ -235,8 +240,9 @@ int		check_map_rectangle(char **map);
 int		entity_counter(char **map, char entity);
 int		check_other_char_in_map(char **map);
 char	**create_temp_map(char **map);
-int		is_valid_path(char **map, int x, int y);
-int		item_counter_path(char **map);
+int		is_valid_path(t_mlx_data *data, int x, int y);
+int		item_counter_path(t_mlx_data *data);
+int		check_enemy_in_map(char **map);
 
 // Utiles
 int		files_count_line(char *file_name);

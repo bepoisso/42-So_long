@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:53:11 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:55:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/10 07:33:49 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int	init_help(t_mlx_data *data)
 	if (!data->help.img.img)
 		ft_printf("***ERROR IMG_HELP***\n");
 	mlx_key_hook(data->help.screen, key_help, data);
-	mlx_hook(data->help.screen, DestroyNotify, NoEventMask,
-		mlx_destroy, &data);
 	mlx_loop_hook(data->help.link, update_frame_help, data);
 	mlx_loop(data->help.link);
 	return (0);
