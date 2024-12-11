@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/10 15:30:06 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/11 15:42:01 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ fclean: clean
 re: fclean all
 
 val: re
-	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./so_long test
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./so_long test map.ber
 
 debug: re
 	gdb -tui -q $(NAME);

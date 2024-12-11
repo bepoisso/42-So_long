@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:41:40 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:33:32 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_mlx_map
 	int		item;
 	int		temp_item;
 	int		move_count;
-	char	stach;
+	char	stach; 
 	int		last_move;
 }	t_mlx_map;
 
@@ -318,5 +318,8 @@ int		handle_input(int keysym, t_mlx_data *data);
 void	handle_input_pt2(int keysym, t_mlx_data *data);
 void	handle_input_pt3(t_mlx_data *data);
 int		mlx_destroy(t_mlx_data *data);
+
+// sound
+void	playsound(char *file, int wait, int stop, int attenued);
 
 #endif
