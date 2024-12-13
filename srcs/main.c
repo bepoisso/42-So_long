@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 08:41:48 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:39:54 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 10:40:03 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int ac, char **av)
 	init_img(&data);
 	mlx_hook(data.screen, DestroyNotify, NoEventMask, mlx_destroy, &data);
 	print_map(&data);
+	playsound("credit", 1, 0, 1);
+	playsound("start", 1, 0, 0);
 	mlx_key_hook(data.screen, handle_input, &data);
 	mlx_loop_hook(data.link, update_frame, &data);
 	mlx_loop(data.link);

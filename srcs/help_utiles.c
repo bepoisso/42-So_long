@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:53:11 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/11 16:36:31 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 10:37:58 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	key_help(int keysym, t_mlx_data *data)
 {
-	ft_printf("%d\n", keysym);
 	if (keysym == XK_Escape)
 	{
 		mlx_destroy(data);
@@ -22,7 +21,6 @@ int	key_help(int keysym, t_mlx_data *data)
 	}
 	if (keysym == XK_space)
 	{
-		playsound("./sound/start.wav", 0, 0, 0);
 		mlx_loop_end(data->help.link);
 	}
 	return (0);

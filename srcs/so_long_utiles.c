@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:01:39 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/11 16:28:51 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 10:38:48 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	update_frame(t_mlx_data *data)
 		data->map.map = pinky_move(data, &data->map);
 		data->map.map = clyde_move(data, &data->map);
 		print_map(data);
+		playsound("siren0", 0, 0, 0);
 		data->current_frame = 0;
 	}
 	if (data->current_frame == 5000 || data->current_frame == 10000)

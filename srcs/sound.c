@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:59:04 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:23:00 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 09:48:28 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ unsigned long	hashstr(const char *str)
 char	*is_attenued(char *base, int attenued)
 {
 	if (attenued)
-		base = "paplay --volume=30000 sound/";
+		base = "paplay --volume=30000 sounds/";
 	else
-		base = "paplay --volume=40000 sound/";
+		base = "paplay --volume=40000 sounds/";
 	return (base);
 }
 
@@ -51,7 +51,7 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	{
 		result = system("pkill -f paplay");
 		if (result != 0)
-			ft_printf("Ex Perror\n");
+			ft_printf("Sound error stop sound %s\n", file);
 	}
 	if (hashstr(file) == 2784)
 		return ;
@@ -63,7 +63,7 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	memcpy(&tmp[strlen(tmp)], base, strlen(base));
 	result = system(tmp);
 	if (result != 0)
-		ft_printf("Ex Perror\n");
+		ft_printf("Sound error play sound %s\n", file);
 }
 /*
 playsound(son(.ogg), attendre la fin de la musique ou non,

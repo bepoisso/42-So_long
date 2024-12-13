@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/08 12:38:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 10:05:23 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,28 @@ char	**player_move_pt2(t_mlx_data *data, t_mlx_map *map, int move)
 void	check_item_counter(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[data->player.y - 1][data->player.x] == 'C')
+	{
 		map->item--;
+		playsound("eat_dot_0", 0, 0, 0);
+	}
 	else if (move == DOWN
 		&& map->map[data->player.y + 1][data->player.x] == 'C')
-		map->item--;
+	{
+	map->item--;
+		playsound("eat_dot_0", 0, 0, 0);
+	}
 	else if (move == LEFT
 		&& map->map[data->player.y][data->player.x - 1] == 'C')
+	{
+		playsound("eat_dot_0", 0, 0, 0);
 		map->item--;
+	}
 	else if (move == RIGHT
 		&& map->map[data->player.y][data->player.x + 1] == 'C')
+	{
 		map->item--;
+		playsound("eat_dot_0", 0, 0, 0);
+	}
 }
 
 // Check if the player want to exit and if hi have all the items
@@ -99,6 +111,7 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 		if (move == UP && map->map[data->player.y - 1][data->player.x] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
+			playsound("intermission", 0, 0, 0);
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
@@ -106,6 +119,7 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 			&& map->map[data->player.y + 1][data->player.x] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
+			playsound("intermission", 0, 0, 0);
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
@@ -113,6 +127,7 @@ void	check_end(t_mlx_data *data, t_mlx_map *map, int move)
 			&& map->map[data->player.y][data->player.x - 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
+			playsound("intermission", 0, 0, 0);
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
@@ -128,6 +143,7 @@ void	check_end_pt2(t_mlx_data *data, t_mlx_map *map, int move)
 			&& map->map[data->player.y][data->player.x + 1] == 'E')
 		{
 			ft_printf("\n ***FINISH IN %d MOVE ***\n", map->move_count);
+			playsound("intermission", 0, 0, 0);
 			save_in_scoreboard(data);
 			mlx_destroy(data);
 		}
