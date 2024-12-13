@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/11 15:42:01 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/13 22:20:38 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,24 +65,30 @@ OBJS		=	$(addprefix $(OBJ_DIR),$(SRC_FILES:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_LIB) $(LIBSX)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX_FLAGS) -lm
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX_FLAGS) -lm > /dev/null 2>&1
+	@echo "\033[1;33m   _________________       .____    ________    _______    ________  \033[0m"
+	@echo "\033[1;33m  /   _____/\_____  \      |    |   \_____  \   \      \  /  _____/  \033[0m"
+	@echo "\033[1;33m  \_____  \  /   |   \     |    |    /   |   \  /   |   \/   \  ___  \033[0m"
+	@echo "\033[1;33m  /        \/    |    \    |    |___/    |    \/    |    \    \_\  \ \033[0m"
+	@echo "\033[1;33m /_______  /\_______  /____|_______ \_______  /\____|__  /\______  / \033[0m"
+	@echo "\033[1;33m         \/         \/_____/       \/       \/         \/        \/  \033[0m"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@ > /dev/null 2>&1
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-	@make -C $(MLX_DIR)
-	@make -C $(LIBFT_DIR)
+	@make -C $(MLX_DIR) > /dev/null 2>&1
+	@make -C $(LIBFT_DIR) > /dev/null 2>&1
 
 clean:
 	rm -rf $(OBJ_DIR)
-	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(MLX_DIR)
+	@make clean -C $(LIBFT_DIR) > /dev/null 2>&1
+	@make clean -C $(MLX_DIR) > /dev/null 2>&1
 
 fclean: clean
 	rm -f $(NAME)
-	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(LIBFT_DIR) > /dev/null 2>&1
 
 re: fclean all
 
