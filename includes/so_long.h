@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/11 16:33:32 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 11:51:14 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,6 @@ void	add_spaces_left(char *str, int width);
 // Tp gest
 int		check_tp(char entity, t_mlx_map *map, int move);
 void	touch_tp(char entity, char which, t_mlx_map *map);
-int		next_move(char entity, t_mlx_data *data);
 
 // Enemy
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move);
@@ -307,6 +306,8 @@ void	print_inky(t_mlx_data *data);
 
 char	**clyde_move(t_mlx_data *data, t_mlx_map *map);
 char	**clyde_move_pt2(t_mlx_data *data, t_mlx_map *map, int rdm, char temp);
+int		next_move(t_mlx_data *data, t_mlx_map *map);
+void	get_last_move(t_mlx_data *data, int move);
 void	print_clyde(t_mlx_data *data);
 
 // MLX gest
