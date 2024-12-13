@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:03:41 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 12:06:01 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:26:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char	**clyde_move(t_mlx_data *data, t_mlx_map *map)
 	data->enemy.clyde.y = map->y;
 	temp = data->enemy.clyde.stash;
 	rdm = next_move(data, map);
-	if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1TtV"))
+	if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1TtVE"))
 	{
 		check_player_gameover(data, map, UP);
 		data->enemy.clyde.stash = map->map[map->y - 1][map->x];
 		map->map[map->y - 1][map->x] = CLYDE;
 		map->map[map->y][map->x] = temp;
 	}
-		if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1TtV"))
+	if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1TtVE"))
 	{
 		check_player_gameover(data, map, DOWN);
 		data->enemy.clyde.stash = map->map[map->y + 1][map->x];
@@ -58,7 +58,7 @@ void	get_last_move(t_mlx_data *data, int move)
 // Manage the mouvement of Clyde
 char	**clyde_move_pt2(t_mlx_data *data, t_mlx_map *map, int rdm, char temp)
 {
-	if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1TtV"))
+	if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1TtVE"))
 	{
 		check_player_gameover(data, map, LEFT);
 		data->enemy.clyde.stash = map->map[map->y][map->x - 1];
@@ -66,7 +66,7 @@ char	**clyde_move_pt2(t_mlx_data *data, t_mlx_map *map, int rdm, char temp)
 		map->map[map->y][map->x] = temp;
 	}
 	if (rdm == RIGHT
-		&& !is_in_set(map->map[map->y][map->x + 1], "WXYZ1TtV"))
+		&& !is_in_set(map->map[map->y][map->x + 1], "WXYZ1TtVE"))
 	{
 		check_player_gameover(data, map, RIGHT);
 		data->enemy.clyde.stash = map->map[map->y][map->x + 1];
@@ -87,14 +87,20 @@ int	next_move(t_mlx_data *data, t_mlx_map *map)
 	{
 		check++;
 		rdm = (rand() % 4) + 1;
-		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1V") && rdm != data->enemy.clyde.last_move)
+		if (rdm == UP && !is_in_set(map->map[map->y - 1][map->x], "WXYZ1VE")
+			&& rdm != data->enemy.clyde.last_move)
 			return (rdm);
-		else if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x], "WXYZ1V") && rdm != data->enemy.clyde.last_move)
+		else if (rdm == DOWN && !is_in_set(map->map[map->y + 1][map->x],
+			"WXYZ1VE") && rdm != data->enemy.clyde.last_move)
 			return (rdm);
-		else if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1], "WXYZ1V") && rdm != data->enemy.clyde.last_move)
+		else if (rdm == LEFT && !is_in_set(map->map[map->y][map->x - 1],
+			"WXYZ1VE") && rdm != data->enemy.clyde.last_move)
 			return (rdm);
-		else if (rdm == RIGHT && !is_in_set(map->map[map->y][map->x + 1], "WXYZ1V") && rdm != data->enemy.clyde.last_move)
+		else if (rdm == RIGHT && !is_in_set(map->map[map->y][map->x + 1],
+			"WXYZ1VE") && rdm != data->enemy.clyde.last_move)
 			return (rdm);
 	}
+	if (check == 100)
+		rdm == data->enemy.clyde.last_move;
 	return (0);
 }

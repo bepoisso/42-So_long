@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:38:01 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 10:41:20 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:58:34 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,77 +17,29 @@ void	check_enemy_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP
 		&& is_in_set(map->map[data->player.y - 1][data->player.x], "WXYZ"))
-	{
-		ft_printf("\n ***GAME OVER A ENEMY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == DOWN
 		&& is_in_set(map->map[data->player.y + 1][data->player.x], "WXYZ"))
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == LEFT
 		&& is_in_set(map->map[data->player.y][data->player.x - 1], "WXYZ"))
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == RIGHT
 		&& is_in_set(map->map[data->player.y][data->player.x + 1], "WXYZ"))
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 }
 
 // Check if the ennemy hit the player and if it is game over it
 void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[map->y - 1][map->x] == 'P')
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == DOWN && map->map[map->y + 1][map->x] == 'P')
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 0, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == LEFT && map->map[map->y][map->x - 1] == 'P')
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 	else if (move == RIGHT && map->map[map->y][map->x + 1] == 'P')
-	{
-		ft_printf("\n ***GAME OVER GHOSTY KILL YOU***\n");
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER A ENEMY KILL YOU***", data, 0);
 }
 
 // Check if the player want to exit and if he not have
@@ -95,40 +47,16 @@ void	check_player_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 void	check_gameover(t_mlx_data *data, t_mlx_map *map, int move)
 {
 	if (move == UP && map->map[data->player.y - 1][data->player.x] == 'E')
-	{
-		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER %d ITEM MISSING***", data, map->item);
 	else if (move == DOWN
 		&& map->map[data->player.y + 1][data->player.x] == 'E')
-	{
-		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER %d ITEM MISSING***", data, map->item);
 	else if (move == LEFT
 		&& map->map[data->player.y][data->player.x - 1] == 'E')
-	{
-		ft_printf("\n ***GAME OVER %d ITEM MISSING***\n", map->item);
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER %d ITEM MISSING***", data, map->item);
 	else if (move == RIGHT
 		&& map->map[data->player.y][data->player.x + 1] == 'E')
-	{
-		ft_printf("\n ***GAME OVER %d ITEM MISSINg***\n", map->item);
-		playsound("death_0", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		playsound("death_1", 1, 0, 0);
-		mlx_destroy(data);
-	}
+		playsound_death("***GAME OVER %d ITEM MISSING***", data, map->item);
 }
 
 // Get the pos of a entity and return this pos in the main struct

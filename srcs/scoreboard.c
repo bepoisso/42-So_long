@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:23:58 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:06:11 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ void	save_in_scoreboard(t_mlx_data *data)
 
 void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user)
 {
-	int	index;
+	int		index;
+	char	*temp;
 
 	index = 0;
 	if (get_index_of_user(*user, data->pseudo, &index) != -1
 		&& comp_score(*score, data->map.move_count, index))
 	{
 		free((*score)[index]);
-		(*score)[index] = ft_strdup(ft_itoa(data->map.move_count));
+		temp = ft_itoa(data->map.move_count);
+		(*score)[index] = ft_strdup(temp);
+		free(temp);
 	}
 	else if (get_index_of_user(*user, data->pseudo, &index) == -1)
 	{

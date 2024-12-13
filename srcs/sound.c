@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:59:04 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 09:48:28 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:03:24 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,25 @@ void	playsound(char *file, int wait, int stop, int attenued)
 	result = system(tmp);
 	if (result != 0)
 		ft_printf("Sound error play sound %s\n", file);
+}
+
+void	playsound_death(char *s, t_mlx_data *data, int item)
+{
+	if (item != 0)
+		ft_printf("\n***GAME OVER %d ITEM MISSING***\n", item);
+	else
+		ft_printf("\n%s\n", s);
+	playsound("death_0", 1, 0, 0);
+	playsound("death_1", 1, 0, 0);
+	playsound("death_1", 1, 0, 0);
+	mlx_destroy(data);
+}
+
+void	playsound_end(t_mlx_data *data)
+{
+	playsound("intermission", 0, 0, 0);
+	save_in_scoreboard(data);
+	mlx_destroy(data);
 }
 /*
 playsound(son(.ogg), attendre la fin de la musique ou non,

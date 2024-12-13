@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:35:45 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:44:34 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ char	**split_map(char *file_name, t_mlx_data *data)
 	i = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1 || !file_name || file_name[0] == '\0')
-		return (ft_perror("***ERROR %s dosent not exist please check the\
+		return (ft_perror("***ERROR map dosent not exist please check the\
  file name***\n", data), NULL);
 	count_line = files_count_line(file_name);
-	if (count_line < 0)
-		return (ft_perror("***ERROR %s is empty***\n", data), NULL);
+	if (count_line <= 0)
+		return (ft_perror("***ERROR map is empty***\n", data), NULL);
 	map = (char **)malloc(sizeof(char *) * (count_line + 1));
 	while (i < count_line)
 	{

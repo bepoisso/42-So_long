@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 16:10:42 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 11:51:14 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:02:25 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,5 +322,7 @@ int		mlx_destroy(t_mlx_data *data);
 
 // sound
 void	playsound(char *file, int wait, int stop, int attenued);
+void	playsound_death(char *s, t_mlx_data *data, int item);
+void	playsound_end(t_mlx_data *data);
 
 #endif
