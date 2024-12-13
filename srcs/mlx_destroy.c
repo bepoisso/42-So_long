@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:35:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 15:32:06 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/13 09:30:00 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	mlx_destroy_pt3(t_mlx_data *data)
 		free_2d_mlx(data->map.map);
 	if (data->map.temp_map)
 		free_2d_mlx(data->map.temp_map);
-	if (data->map_name)
-		free(data->map_name);
 	if (data->help.screen)
 		mlx_destroy_window(data->help.link, data->help.screen);
 }
