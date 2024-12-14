@@ -11,6 +11,16 @@
   <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/so_long_success.png" />
 </div>
 
+## How to run my so_long ?
+Just clone the repo
+
+```Make``` inside the repo
+
+to execute : ```./so_long your_42_login map_you_would_use.ber```
+(the 42login is used for add your score in scoreboard)
+You can send me your score and i'm gonna add it inside the scorboard file (With the default map).
+
+
 ## Objectives
 
 The main goal is to program a game where the player must collect all items on the map and escape through the exit while adhering to the following constraints:
@@ -81,3 +91,7 @@ make
 The program should display a window containing the map and allow user interaction.
 
 Good luck and enjoy working on this project!
+
+---
+Feel free to add a issue if you find it and i will fix it.
+(Leak, Error, Missing feature, etc...)
