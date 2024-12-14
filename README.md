@@ -1,87 +1,83 @@
 <div align="center">
-  <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/so_long.png"  />
+  <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/so_long.png" />
 </div>
 
-# Get Next Line - Line Reading Function
+# So Long - A 2D Escape Game
 
-Get Next Line is a project that focuses on developing a function to read a single line from a file descriptor. This exercise introduces you to handling file input, managing static variables, and dealing with various buffer sizes in C.
+**So Long** is a project where you will develop a 2D game using the **MiniLibX**, with textures, sprites, and basic gameplay mechanics. This project introduces you to graphical programming and event handling in C.
 
 ## Status
 <div align="center">
-  <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/gnl_success.png"  />
+  <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/so_long_success.png" />
 </div>
 
 ## Objectives
 
-The goal of this project is to implement a function that reads a line from a file descriptor. It will enhance your understanding of file I/O operations and static variables in C programming.
+The main goal is to program a game where the player must collect all items on the map and escape through the exit while adhering to the following constraints:
 
-## Great resources
+- Use **MiniLibX** for graphical rendering.
+- Write the program in **C**, following strict coding standards (Norm).
+- Properly manage memory (no **memory leaks**).
+- Validate and parse maps in the `.ber` format.
 
-<li><a href="https://suspectedoceano.notion.site/get_next_line-b3fa44d60dc24817bfd6a642183a93a0">Notion's Oceano - Get_next_line</a></li>
-<li><a href="https://github.com/xicodomingues/francinette">Get_next_ine Tester Francinette</a></li>
+## Useful Resources
 
-## Mandatory
+<li><a href="https://harm-smits.github.io/42docs/libs/minilibx">MiniLibX Doc</a></li>
+<li><a href="https://suspectedoceano.notion.site/So_long-bccdb29d879049a0981404886e097230">So_Long Tester</a></li>
+
+## Key Features
 
 <table>
   <tr>
-    <th>Function name</th>
-    <td>get_next_line</td>
+    <th>Program Name</th>
+    <td>so_long</td>
   </tr>
   <tr>
-    <th>Prototype</th>
-    <td>char *get_next_line(int fd);</td>
+    <th>Submission Files</th>
+    <td>Makefile, *.h, *.c, maps, textures</td>
   </tr>
   <tr>
-    <th>Turn in files</th>
-    <td>get_next_line.h, get_next_line.c, get_next_line_utils.c</td>
+    <th>Arguments</th>
+    <td>A map in the *.ber format</td>
   </tr>
   <tr>
-    <th>Makefile</th>
-    <td>No</td>
+    <th>Allowed External Functions</th>
+    <td>open, close, read, write, malloc, free, perror, strerror, exit, MiniLibX functions</td>
   </tr>
   <tr>
-    <th>External functions</th>
-    <td>read, malloc, free</td>
-  </tr>
-  <tr>
-    <th>Libft authorized</th>
-    <td>No</td>
+    <th>Libft Allowed</th>
+    <td>Yes</td>
   </tr>
   <tr>
     <th>Description</th>
-    <td>Implement a function to read a single line from a file descriptor.</td>
+    <td>A game where the player collects items and escapes a labyrinth.</td>
   </tr>
 </table>
 
-- The project must be written in C.
-- The code should adhere to Norm.
-- No global variables are allowed.
-- Memory allocated on the heap must be freed when necessary; no leaks are tolerated.
-- Provide a Makefile to compile the sources with flags -Wall, -Wextra, and -Werror.
-- The Makefile must include rules for $(NAME), all, clean, fclean, and re.
-- Include a rule for bonus features if applicable.
-- Do not use the libft library or lseek().
-- The program must compile with the option: `-D BUFFER_SIZE=n` to define the buffer size during compilation.
+### Rules
 
-## Functionality
+1. The map must:
+   - Be rectangular and surrounded by walls.
+   - Contain at least one exit, one collectible item, and one starting position.
+   - Follow a valid structure (`0, 1, C, E, P`).
+2. The **W, A, S, D** keys are used to move the player.
+3. Each movement is counted and displayed in the terminal.
+4. The window must close properly via `ESC` or clicking the window close button.
 
-The `get_next_line` function should:
+### Bonus Features
 
-- Read one line at a time from the file descriptor until the end of the file.
-- Return the line read, including the newline character, unless it's the end of the file and there is no newline.
-- Return NULL if there's nothing left to read or if an error occurs.
-- Work correctly for standard input as well as files.
+- Add patrolling enemies that can defeat the player.
+- Display the move count directly on the game window.
+- Animate sprites to enhance aesthetics.
 
-The program must handle varying buffer sizes efficiently, with a default of 42. You should compile with and without the `-D BUFFER_SIZE` flag.
+## Example Map
 
-## Bonus
 
-If the mandatory part is completed perfectly, consider the following bonus features:
+## Compilation and Execution
 
-- Implement `get_next_line` using a single static variable.
-- Extend `get_next_line` to handle multiple file descriptors, allowing for simultaneous reading from different file descriptors.
+Compile the program with the provided **Makefile**:
+make
+./so_long maps/example.ber
+The program should display a window containing the map and allow user interaction.
 
-Bonus files should be named with the `_bonus` suffix:
-
-- `get_next_line_bonus.c`
-- `get_next_line_bonus.h`
+Good luck and enjoy working on this project!
