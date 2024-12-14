@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:03:41 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 22:26:42 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/14 12:20:28 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ int	next_move(t_mlx_data *data, t_mlx_map *map)
 			return (rdm);
 	}
 	if (check == 100)
-		rdm == data->enemy.clyde.last_move;
+		rdm = data->enemy.clyde.last_move;
 	return (0);
 }
