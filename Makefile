@@ -6,7 +6,7 @@
 #    By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/31 15:52:46 by bepoisso          #+#    #+#              #
-#    Updated: 2024/12/14 15:35:51 by bepoisso         ###   ########.fr        #
+#    Updated: 2024/12/14 15:51:03 by bepoisso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ $(NAME): $(OBJS) $(LIBFT_LIB) $(LIBSX)
 	@echo "$(YELLOW)  |____|    (____  /\___  >____|_______ \____/|___|  /\___  /  $(RESET)"
 	@echo "$(YELLOW)                 \/     \/_____/       \/          \//_____/   $(RESET)"
 	@echo "$(YELLOW)                                             By bepoisso       $(RESET)"
-	@echo "$(PURPLE)To execute : ./so_long your_42_login map.ber$(RESET)"
+	@echo "$(PURPLE)🤖 To execute : ./so_long your_42_login map.ber 🤖$(RESET)"
+	@echo "$(PURPLE)🎧	Active sound for better experience	🎧$(RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@ > /dev/null 2>&1
