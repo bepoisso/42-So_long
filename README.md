@@ -17,6 +17,7 @@ Just clone the repo
 ```Make``` inside the repo
 
 to execute : ```./so_long your_42_login map_you_would_use.ber```
+
 (the 42login is used for add your score in scoreboard)
 You can send me your score and i'm gonna add it inside the scorboard file (With the default map).
 
