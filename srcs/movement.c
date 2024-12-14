@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:46:52 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/13 22:03:12 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:24:08 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**player_move(t_mlx_data *data, t_mlx_map *map, int move)
 	data->player.y = map->y;
 	if (move == UP && map->map[data->player.y - 1][data->player.x] != '1')
 	{
-		data->player.move_count++;
+		map->move_count++;
 		check_item_counter(data, map, move);
 		check_end(data, map, move);
 		check_enemy_gameover(data, map, move);

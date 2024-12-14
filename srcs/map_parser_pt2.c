@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 12:39:43 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/10 17:32:02 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:09:13 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,15 @@ int	check_map_rectangle(char **map)
 	int	size_line;
 
 	i = 0;
-	size_line = ft_strlen((map[i]));
+	size_line = ft_strlen(map[i]);
 	while (map[i] != NULL)
 	{
-		if ((int)ft_strlen(map[i]) != size_line)
+		if (map[i + 1] == NULL)
+		{
+			if ((int)ft_strlen(map[i]) != size_line - 1)
+				return (1);
+		}
+		else if ((int)ft_strlen(map[i]) != size_line)
 			return (1);
 		i++;
 	}

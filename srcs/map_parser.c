@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 20:02:17 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/14 13:28:26 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:26:55 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**split_map(char *file_name, t_mlx_data *data)
 	if (count_line <= 0)
 		return (ft_perror("***ERROR map is empty***\n", data), NULL);
 	map = (char **)malloc(sizeof(char *) * (count_line + 1));
-	while (i < count_line)
+	while (i <= count_line)
 	{
 		map[i] = get_next_line(fd);
 		i++;
@@ -94,7 +94,7 @@ int	check_wall(t_mlx_map *map)
 	while (map->y < map->y_max)
 	{
 		if (map->map[map->y][map->x] != '1'
-			|| map->map[map->y][map->x_max - 1] != '1')
+			|| map->map[map->y][map->x_max] != '1')
 			return (1);
 		map->y++;
 	}
