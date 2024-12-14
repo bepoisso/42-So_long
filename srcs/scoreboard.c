@@ -6,7 +6,7 @@
 /*   By: bepoisso <bepoisso@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:47 by bepoisso          #+#    #+#             */
-/*   Updated: 2024/12/14 13:15:03 by bepoisso         ###   ########.fr       */
+/*   Updated: 2024/12/14 13:48:42 by bepoisso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	save_in_scoreboard_pt2(t_mlx_data *data, char ***score, char ***user)
 		temp = ft_itoa(data->map.move_count);
 		*score = add_data_in_tab(temp, *score);
 		free(temp);
-		
 	}
 }
 
