@@ -11,6 +11,7 @@
   <img height="200" src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/so_long_success.png" />
 </div>
 
+## Exemples
 <div align="center">
   <img src="https://raw.githubusercontent.com/Benjamin-poisson/My_image_bank/refs/heads/main/solong_exp.png" />
 </div>
